@@ -1,0 +1,76 @@
+protocol_id: phase1_forward_feedback
+
+goal: >
+  Verify whether forward-only output feedback and local update rules
+  can induce monotonic improvement and meaningful structural adaptation.
+
+hypothesis: >
+  Even without backpropagation or global loss,
+  locally modulated forward dynamics can drive learning-like behavior.
+
+constraints:
+  no_backpropagation: true
+  no_global_loss_scalar: true
+  no_backward_pass: true
+  local_updates_only: true
+  structure_modification_allowed: limited
+
+environment:
+  type: sequence_prediction
+  description: >
+    Predict next symbol in a simple structured sequence.
+    Environment provides output correctness as feedback, not gradients.
+
+representation:
+  type: graph_based
+  node:
+    state: vector
+    parameters: local
+  edge:
+    influence: directional
+
+learning_dynamics:
+  update_signal:
+    sources:
+      - local_state_mismatch
+      - output_feedback
+    form: modulation_strength
+  update_scope: local_neighborhood
+
+structural_change:
+  enabled: true
+  operations:
+    - split_node
+    - merge_nodes
+    - rewire_edge
+  trigger_condition:
+    high_local_tension: true
+    sustained_over_time: true
+
+evaluation_metrics:
+  - prediction_trend
+  - structural_change_frequency
+  - locality_of_updates
+  - stability_of_substructures
+
+experiment_plan:
+  runs: 20
+  random_seeds: fixed
+  record_interval: every_step
+
+expected_outcomes:
+  optimistic:
+    - gradual performance improvement
+    - non-random structural adjustments
+    - emergence of stable substructures
+  pessimistic:
+    - random walk behavior
+    - uncorrelated structural changes
+
+decision_rules:
+  if_optimistic:
+    proceed_to: phase2_structural_advantage
+  if_pessimistic:
+    actions:
+      - refine_update_signal
+      - tighten_structure_change_conditions
