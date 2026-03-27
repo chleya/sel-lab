@@ -1,0 +1,15 @@
+{
+  "config": {
+    "input_size": 16,
+    "hidden_size": 8,
+    "max_units": 4
+  },
+  "fixed_final": 0.9500000000000001,
+  "evolving_final": 0.7433333333333333,
+  "advantage": -0.20666666666666678,
+  "memory_fixed": 1280.0,
+  "memory_evolving": 1280.0,
+  "memory_ratio": 1.0,
+  "compression_ratio": 321.6,
+  "decision": "neutral"
+}

@@ -1,0 +1,43 @@
+{
+  "test_date": "2026-02-04",
+  "baseline_accuracy": 0.8925925925925926,
+  "noise_results": [
+    {
+      "noise": 0.0,
+      "accuracy": 0.8925925925925926,
+      "drop": 0.0,
+      "drop_pct": 0.0
+    },
+    {
+      "noise": 0.01,
+      "accuracy": 0.8777777777777778,
+      "drop": 0.014814814814814836,
+      "drop_pct": 1.6597510373444009
+    },
+    {
+      "noise": 0.05,
+      "accuracy": 0.7870370370370371,
+      "drop": 0.10555555555555551,
+      "drop_pct": 11.825726141078833
+    },
+    {
+      "noise": 0.1,
+      "accuracy": 0.5370370370370371,
+      "drop": 0.3555555555555555,
+      "drop_pct": 39.83402489626556
+    }
+  ],
+  "criteria_passed": {
+    "sigma_0.01": true,
+    "sigma_0.05": false,
+    "sigma_0.1": false
+  },
+  "sc4_passed": false,
+  "full_sc_status": {
+    "SC-1 (Locality)": "PASS",
+    "SC-2 (Reusable structures)": "PASS",
+    "SC-3 (Reduced cost)": "PASS",
+    "SC-4 (Stability)": "FAIL",
+    "SC-5 (Forward-only)": "PASS"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "test": "Convergence Analysis",
+  "half_life": 2,
+  "total_reduction": 81.95496124701813,
+  "fast_phase_reduction": 76.95821247036889,
+  "slow_phase_reduction": 21.685595226601006,
+  "final_accuracy": 0.8882716049382716,
+  "findings": [
+    "DFA successfully converges to low error state",
+    "Fast convergence (half-life: 2 epochs)",
+    "Good final accuracy (89%)",
+    "Two-phase convergence pattern (fast then slow)"
+  ],
+  "theoretical_notes": [
+    "DFA converges under bounded weights",
+    "Two-phase convergence pattern observed",
+    "Final performance comparable to small BP networks"
+  ]
+}

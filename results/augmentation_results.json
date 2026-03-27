@@ -1,0 +1,21 @@
+{
+  "test": "Data Augmentation",
+  "no_augmentation": {
+    "train": 0.9132856006364359,
+    "test": 0.8888888888888888,
+    "avg_train": 0.8757677008750995,
+    "avg_test": 0.8532962962962962,
+    "overfit_gap": 0.024396711747547095
+  },
+  "with_augmentation": {
+    "train": 0.7955449482895783,
+    "test": 0.7777777777777778,
+    "avg_train": 0.7610182975338107,
+    "avg_test": 0.735111111111111,
+    "overfit_gap": 0.017767170511800545
+  },
+  "improvement": -0.11111111111111105,
+  "gap_reduction": 0.00662954123574655,
+  "improvement_passed": false,
+  "gap_reduction_passed": false
+}

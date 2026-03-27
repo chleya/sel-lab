@@ -1,0 +1,6 @@
+{
+  "final_train_accuracy": 0.9,
+  "final_test_accuracy": 0.82,
+  "final_modules": 5,
+  "total_structural_changes": 8
+}

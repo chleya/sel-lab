@@ -1,0 +1,13 @@
+{
+  "test": "MNIST Stable",
+  "n_train": 3000,
+  "n_test": 1000,
+  "model": "784->64->10",
+  "epochs": 10,
+  "final_accuracy": 0.85,
+  "lr": 0.005,
+  "clip": [
+    -1,
+    1
+  ]
+}

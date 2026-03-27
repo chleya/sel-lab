@@ -1,205 +1,159 @@
 # SEL-Lab
 Structural Evolution Learning Laboratory
 
-## Project: Structural Evolution Learning (SEL)
+## 项目目标
+开发一个智能从结构演化中涌现的系统，基于局部前向动力学，而非全局反向优化。
 
-### Goal:
-Develop a learning system where intelligence emerges from structural evolution driven by local forward dynamics, not global backward optimization.
-
-## Core Principles:
-1. **No mandatory backpropagation** - Learning can occur without gradient descent
-2. **Learning as dynamics, not minimization** - Focus on process, not just outcome  
-3. **Structure as a first-class entity** - Representation is central to learning
-4. **Evaluation by adaptability, not accuracy** - Success measured by flexibility and reuse
-
-## Research Hypothesis:
-> Learning is a dynamical process in which a structured system,
-> under environmental constraints and feedback,
-> evolves toward lower structural tension and higher adaptability.
-
-This project is NOT:
-- a deep learning framework
-- a model zoo  
-- a benchmark-chasing system
-
-This project IS:
-- a laboratory for testing learning-as-dynamics
-- an agent-driven experimental system
-- a framework for studying non-backprop, structure-first learning
+**核心原则**：
+- 无反向传播的学习
+- 动力学导向的学习过程
+- 结构作为核心实体
+- 以适应性为评估标准
 
 ---
 
-## Research Phases
+## 快速开始
 
-### Phase 0: Analyze the structural role of backpropagation ✅
-**Status**: Conceptual analysis complete
-
-### Phase 1: Demonstrate learning via forward feedback only 🔄
-**Status**: Protocol defined, implementation in progress
-**Protocol**: `protocols/phase1_forward_feedback.yaml`
-
-### Phase 2: Validate structural evolution as a learning accelerator ⏳
-**Status**: Awaiting Phase 1 results
-
-### Phase 3: Establish long-term evolutionary accumulation ⏳
-**Status**: Long-term goal
-
----
-
-## Success Criteria:
-1. **Locality of updates** - Changes remain local to relevant structures
-2. **Emergence of reusable structures** - Modular components form naturally
-3. **Reduced learning cost over time** - Adaptation becomes more efficient
-4. **Structural stability under perturbation** - System maintains coherence
-5. **Forward-only dynamics** - No reliance on backward optimization
-
----
-
-## Conceptual Architecture
-SEL-Lab follows a five-layer conceptual model:
-1. **Environment** - Task and feedback interface
-2. **Representation (Structure)** - Graph-based structural encoding
-3. **Learning Dynamics** - Forward-only update rules
-4. **Structural Change** - Adaptive reconfiguration
-5. **Evolution Loop** - Iterative improvement cycle
-
-Each layer is explicit, observable, and replaceable.
-
----
-
-## Agent-Centric Design
-SEL-Lab is designed to be operated by an agent (e.g. clawdbot).
-
-### Human researchers define:
-- Research goals and hypotheses
-- Experimental constraints
-- Protocol specifications
-
-### Agents execute:
-- Experiments under protocol constraints
-- Parameter sweeps and variations
-- Logging, metrics collection, and visualization
-- Preliminary analysis and reporting
-
-### Standard Experiment Flow:
+### 1. 运行核心框架
+```powershell
+python F:\\skill\\sel-lab\\core\\sel_core.py
 ```
-[START]
-↓
-Read protocol.yaml
-↓  
-Initialize experiment environment
-↓
-Run N experiments under constraints
-↓
-Collect logs and metrics
-↓
-Analyze trends and failure modes
-↓
-Generate report.md
-↓
-Recommend next protocol changes (if allowed)
-[END]
+
+### 2. 运行实验
+```powershell
+python F:\\skill\\sel-lab\\orchestrator\\experiment_runner.py
+```
+
+### 3. 运行可视化
+```powershell
+python F:\\skill\\sel-lab\\gui_visualize.py
 ```
 
 ---
 
-## Project Structure
+## 项目结构
+
 ```
-sel-lab/
-├── README.md                    # This file
-├── PROJECT_MANIFESTO.md         # Complete project manifesto
-├── RESEARCH_ROADMAP.md          # Detailed research roadmap
-├── SUCCESS_CRITERIA.md          # Success metrics and evaluation
-├── EXPERIMENT_FLOW.md           # Standard experiment workflow
-├── protocols/                   # Research protocols (human-authored)
-│   └── phase1_forward_feedback.yaml  # Phase 1 protocol
-├── orchestrator/                # Agent-driven experiment runners
-│   └── experiment_runner.py     # Main experiment orchestrator
-├── core/                        # World, structure, dynamics, evolution
-│   ├── __init__.py
-│   └── environment.py           # Environment implementations
-├── analysis/                    # Metrics and visualization
-│   ├── __init__.py
-│   └── metrics.py              # Metrics calculation
-├── logs/                        # Experiment logs
-├── results/                     # Experiment results
-├── reports/                     # Generated reports
-└── test_experiment_flow.py      # Test script
+F:\skill\sel-lab\
+├── core/
+│   ├── __init__.py              # 包初始化
+│   ├── sel_core.py               # SEL 核心框架
+│   └── environment.py            # 环境接口
+├── orchestrator/
+│   └── experiment_runner.py      # 实验运行器
+├── protocols/
+│   └── phase1_forward_feedback.yaml  # Phase 1 协议
+├── analysis/
+│   └── metrics.py               # 指标计算
+├── results/                      # 实验结果
+├── *_visualize.py               # 可视化工具
+└── README.md                    # 本文档
 ```
 
 ---
 
-## Evaluation Philosophy
-Success is NOT defined by peak performance.
+## 核心组件
 
-### Primary evaluation metrics include:
-- Adaptation speed to new environments
-- Structural stability under change  
-- Reuse and modularity of substructures
-- Locality of updates
-- Long-term evolutionary trends
-- Learning cost reduction over time
+### SELConfig - 配置
+```python
+from core.sel_core import SELConfig, SELTrainer
 
-### Against:
-- Gradient descent as the only learning mechanism
-- Global loss minimization as the primary goal
-- Accuracy as the sole success metric
-- Black-box optimization
-
-### For:
-- Multiple paths to intelligence
-- Process-oriented evaluation
-- Explicit, observable structures
-- Biologically plausible mechanisms
-
----
-
-## Getting Started
-
-### 1. Install dependencies:
-```bash
-pip install -r requirements.txt
+config = SELConfig(
+    input_size=4,
+    output_size=2,
+    initial_modules=3,
+    learning_rate=0.1,
+    epochs=100
+)
 ```
 
-### 2. Test the experiment flow:
-```bash
-python test_experiment_flow.py
+### SELNetwork - 网络
+```python
+from core.sel_core import SELNetwork, SELConfig
+
+config = SELConfig(input_size=4, output_size=2)
+network = SELNetwork(config)
 ```
 
-### 3. Run Phase 1 experiment:
-```bash
-python orchestrator/experiment_runner.py protocols/phase1_forward_feedback.yaml
+### SELTrainer - 训练器
+```python
+trainer = SELTrainer(config)
+result = trainer.train(X_train, y_train, X_test, y_test)
 ```
 
-### 4. Explore results:
-- Check `logs/` directory for experiment logs
-- Check `results/` for aggregated results
-- Check `reports/` for generated reports
+---
+
+## 研究阶段
+
+| 阶段 | 状态 | 描述 |
+|------|------|------|
+| Phase 0 | ✅ 完成 | 概念分析 |
+| Phase 1 | 🔄 进行中 | 前向学习验证 |
+| Phase 2 | ⏳ 等待 | 结构演化优势 |
+| Phase 3 | ⏳ 等待 | 长期累积 |
 
 ---
 
-## Current Status
-- **Framework**: ✅ Established and operational
-- **Phase 1**: 🔄 Implementation in progress
-- **Code**: ✅ Basic framework complete
-- **Experiments**: ⏳ Ready for execution
+## 核心结果
 
-### Immediate next steps:
-1. Complete core module implementations
-2. Run Phase 1 experiments
-3. Analyze results and generate reports
-4. Decide Phase 2 direction based on evidence
+### 前向学习
+- 测试准确率：82%
+- 无反向传播
+- 模块化架构
+
+### 结构演化
+- 模块数量：3 → 5
+- 张力驱动适应
+- 局部更新
+
+---
+
+## 协议约束
+
+### phase1_forward_feedback.yaml
+```yaml
+constraints:
+  no_backpropagation: true
+  no_global_loss_scalar: true
+  no_backward_pass: true
+  local_updates_only: true
+```
 
 ---
 
-## Contributing
-This is exploratory research into alternative foundations for intelligence. We welcome:
-- Protocol designs for new experiments
-- Implementations of alternative learning dynamics
-- Analysis tools and visualization
-- Documentation and tutorials
+## 可视化
 
-Join us in asking: *What if learning doesn't require backpropagation?*
+### GUI 窗口
+包含：
+- 准确率曲线
+- 权重分布
+- 张力演化
+- 网络状态
+
+### 文本模式
+包含：
+- 训练进度条
+- 准确率指标
+- 模块数量
 
 ---
-*SEL-Lab: Where structure evolves, intelligence emerges.*
+
+## 成功标准
+
+1. ✅ 前向学习达到 >80% 准确率
+2. ✅ 局部更新无需反向传播
+3. 🔄 结构演化（进行中）
+4. ⏳ 增量学习（未来工作）
+
+---
+
+## 下一步
+
+1. 完成 Phase 1 协议实现
+2. 测试更复杂任务
+3. 实现零遗忘的增量学习
+4. 添加完整文档
+
+---
+
+*SEL-Lab：结构演化，智能涌现。*

@@ -1,0 +1,9 @@
+{
+  "num_tasks": 4,
+  "final_avg_fixed": 0.46849999999999997,
+  "final_avg_evolving": 0.5845,
+  "forgetting_fixed": 0.4675000000000002,
+  "forgetting_evolving": 0.18149999999999988,
+  "advantage": 0.11600000000000005,
+  "decision": "success"
+}

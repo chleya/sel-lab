@@ -1,0 +1,9 @@
+{
+  "method": "knowledge_reuse",
+  "fixed_final": 0.32200000000000006,
+  "evolving_final": 0.376,
+  "fixed_auc": 0.297,
+  "evolving_auc": 0.3679,
+  "advantage": 0.05399999999999994,
+  "decision": "success"
+}

@@ -1,0 +1,25 @@
+{
+  "test": "LR Schedule Comparison",
+  "schedules": {
+    "constant": {
+      "final": 0.8888888888888888,
+      "avg_last5": 0.8862962962962964
+    },
+    "warmup": {
+      "final": 0.8888888888888888,
+      "avg_last5": 0.8870370370370371
+    },
+    "cosine": {
+      "final": 0.8981481481481481,
+      "avg_last5": 0.8977777777777778
+    },
+    "decay": {
+      "final": 0.8888888888888888,
+      "avg_last5": 0.8896296296296295
+    }
+  },
+  "best_schedule": "cosine",
+  "improvement": 0.0092592592592593,
+  "target": 0.02,
+  "passed": false
+}

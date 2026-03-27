@@ -1,0 +1,23 @@
+{
+  "test": "Scale Testing",
+  "dataset": "MNIST",
+  "n_train": 5000,
+  "n_test": 2000,
+  "results": {
+    "32": {
+      "accuracy": 0.7955,
+      "params": 25408
+    },
+    "64": {
+      "accuracy": 0.8565,
+      "params": 50816
+    },
+    "128": {
+      "accuracy": 0.8205,
+      "params": 101632
+    }
+  },
+  "best_hidden_size": 64,
+  "best_accuracy": 0.8565,
+  "scale_improvement": 0.025000000000000022
+}

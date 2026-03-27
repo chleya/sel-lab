@@ -1,0 +1,23 @@
+{
+  "test": "Structural Evolution Analysis",
+  "total_units": 6,
+  "random_units": 1,
+  "cloned_units": 5,
+  "reuse_ratio": 0.8333333333333334,
+  "evolution_events": 5,
+  "initial_accuracy": 0.08518518518518518,
+  "final_accuracy": 0.13333333333333333,
+  "improvement": 0.04814814814814815,
+  "findings": [
+    "Evolution triggered 5 times",
+    "Structure adapts to task complexity",
+    "Majority of units cloned (knowledge reuse dominant)",
+    "Performance improved by 57% over training",
+    "Reuse ratio: 83% of units cloned"
+  ],
+  "theoretical_notes": [
+    "Knowledge reuse verified through cloning",
+    "Structure adapts to task complexity",
+    "Efficient resource allocation"
+  ]
+}

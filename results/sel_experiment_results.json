@@ -1,0 +1,43 @@
+{
+  "runs": 5,
+  "mean_test_accuracy": 0.82,
+  "std_test_accuracy": 0.0,
+  "max_test_accuracy": 0.82,
+  "results": [
+    {
+      "run": 1,
+      "train_accuracy": 0.9,
+      "test_accuracy": 0.82,
+      "modules": 5,
+      "changes": 8
+    },
+    {
+      "run": 2,
+      "train_accuracy": 0.9,
+      "test_accuracy": 0.82,
+      "modules": 5,
+      "changes": 8
+    },
+    {
+      "run": 3,
+      "train_accuracy": 0.9,
+      "test_accuracy": 0.82,
+      "modules": 5,
+      "changes": 8
+    },
+    {
+      "run": 4,
+      "train_accuracy": 0.9,
+      "test_accuracy": 0.82,
+      "modules": 5,
+      "changes": 8
+    },
+    {
+      "run": 5,
+      "train_accuracy": 0.9,
+      "test_accuracy": 0.82,
+      "modules": 5,
+      "changes": 8
+    }
+  ]
+}

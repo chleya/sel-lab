@@ -1,0 +1,9 @@
+{
+  "dataset": "sklearn-digits",
+  "samples": 1797,
+  "features": 64,
+  "train_samples": 1257,
+  "test_samples": 540,
+  "final_accuracy": 0.8925925925925926,
+  "decision": "success"
+}

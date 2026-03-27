@@ -1,0 +1,13 @@
+{
+  "config": {
+    "num_agents": 4,
+    "sharing_interval": 10
+  },
+  "single_final": 0.82,
+  "individual_final": 0.9566666666666667,
+  "collective_final": 0.9733333333333333,
+  "advantage_individual": 0.13666666666666671,
+  "advantage_collective": 0.15333333333333332,
+  "knowledge_shared": 5,
+  "decision": "success"
+}

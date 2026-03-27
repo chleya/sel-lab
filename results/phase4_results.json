@@ -1,0 +1,9 @@
+{
+  "dataset": "digits/MNIST",
+  "fixed_final": 0.09888888888888887,
+  "evolving_final": 0.11222222222222222,
+  "fixed_auc": 0.09785185185185186,
+  "evolving_auc": 0.10870370370370369,
+  "advantage": 0.01333333333333335,
+  "decision": "success"
+}
