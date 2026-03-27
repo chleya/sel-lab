@@ -1,5 +1,6 @@
 {
   "test_date": "2026-02-04",
+  "scope": "SC-4 only",
   "baseline_accuracy": 0.8925925925925926,
   "noise_results": [
     {
@@ -33,11 +34,7 @@
     "sigma_0.1": false
   },
   "sc4_passed": false,
-  "full_sc_status": {
-    "SC-1 (Locality)": "PASS",
-    "SC-2 (Reusable structures)": "PASS",
-    "SC-3 (Reduced cost)": "PASS",
-    "SC-4 (Stability)": "FAIL",
-    "SC-5 (Forward-only)": "PASS"
+  "measured_status": {
+    "SC-4 (Stability)": "FAIL"
   }
 }

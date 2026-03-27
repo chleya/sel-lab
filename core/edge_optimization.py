@@ -4,9 +4,18 @@ SEL-Lab Edge Optimization
 Optimize for edge deployment
 """
 
+from __future__ import annotations
+
 import numpy as np
 from dataclasses import dataclass
-import json
+from pathlib import Path
+import sys
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from core.runtime import resolve_results_path, save_json
 
 
 @dataclass
@@ -254,24 +263,24 @@ def run_edge_optimization():
     success = advantage > 0
     print(f"\n{'[SUCCESS] Edge optimization effective!' if success else '[NEUTRAL] Mixed results'}")
     
-    with open("F:/skill/sel-lab/results/edge_optimization_results.json", 'w', encoding='utf-8') as f:
-        json.dump({
-            'config': {
-                'input_size': config.input_size,
-                'hidden_size': config.hidden_size,
-                'max_units': config.max_units
-            },
-            'fixed_final': float(f_final),
-            'evolving_final': float(e_final),
-            'advantage': float(advantage),
-            'memory_fixed': float(fixed_mem),
-            'memory_evolving': float(evolving_mem),
-            'memory_ratio': float(memory_ratio),
-            'compression_ratio': float(compression),
-            'decision': 'success' if success else 'neutral'
-        }, f, indent=2)
-    
-    print(f"\nResults saved: results/edge_optimization_results.json")
+    payload = {
+        'config': {
+            'input_size': config.input_size,
+            'hidden_size': config.hidden_size,
+            'max_units': config.max_units
+        },
+        'fixed_final': float(f_final),
+        'evolving_final': float(e_final),
+        'advantage': float(advantage),
+        'memory_fixed': float(fixed_mem),
+        'memory_evolving': float(evolving_mem),
+        'memory_ratio': float(memory_ratio),
+        'compression_ratio': float(compression),
+        'decision': 'success' if success else 'neutral'
+    }
+    target = resolve_results_path("edge_optimization_results.json")
+    save_json(payload, target)
+    print(f"\nResults saved: {target}")
 
 
 if __name__ == "__main__":

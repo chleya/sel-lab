@@ -1,0 +1,201 @@
+{
+  "results": [
+    {
+      "threshold": 0.3,
+      "initial_tension": 0.5,
+      "triggered_expansion": false,
+      "expansion_epochs": [],
+      "final_accuracy_gap": -0.023333333333333317,
+      "mean_accuracy_gap": -0.02955555555555557,
+      "mean_tension": 0.04526912016426488,
+      "max_tension": 0.0652223147696504,
+      "dominant_failure_mode": "under_triggered_evolution"
+    },
+    {
+      "threshold": 0.3,
+      "initial_tension": 0.75,
+      "triggered_expansion": false,
+      "expansion_epochs": [],
+      "final_accuracy_gap": -0.023333333333333317,
+      "mean_accuracy_gap": -0.02955555555555557,
+      "mean_tension": 0.04526912016426488,
+      "max_tension": 0.0652223147696504,
+      "dominant_failure_mode": "under_triggered_evolution"
+    },
+    {
+      "threshold": 0.3,
+      "initial_tension": 1.0,
+      "triggered_expansion": false,
+      "expansion_epochs": [],
+      "final_accuracy_gap": -0.023333333333333317,
+      "mean_accuracy_gap": -0.02955555555555557,
+      "mean_tension": 0.04526912016426488,
+      "max_tension": 0.0652223147696504,
+      "dominant_failure_mode": "under_triggered_evolution"
+    },
+    {
+      "threshold": 0.15,
+      "initial_tension": 0.5,
+      "triggered_expansion": false,
+      "expansion_epochs": [],
+      "final_accuracy_gap": -0.023333333333333317,
+      "mean_accuracy_gap": -0.02955555555555557,
+      "mean_tension": 0.04526912016426488,
+      "max_tension": 0.0652223147696504,
+      "dominant_failure_mode": "under_triggered_evolution"
+    },
+    {
+      "threshold": 0.15,
+      "initial_tension": 0.75,
+      "triggered_expansion": false,
+      "expansion_epochs": [],
+      "final_accuracy_gap": -0.023333333333333317,
+      "mean_accuracy_gap": -0.02955555555555557,
+      "mean_tension": 0.04526912016426488,
+      "max_tension": 0.0652223147696504,
+      "dominant_failure_mode": "under_triggered_evolution"
+    },
+    {
+      "threshold": 0.15,
+      "initial_tension": 1.0,
+      "triggered_expansion": false,
+      "expansion_epochs": [],
+      "final_accuracy_gap": -0.023333333333333317,
+      "mean_accuracy_gap": -0.02955555555555557,
+      "mean_tension": 0.04526912016426488,
+      "max_tension": 0.0652223147696504,
+      "dominant_failure_mode": "under_triggered_evolution"
+    },
+    {
+      "threshold": 0.1,
+      "initial_tension": 0.5,
+      "triggered_expansion": false,
+      "expansion_epochs": [],
+      "final_accuracy_gap": -0.023333333333333317,
+      "mean_accuracy_gap": -0.02955555555555557,
+      "mean_tension": 0.04526912016426488,
+      "max_tension": 0.0652223147696504,
+      "dominant_failure_mode": "under_triggered_evolution"
+    },
+    {
+      "threshold": 0.1,
+      "initial_tension": 0.75,
+      "triggered_expansion": false,
+      "expansion_epochs": [],
+      "final_accuracy_gap": -0.023333333333333317,
+      "mean_accuracy_gap": -0.02955555555555557,
+      "mean_tension": 0.04526912016426488,
+      "max_tension": 0.0652223147696504,
+      "dominant_failure_mode": "under_triggered_evolution"
+    },
+    {
+      "threshold": 0.1,
+      "initial_tension": 1.0,
+      "triggered_expansion": false,
+      "expansion_epochs": [],
+      "final_accuracy_gap": -0.023333333333333317,
+      "mean_accuracy_gap": -0.02955555555555557,
+      "mean_tension": 0.04526912016426488,
+      "max_tension": 0.0652223147696504,
+      "dominant_failure_mode": "under_triggered_evolution"
+    },
+    {
+      "threshold": 0.08,
+      "initial_tension": 0.5,
+      "triggered_expansion": false,
+      "expansion_epochs": [],
+      "final_accuracy_gap": -0.023333333333333317,
+      "mean_accuracy_gap": -0.02955555555555557,
+      "mean_tension": 0.04526912016426488,
+      "max_tension": 0.0652223147696504,
+      "dominant_failure_mode": "under_triggered_evolution"
+    },
+    {
+      "threshold": 0.08,
+      "initial_tension": 0.75,
+      "triggered_expansion": false,
+      "expansion_epochs": [],
+      "final_accuracy_gap": -0.023333333333333317,
+      "mean_accuracy_gap": -0.02955555555555557,
+      "mean_tension": 0.04526912016426488,
+      "max_tension": 0.0652223147696504,
+      "dominant_failure_mode": "under_triggered_evolution"
+    },
+    {
+      "threshold": 0.08,
+      "initial_tension": 1.0,
+      "triggered_expansion": false,
+      "expansion_epochs": [],
+      "final_accuracy_gap": -0.023333333333333317,
+      "mean_accuracy_gap": -0.02955555555555557,
+      "mean_tension": 0.04526912016426488,
+      "max_tension": 0.0652223147696504,
+      "dominant_failure_mode": "under_triggered_evolution"
+    },
+    {
+      "threshold": 0.05,
+      "initial_tension": 0.5,
+      "triggered_expansion": true,
+      "expansion_epochs": [
+        0
+      ],
+      "final_accuracy_gap": -0.040000000000000036,
+      "mean_accuracy_gap": -0.04066666666666667,
+      "mean_tension": 0.04049941021373452,
+      "max_tension": 0.0652223147696504,
+      "dominant_failure_mode": "age_decay_too_aggressive"
+    },
+    {
+      "threshold": 0.05,
+      "initial_tension": 0.75,
+      "triggered_expansion": true,
+      "expansion_epochs": [
+        0
+      ],
+      "final_accuracy_gap": -0.040000000000000036,
+      "mean_accuracy_gap": -0.04066666666666667,
+      "mean_tension": 0.04049941021373452,
+      "max_tension": 0.0652223147696504,
+      "dominant_failure_mode": "age_decay_too_aggressive"
+    },
+    {
+      "threshold": 0.05,
+      "initial_tension": 1.0,
+      "triggered_expansion": true,
+      "expansion_epochs": [
+        0
+      ],
+      "final_accuracy_gap": -0.040000000000000036,
+      "mean_accuracy_gap": -0.04066666666666667,
+      "mean_tension": 0.04049941021373452,
+      "max_tension": 0.0652223147696504,
+      "dominant_failure_mode": "age_decay_too_aggressive"
+    }
+  ],
+  "best_gap": {
+    "threshold": 0.05,
+    "initial_tension": 0.5,
+    "triggered_expansion": true,
+    "expansion_epochs": [
+      0
+    ],
+    "final_accuracy_gap": -0.040000000000000036,
+    "mean_accuracy_gap": -0.04066666666666667,
+    "mean_tension": 0.04049941021373452,
+    "max_tension": 0.0652223147696504,
+    "dominant_failure_mode": "age_decay_too_aggressive"
+  },
+  "best_expanding": {
+    "threshold": 0.05,
+    "initial_tension": 0.5,
+    "triggered_expansion": true,
+    "expansion_epochs": [
+      0
+    ],
+    "final_accuracy_gap": -0.040000000000000036,
+    "mean_accuracy_gap": -0.04066666666666667,
+    "mean_tension": 0.04049941021373452,
+    "max_tension": 0.0652223147696504,
+    "dominant_failure_mode": "age_decay_too_aggressive"
+  }
+}

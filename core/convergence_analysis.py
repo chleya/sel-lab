@@ -3,6 +3,8 @@ import numpy as np
 from sklearn.datasets import load_digits
 import json
 
+from runtime import resolve_exploratory_results_path
+
 print("=" * 60)
 print("Convergence Analysis (C.1)")
 print("=" * 60)
@@ -234,7 +236,8 @@ result = {
     ]
 }
 
-with open('F:/skill/sel-lab/results/convergence_analysis_results.json', 'w') as f:
+target = resolve_exploratory_results_path("convergence_analysis_results.json")
+with target.open('w', encoding='utf-8') as f:
     json.dump(result, f, indent=2)
 
-print(f"\nResults saved: convergence_analysis_results.json")
+print(f"\nResults saved: {target}")

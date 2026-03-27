@@ -123,7 +123,7 @@ class SELVisualizer:
         # 标题
         ax.text(2, 3.5, f'SEL Network Structure\n'
                        f'Modules: {len(self.network.modules)} | '
-                       f'Params: {self.network.count_params()}',
+                       f'Params: {self.network.param_count}',
                ha='center', fontsize=14, fontweight='bold')
         
         # 绘制模块
@@ -222,7 +222,7 @@ class SELVisualizer:
         ax2.grid(True, alpha=0.3)
         
         # 创建网络和数据
-        from sel_neuroevolution import SELNetwork, SELEvolution
+        from core.sel_core import SELNetwork, SELConfig, SELTrainer
         
         np.random.seed(42)
         X = np.random.randn(100, 4) * 2
@@ -233,22 +233,21 @@ class SELVisualizer:
             else:
                 y[i, 1] = 1
         
-        net = SELNetwork(4, 2)
-        for _ in range(3):
-            net.add_module()
+        config = SELConfig(input_size=4, output_size=2, initial_modules=3, learning_rate=0.1)
+        trainer = SELTrainer(config)
         
         def animate(frame):
             # 训练一步
             for i in range(10):
-                net.forward_learning_all(X[i], y[i], lr=0.1)
+                trainer.network.forward_learning(X[i], y[i])
             
             # 更新数据
             epochs.append(frame * 5)
             correct = sum(1 for j in range(100) 
-                         if net.predict(X[j]) == int(np.argmax(y[j])))
+                         if trainer.network.predict(X[j]) == int(np.argmax(y[j])))
             acc = correct / 100
             accs.append(acc)
-            mods.append(len(net.modules))
+            mods.append(len(trainer.network.modules))
             
             # 更新图表
             line1.set_data(epochs, accs)
@@ -257,7 +256,7 @@ class SELVisualizer:
             ax2.set_xlim(0, max(100, len(epochs) * 5))
             
             if frame % 10 == 0:
-                print(f"Epoch {frame*5}: Acc={acc:.1%}, Modules={len(net.modules)}")
+                print(f"Epoch {frame*5}: Acc={acc:.1%}, Modules={len(trainer.network.modules)}")
             
             return line1, line2
         
@@ -269,8 +268,7 @@ class SELVisualizer:
     
     def compare_methods(self, save_path: str = None):
         """对比不同方法"""
-        from sel_neuroevolution import SELEvolution
-        from improved_neuroevolution import ImprovedEvolution
+        from core.sel_core import SELNetwork, SELConfig, SELTrainer
         
         print("\n对比 SEL 前向学习 vs 梯度下降...")
         
@@ -287,41 +285,38 @@ class SELVisualizer:
         X_train, y_train = X[:100], y[:100]
         X_test, y_test = X[100:], y[100:]
         
-        # SEL
+        # SEL (DFA 前向学习)
         np.random.seed(42)
-        sel_exp = SELEvolution(pop_size=20, generations=30)
-        sel_exp.init_population(4, 2)
-        sel_net = sel_exp.population[0]
+        sel_config = SELConfig(input_size=4, output_size=2, learning_rate=0.1, epochs=50)
+        sel_trainer = SELTrainer(sel_config)
+        sel_trainer.train(X_train, y_train, X_test, y_test)
+        sel_accs = [m.test_accuracy for m in sel_trainer.metrics]
         
-        sel_accs = []
-        for epoch in range(50):
-            for i in range(len(X_train)):
-                sel_exp.forward_train_epoch(X_train[i:i+1], y_train[i:i+1], sel_net, lr=0.1)
-            correct = sum(1 for j in range(len(X_test)) 
-                         if sel_net.predict(X_test[j]) == int(np.argmax(y_test[j])))
-            sel_accs.append(correct / len(X_test))
-        
-        # 梯度下降（对比）
+        # 梯度下降（对比）- 简单BP网络
         np.random.seed(42)
-        from improved_neuroevolution import ImprovedEvolution
-        grad_exp = ImprovedEvolution(pop_size=20, generations=30)
-        grad_exp.init_population(4, 2)
-        grad_net = grad_exp.population[0]
+        W1_bp = np.random.randn(4, 8) * 0.5
+        W2_bp = np.random.randn(8, 2) * 0.5
         
         grad_accs = []
         for epoch in range(50):
-            # 梯度下降训练
             for i in range(len(X_train)):
+                x = X_train[i]
                 target = y_train[i]
-                out = grad_net.forward(X_train[i:i+1])
+                # 前向
+                h = np.tanh(x @ W1_bp)
+                out = h @ W2_bp
                 err = out - target
-                # 反向传播（简化）
-                for j in range(len(grad_net.modules)-1, -1, -1):
-                    w = grad_net.modules[j].weights
-                    x = X_train[i]
-                    grad_net.modules[j].weights -= 0.1 * np.outer(x, err)
-            correct = sum(1 for j in range(len(X_test)) 
-                         if grad_net.predict(X_test[j]) == int(np.argmax(y_test[j])))
+                # 反向传播
+                W2_bp -= 0.1 * np.outer(h, err)
+                W1_bp -= 0.1 * np.outer(x, err @ W2_bp.T * (1 - h**2))
+            
+            # 计算准确率
+            correct = 0
+            for j in range(len(X_test)):
+                h = np.tanh(X_test[j] @ W1_bp)
+                out = h @ W2_bp
+                if int(np.argmax(out)) == int(np.argmax(y_test[j])):
+                    correct += 1
             grad_accs.append(correct / len(X_test))
         
         # 绘图
@@ -375,12 +370,13 @@ def demo():
         viz.compare_methods()
     else:
         # 创建简单演示数据
-        from sel_neuroevolution import SELNetwork
+        from core.sel_core import SELNetwork, SELConfig
         
         np.random.seed(42)
-        net = SELNetwork(4, 2)
+        config = SELConfig(input_size=4, output_size=2)
+        net = SELNetwork(config)
         for i in range(3):
-            net.add_module(seed=42+i)
+            net.add_module(f"m{i}", seed=42+i)
         
         # 模拟训练历史
         history = TrainingHistory(

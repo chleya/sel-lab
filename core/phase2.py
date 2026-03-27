@@ -1,218 +1,29 @@
 # -*- coding: utf-8 -*-
 """
-SEL-Lab Phase 2 - Structural Evolution Advantage
+SEL-Lab Phase 2 - Structural Evolution Advantage.
 """
 
-import numpy as np
-from dataclasses import dataclass
-import json
-import os
+from __future__ import annotations
 
+from pathlib import Path
+import sys
 
-@dataclass
-class Phase2Config:
-    input_size: int = 4
-    output_size: int = 2
-    hidden_size: int = 8
-    learning_rate: float = 0.05
-    runs: int = 3
-    epochs: int = 50
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
-
-class FixedNetwork:
-    """Fixed structure baseline with DFA"""
-    def __init__(self, config, seed=None):
-        if seed:
-            np.random.seed(seed)
-        self.W1 = np.random.randn(config.input_size, config.hidden_size) * 0.5
-        self.W2 = np.random.randn(config.hidden_size, config.output_size) * 0.5
-        self.feedback = np.random.randn(config.output_size, config.hidden_size) * 0.5
-    
-    def forward(self, x):
-        return np.tanh(x @ self.W1) @ self.W2
-    
-    def learn(self, x, target):
-        h = np.tanh(x @ self.W1)
-        out = h @ self.W2
-        error = target - out
-        fb_error = error @ self.feedback
-        self.W2 += 0.01 * np.outer(h, error)
-        self.W1 += 0.01 * np.outer(x, fb_error)
-        return np.mean(error ** 2)
-    
-    def predict(self, x):
-        return int(np.argmax(self.forward(x)))
-    
-    def accuracy(self, X, y):
-        correct = 0
-        for i in range(len(X)):
-            if self.predict(X[i]) == int(np.argmax(y[i])):
-                correct += 1
-        return correct / len(X)
-
-
-class EvolvingNetwork:
-    """Network that can grow/shrink - each unit is a full sub-network"""
-    def __init__(self, config, seed=None):
-        if seed:
-            np.random.seed(seed)
-        self.config = config
-        # Start with 2 units
-        self.units = []
-        for _ in range(2):
-            self.add_unit()
-    
-    def add_unit(self):
-        """Add a new unit"""
-        self.units.append({
-            'W1': np.random.randn(self.config.input_size, self.config.hidden_size) * 0.5,
-            'W2': np.random.randn(self.config.hidden_size, self.config.output_size) * 0.5,
-            'feedback': np.random.randn(self.config.output_size, self.config.hidden_size) * 0.5,
-            'active': True,
-            'tension': 0.0
-        })
-    
-    def forward(self, x):
-        outputs = []
-        for u in self.units:
-            if u['active']:
-                h = np.tanh(x @ u['W1'])
-                out = h @ u['W2']
-                outputs.append(out)
-        if outputs:
-            return np.mean(outputs, axis=0)
-        return np.zeros(self.config.output_size)
-    
-    def learn(self, x, target):
-        out = self.forward(x)
-        error = target - out
-        
-        for u in self.units:
-            if u['active']:
-                h = np.tanh(x @ u['W1'])
-                fb_error = error @ u['feedback']
-                u['W2'] += 0.01 * np.outer(h, error)
-                u['W1'] += 0.01 * np.outer(x, fb_error)
-                # Update tension
-                u['tension'] = 0.9 * u['tension'] + 0.1 * np.mean(error ** 2)
-        
-        return np.mean(error ** 2)
-    
-    def evolve(self):
-        """Add/remove units based on tension"""
-        changes = []
-        avg_tension = np.mean([u['tension'] for u in self.units if u['active']])
-        
-        # High tension -> add unit
-        if avg_tension > 0.2 and len(self.units) < 6:
-            self.add_unit()
-            changes.append('add')
-        
-        # Low tension + many units -> remove oldest unit
-        elif avg_tension < 0.05 and len(self.units) > 2:
-            for u in self.units:
-                if u['active']:
-                    u['active'] = False
-                    changes.append('remove')
-                    break
-        
-        return changes
-    
-    def predict(self, x):
-        return int(np.argmax(self.forward(x)))
-    
-    def accuracy(self, X, y):
-        correct = 0
-        for i in range(len(X)):
-            if self.predict(X[i]) == int(np.argmax(y[i])):
-                correct += 1
-        return correct / len(X)
-
-
-def create_task():
-    """Simple binary classification"""
-    np.random.seed(42)
-    X = np.random.randn(100, 4)
-    y = np.zeros((100, 2))
-    for i in range(100):
-        if X[i, 0] + X[i, 1] > 0:
-            y[i, 0] = 1
-        else:
-            y[i, 1] = 1
-    return X, y
+from core.phase2_common import EvolvingNetwork, Phase2Config, create_simple_task, run_phase2_suite
 
 
 def run_phase2():
-    print("\n" + "=" * 60)
-    print("Phase 2: Structural Evolution Advantage")
-    print("=" * 60)
-    
-    X, y = create_task()
-    X_train, y_train = X[:50], y[:50]
-    X_test, y_test = X[50:], y[50:]
-    
-    config = Phase2Config()
-    results = []
-    
-    for run in range(config.runs):
-        print(f"\n--- Run {run + 1}/{config.runs} ---")
-        
-        fixed = FixedNetwork(config, seed=run * 100 + 42)
-        evolving = EvolvingNetwork(config, seed=run * 100 + 42)
-        
-        fixed_accs, evolving_accs = [], []
-        
-        for epoch in range(config.epochs):
-            # Train
-            for i in range(len(X_train)):
-                fixed.learn(X_train[i], y_train[i])
-                evolving.learn(X_train[i], y_train[i])
-            
-            # Evolve every 5 epochs
-            if (epoch + 1) % 5 == 0:
-                changes = evolving.evolve()
-            
-            # Evaluate
-            f_acc = fixed.accuracy(X_test, y_test)
-            e_acc = evolving.accuracy(X_test, y_test)
-            fixed_accs.append(f_acc)
-            evolving_accs.append(e_acc)
-            
-            if (epoch + 1) % 10 == 0:
-                active = sum(1 for u in evolving.units if u['active'])
-                print(f"Epoch {epoch+1}: Fixed={f_acc:.1%}, Evolving={e_acc:.1%}, Units={active}")
-        
-        results.append({
-            'fixed_final': fixed_accs[-1],
-            'evolving_final': evolving_accs[-1],
-            'fixed_auc': np.mean(fixed_accs),
-            'evolving_auc': np.mean(evolving_accs)
-        })
-        print(f"Final: Fixed={fixed_accs[-1]:.1%}, Evolving={evolving_accs[-1]:.1%}")
-    
-    # Summary
-    f_final = np.mean([r['fixed_final'] for r in results])
-    e_final = np.mean([r['evolving_final'] for r in results])
-    
-    print(f"\n" + "=" * 60)
-    print("Results Summary")
-    print("=" * 60)
-    print(f"Final Accuracy: Fixed={f_final:.1%}, Evolving={e_final:.1%}")
-    
-    advantage = e_final - f_final
-    print(f"Evolution Advantage: {advantage:+.1%}")
-    print(f"\n{'[SUCCESS] Evolution provides advantage!' if advantage > 0 else '[NEUTRAL] No clear advantage'}")
-    
-    os.makedirs("F:/skill/sel-lab/results", exist_ok=True)
-    with open("F:/skill/sel-lab/results/phase2_results.json", 'w', encoding='utf-8') as f:
-        json.dump({
-            'fixed_final': float(f_final),
-            'evolving_final': float(e_final),
-            'advantage': float(advantage),
-            'decision': 'success' if advantage > 0 else 'neutral'
-        }, f, indent=2)
-    
-    print(f"\nResults saved: results/phase2_results.json")
+    return run_phase2_suite(
+        title="Phase 2: Structural Evolution Advantage",
+        config=Phase2Config(),
+        task_fn=create_simple_task,
+        evolving_builder=lambda config, seed: EvolvingNetwork(config, seed=seed, use_knowledge_reuse=False),
+        result_filename="phase2_results.json",
+        success_threshold=0.0,
+    )
 
 
 if __name__ == "__main__":

@@ -1,0 +1,201 @@
+{
+  "task_suites": [
+    "feature_shift",
+    "feature_shift_noisy"
+  ],
+  "policies": [
+    "adapt_only",
+    "task_specialist_clone",
+    "task_specialist_clone_limited_merge",
+    "task_specialist_clone_current_path_boost_merge"
+  ],
+  "overall_best_policy": "task_specialist_clone_limited_merge",
+  "aggregate": {
+    "adapt_only": {
+      "mean_avg_accuracy_delta_vs_adapt_only": 0.0,
+      "mean_current_accuracy_delta_vs_adapt_only": 0.0,
+      "mean_prior_accuracy_delta_vs_adapt_only": 0.0,
+      "mean_forgetting_delta_vs_adapt_only": 0.0,
+      "mean_avg_accuracy_gain_vs_fixed": 0.09916666666666671,
+      "suite_wins": 0
+    },
+    "task_specialist_clone": {
+      "mean_avg_accuracy_delta_vs_adapt_only": -0.018333333333333313,
+      "mean_current_accuracy_delta_vs_adapt_only": 0.0033333333333333826,
+      "mean_prior_accuracy_delta_vs_adapt_only": -0.02555555555555561,
+      "mean_forgetting_delta_vs_adapt_only": -0.04222222222222222,
+      "mean_avg_accuracy_gain_vs_fixed": 0.0808333333333334,
+      "suite_wins": 0
+    },
+    "task_specialist_clone_limited_merge": {
+      "mean_avg_accuracy_delta_vs_adapt_only": 0.002916666666666623,
+      "mean_current_accuracy_delta_vs_adapt_only": -0.006666666666666682,
+      "mean_prior_accuracy_delta_vs_adapt_only": 0.006111111111111012,
+      "mean_forgetting_delta_vs_adapt_only": -0.00777777777777777,
+      "mean_avg_accuracy_gain_vs_fixed": 0.10208333333333333,
+      "suite_wins": 2
+    },
+    "task_specialist_clone_current_path_boost_merge": {
+      "mean_avg_accuracy_delta_vs_adapt_only": -0.012083333333333335,
+      "mean_current_accuracy_delta_vs_adapt_only": 0.006666666666666682,
+      "mean_prior_accuracy_delta_vs_adapt_only": -0.018333333333333313,
+      "mean_forgetting_delta_vs_adapt_only": -0.04944444444444443,
+      "mean_avg_accuracy_gain_vs_fixed": 0.08708333333333337,
+      "suite_wins": 0
+    }
+  },
+  "rows": [
+    {
+      "task_suite": "feature_shift",
+      "best_policy": "task_specialist_clone_limited_merge",
+      "adapt_only": {
+        "final_avg_accuracy": 0.5775,
+        "final_current_accuracy": 0.42333333333333334,
+        "final_prior_avg_accuracy": 0.6288888888888889,
+        "mean_forgetting": 0.027777777777777776,
+        "mean_backward_transfer": -0.027777777777777776,
+        "final_units": 1.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.12833333333333335,
+        "forgetting_delta_vs_fixed": 0.29111111111111104,
+        "backward_transfer_gain_vs_fixed": 0.29111111111111104,
+        "avg_accuracy_delta_vs_adapt_only": 0.0,
+        "forgetting_delta_vs_adapt_only": 0.0,
+        "backward_transfer_delta_vs_adapt_only": 0.0,
+        "current_accuracy_delta_vs_adapt_only": 0.0,
+        "prior_accuracy_delta_vs_adapt_only": 0.0,
+        "unit_delta_vs_adapt_only": 0.0
+      },
+      "task_specialist_clone": {
+        "final_avg_accuracy": 0.5541666666666667,
+        "final_current_accuracy": 0.4466666666666667,
+        "final_prior_avg_accuracy": 0.59,
+        "mean_forgetting": 0.06555555555555553,
+        "mean_backward_transfer": -0.06555555555555553,
+        "final_units": 9.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.10500000000000004,
+        "forgetting_delta_vs_fixed": 0.2533333333333333,
+        "backward_transfer_gain_vs_fixed": 0.2533333333333333,
+        "avg_accuracy_delta_vs_adapt_only": -0.023333333333333317,
+        "forgetting_delta_vs_adapt_only": -0.03777777777777776,
+        "backward_transfer_delta_vs_adapt_only": -0.03777777777777776,
+        "current_accuracy_delta_vs_adapt_only": 0.023333333333333373,
+        "prior_accuracy_delta_vs_adapt_only": -0.03888888888888897,
+        "unit_delta_vs_adapt_only": 8.0
+      },
+      "task_specialist_clone_limited_merge": {
+        "final_avg_accuracy": 0.5766666666666667,
+        "final_current_accuracy": 0.43,
+        "final_prior_avg_accuracy": 0.6255555555555555,
+        "mean_forgetting": 0.03333333333333332,
+        "mean_backward_transfer": -0.03333333333333332,
+        "final_units": 9.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.1275,
+        "forgetting_delta_vs_fixed": 0.2855555555555555,
+        "backward_transfer_gain_vs_fixed": 0.2855555555555555,
+        "avg_accuracy_delta_vs_adapt_only": -0.0008333333333333526,
+        "forgetting_delta_vs_adapt_only": -0.005555555555555543,
+        "backward_transfer_delta_vs_adapt_only": -0.005555555555555543,
+        "current_accuracy_delta_vs_adapt_only": 0.006666666666666654,
+        "prior_accuracy_delta_vs_adapt_only": -0.0033333333333334103,
+        "unit_delta_vs_adapt_only": 8.0
+      },
+      "task_specialist_clone_current_path_boost_merge": {
+        "final_avg_accuracy": 0.5683333333333334,
+        "final_current_accuracy": 0.4533333333333333,
+        "final_prior_avg_accuracy": 0.6066666666666668,
+        "mean_forgetting": 0.06333333333333334,
+        "mean_backward_transfer": -0.06333333333333334,
+        "final_units": 9.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.1191666666666667,
+        "forgetting_delta_vs_fixed": 0.2555555555555555,
+        "backward_transfer_gain_vs_fixed": 0.2555555555555555,
+        "avg_accuracy_delta_vs_adapt_only": -0.009166666666666656,
+        "forgetting_delta_vs_adapt_only": -0.03555555555555556,
+        "backward_transfer_delta_vs_adapt_only": -0.03555555555555556,
+        "current_accuracy_delta_vs_adapt_only": 0.02999999999999997,
+        "prior_accuracy_delta_vs_adapt_only": -0.022222222222222143,
+        "unit_delta_vs_adapt_only": 8.0
+      }
+    },
+    {
+      "task_suite": "feature_shift_noisy",
+      "best_policy": "task_specialist_clone_limited_merge",
+      "adapt_only": {
+        "final_avg_accuracy": 0.56,
+        "final_current_accuracy": 0.4666666666666666,
+        "final_prior_avg_accuracy": 0.5911111111111111,
+        "mean_forgetting": 0.015555555555555557,
+        "mean_backward_transfer": -0.015555555555555557,
+        "final_units": 1.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.07000000000000006,
+        "forgetting_delta_vs_fixed": 0.2644444444444444,
+        "backward_transfer_gain_vs_fixed": 0.2644444444444444,
+        "avg_accuracy_delta_vs_adapt_only": 0.0,
+        "forgetting_delta_vs_adapt_only": 0.0,
+        "backward_transfer_delta_vs_adapt_only": 0.0,
+        "current_accuracy_delta_vs_adapt_only": 0.0,
+        "prior_accuracy_delta_vs_adapt_only": 0.0,
+        "unit_delta_vs_adapt_only": 0.0
+      },
+      "task_specialist_clone": {
+        "final_avg_accuracy": 0.5466666666666667,
+        "final_current_accuracy": 0.45,
+        "final_prior_avg_accuracy": 0.5788888888888889,
+        "mean_forgetting": 0.062222222222222234,
+        "mean_backward_transfer": -0.062222222222222234,
+        "final_units": 9.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.056666666666666754,
+        "forgetting_delta_vs_fixed": 0.21777777777777774,
+        "backward_transfer_gain_vs_fixed": 0.21777777777777774,
+        "avg_accuracy_delta_vs_adapt_only": -0.013333333333333308,
+        "forgetting_delta_vs_adapt_only": -0.046666666666666676,
+        "backward_transfer_delta_vs_adapt_only": -0.046666666666666676,
+        "current_accuracy_delta_vs_adapt_only": -0.016666666666666607,
+        "prior_accuracy_delta_vs_adapt_only": -0.012222222222222245,
+        "unit_delta_vs_adapt_only": 8.0
+      },
+      "task_specialist_clone_limited_merge": {
+        "final_avg_accuracy": 0.5666666666666667,
+        "final_current_accuracy": 0.4466666666666666,
+        "final_prior_avg_accuracy": 0.6066666666666666,
+        "mean_forgetting": 0.025555555555555554,
+        "mean_backward_transfer": -0.025555555555555554,
+        "final_units": 9.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.07666666666666666,
+        "forgetting_delta_vs_fixed": 0.2544444444444444,
+        "backward_transfer_gain_vs_fixed": 0.2544444444444444,
+        "avg_accuracy_delta_vs_adapt_only": 0.006666666666666599,
+        "forgetting_delta_vs_adapt_only": -0.009999999999999997,
+        "backward_transfer_delta_vs_adapt_only": -0.009999999999999997,
+        "current_accuracy_delta_vs_adapt_only": -0.020000000000000018,
+        "prior_accuracy_delta_vs_adapt_only": 0.015555555555555434,
+        "unit_delta_vs_adapt_only": 8.0
+      },
+      "task_specialist_clone_current_path_boost_merge": {
+        "final_avg_accuracy": 0.545,
+        "final_current_accuracy": 0.45,
+        "final_prior_avg_accuracy": 0.5766666666666667,
+        "mean_forgetting": 0.07888888888888886,
+        "mean_backward_transfer": -0.07888888888888886,
+        "final_units": 9.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.05500000000000005,
+        "forgetting_delta_vs_fixed": 0.20111111111111113,
+        "backward_transfer_gain_vs_fixed": 0.20111111111111113,
+        "avg_accuracy_delta_vs_adapt_only": -0.015000000000000013,
+        "forgetting_delta_vs_adapt_only": -0.0633333333333333,
+        "backward_transfer_delta_vs_adapt_only": -0.0633333333333333,
+        "current_accuracy_delta_vs_adapt_only": -0.016666666666666607,
+        "prior_accuracy_delta_vs_adapt_only": -0.014444444444444482,
+        "unit_delta_vs_adapt_only": 8.0
+      }
+    }
+  ]
+}

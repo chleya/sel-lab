@@ -31,6 +31,18 @@ from .environment import (
     SequencePredictionEnvironment
 )
 
+from .runtime import (
+    dataclass_to_dict,
+    ensure_dir,
+    history_to_records,
+    project_root,
+    resolve_results_path,
+    results_dir,
+    save_json,
+    split_train_test,
+    summarize_scalar_runs,
+)
+
 __all__ = [
     'SELConfig',
     'SELModule', 
@@ -38,5 +50,14 @@ __all__ = [
     'SELTrainer',
     'TrainingMetrics',
     'Environment',
-    'SequencePredictionEnvironment'
+    'SequencePredictionEnvironment',
+    'dataclass_to_dict',
+    'ensure_dir',
+    'history_to_records',
+    'project_root',
+    'resolve_results_path',
+    'results_dir',
+    'save_json',
+    'split_train_test',
+    'summarize_scalar_runs',
 ]

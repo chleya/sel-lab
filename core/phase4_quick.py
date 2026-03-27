@@ -3,6 +3,8 @@ import numpy as np
 from sklearn.datasets import load_digits
 import json
 
+from runtime import resolve_exploratory_results_path
+
 print("=== Phase 4 Real MNIST Test ===")
 
 # Load real data
@@ -80,7 +82,8 @@ result = {
     'decision': 'success' if final_acc > 0.8 else 'neutral'
 }
 
-with open('F:/skill/sel-lab/results/phase4_real_results.json', 'w') as f:
+target = resolve_exploratory_results_path("phase4_real_results.json")
+with target.open('w', encoding='utf-8') as f:
     json.dump(result, f, indent=2)
 
-print(f"\nResults saved: results/phase4_real_results.json")
+print(f"\nResults saved: {target}")

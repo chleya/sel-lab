@@ -3,6 +3,8 @@ import numpy as np
 from sklearn.datasets import load_digits
 import json
 
+from runtime import resolve_exploratory_results_path
+
 print("=" * 60)
 print("Learning Rate Schedule Test (B.2)")
 print("=" * 60)
@@ -122,7 +124,8 @@ output = {
     'passed': passed
 }
 
-with open('F:/skill/sel-lab/results/lr_schedule_results.json', 'w') as f:
+target = resolve_exploratory_results_path("lr_schedule_results.json")
+with target.open('w', encoding='utf-8') as f:
     json.dump(output, f, indent=2)
 
-print(f"\nResults saved: lr_schedule_results.json")
+print(f"\nResults saved: {target}")

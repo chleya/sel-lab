@@ -1,0 +1,265 @@
+{
+  "config": {
+    "input_size": 64,
+    "hidden_size": 16,
+    "output_size": 2,
+    "runs": 1,
+    "epochs_per_task": 3,
+    "num_tasks": 4,
+    "learning_rate": 0.03,
+    "capped_clone_max_units": 4,
+    "tension_threshold": 0.15,
+    "evolve_interval": 3,
+    "low_tension_ratio": 0.75,
+    "clone_margin_ratio": 0.2,
+    "trend_window": 3,
+    "trend_max_increase": 0.01,
+    "benefit_score_threshold": 0.45,
+    "benefit_reopen_margin": 0.05,
+    "limited_adapt_scale": 0.35,
+    "specialist_merge_scale": 0.2,
+    "retention_merge_bonus": 0.15,
+    "specialist_confidence_threshold": 0.35,
+    "specialist_min_gate_scale": 0.15,
+    "specialist_route_min_scale": 0.05,
+    "specialist_softmax_temperature": 0.75,
+    "specialist_budget_scale": 0.6,
+    "specialist_source_agreement_bonus": 0.75,
+    "specialist_source_conflict_floor": 0.25,
+    "specialist_anchor_strength": 0.08,
+    "specialist_distance_anchor_bonus": 0.08,
+    "specialist_distill_strength": 0.35,
+    "specialist_retention_strength": 0.12,
+    "current_path_lr_boost": 1.75,
+    "archived_specialist_quantization_bits": 0,
+    "archived_specialist_max_count": 0,
+    "archived_specialist_selection_mode": "recency",
+    "delayed_adapt_tasks": 1,
+    "freeze_windows": [
+      1,
+      2,
+      3
+    ],
+    "task_suite": "digits_pairs_noisy",
+    "diagnostic_family": "broader_digits"
+  },
+  "policy_metadata": {
+    "adapt_only": {
+      "family": "baseline",
+      "forward_change": "none",
+      "update_rule_change": "single active path only",
+      "memory_change": "none",
+      "benchmark_intent": "reference policy"
+    },
+    "task_specialist_clone_distill_merge": {
+      "family": "retention_control",
+      "forward_change": "confidence-gated specialist merge",
+      "update_rule_change": "distillation regularization",
+      "memory_change": "anchored specialist state",
+      "benchmark_intent": "narrow benchmark sharpen check"
+    }
+  },
+  "diagnostic_suites": {
+    "transfer_basics": [
+      "default",
+      "rotated",
+      "feature_shift",
+      "noisy"
+    ],
+    "broader_digits": [
+      "digits_pairs",
+      "digits_pairs_noisy",
+      "digits_pairs_permuted"
+    ],
+    "plasticity_stress": [
+      "digits_pairs",
+      "digits_pairs_noisy",
+      "digits_pairs_permuted"
+    ]
+  },
+  "fixed": {
+    "summary": {
+      "final_avg_accuracy": 0.7828124999999999,
+      "final_current_accuracy": 0.9875,
+      "final_prior_avg_accuracy": 0.7145833333333332,
+      "mean_forgetting": 0.23124999999999998,
+      "mean_backward_transfer": -0.23124999999999998,
+      "final_units": 1.0,
+      "final_frozen_units": 0.0
+    },
+    "runs": [
+      [
+        {
+          "task_id": 0,
+          "current_accuracy": 0.9375,
+          "avg_accuracy": 0.9375,
+          "prior_avg_accuracy": 0.9375,
+          "mean_forgetting": 0.0,
+          "mean_backward_transfer": 0.0,
+          "unit_count": 1,
+          "frozen_units": 0
+        },
+        {
+          "task_id": 1,
+          "current_accuracy": 0.93125,
+          "avg_accuracy": 0.9125000000000001,
+          "prior_avg_accuracy": 0.89375,
+          "mean_forgetting": 0.043749999999999956,
+          "mean_backward_transfer": -0.043749999999999956,
+          "unit_count": 1,
+          "frozen_units": 0
+        },
+        {
+          "task_id": 2,
+          "current_accuracy": 0.96875,
+          "avg_accuracy": 0.7354166666666666,
+          "prior_avg_accuracy": 0.61875,
+          "mean_forgetting": 0.315625,
+          "mean_backward_transfer": -0.315625,
+          "unit_count": 1,
+          "frozen_units": 0
+        },
+        {
+          "task_id": 3,
+          "current_accuracy": 0.9875,
+          "avg_accuracy": 0.7828124999999999,
+          "prior_avg_accuracy": 0.7145833333333332,
+          "mean_forgetting": 0.23124999999999998,
+          "mean_backward_transfer": -0.23124999999999998,
+          "unit_count": 1,
+          "frozen_units": 0
+        }
+      ]
+    ]
+  },
+  "policies": {
+    "adapt_only": {
+      "summary": {
+        "final_avg_accuracy": 0.5828125,
+        "final_current_accuracy": 0.46875,
+        "final_prior_avg_accuracy": 0.6208333333333332,
+        "mean_forgetting": -0.006249999999999978,
+        "mean_backward_transfer": 0.006249999999999978,
+        "final_units": 1.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": -0.19999999999999996,
+        "forgetting_delta_vs_fixed": 0.23749999999999996,
+        "backward_transfer_gain_vs_fixed": 0.23749999999999996,
+        "avg_accuracy_delta_vs_adapt_only": 0.0,
+        "forgetting_delta_vs_adapt_only": 0.0,
+        "backward_transfer_delta_vs_adapt_only": 0.0,
+        "current_accuracy_delta_vs_adapt_only": 0.0,
+        "prior_accuracy_delta_vs_adapt_only": 0.0,
+        "unit_delta_vs_adapt_only": 0.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.76875,
+            "avg_accuracy": 0.76875,
+            "prior_avg_accuracy": 0.76875,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 1,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.675,
+            "avg_accuracy": 0.7406250000000001,
+            "prior_avg_accuracy": 0.80625,
+            "mean_forgetting": -0.03749999999999998,
+            "mean_backward_transfer": 0.03749999999999998,
+            "unit_count": 1,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.4,
+            "avg_accuracy": 0.6145833333333334,
+            "prior_avg_accuracy": 0.721875,
+            "mean_forgetting": 5.551115123125783e-17,
+            "mean_backward_transfer": -5.551115123125783e-17,
+            "unit_count": 1,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.46875,
+            "avg_accuracy": 0.5828125,
+            "prior_avg_accuracy": 0.6208333333333332,
+            "mean_forgetting": -0.006249999999999978,
+            "mean_backward_transfer": 0.006249999999999978,
+            "unit_count": 1,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    },
+    "task_specialist_clone_distill_merge": {
+      "summary": {
+        "final_avg_accuracy": 0.5171875,
+        "final_current_accuracy": 0.40625,
+        "final_prior_avg_accuracy": 0.5541666666666667,
+        "mean_forgetting": 0.06666666666666665,
+        "mean_backward_transfer": -0.06666666666666665,
+        "final_units": 5.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": -0.2656249999999999,
+        "forgetting_delta_vs_fixed": 0.16458333333333333,
+        "backward_transfer_gain_vs_fixed": 0.16458333333333333,
+        "avg_accuracy_delta_vs_adapt_only": -0.06562499999999993,
+        "forgetting_delta_vs_adapt_only": -0.07291666666666663,
+        "backward_transfer_delta_vs_adapt_only": -0.07291666666666663,
+        "current_accuracy_delta_vs_adapt_only": -0.0625,
+        "prior_accuracy_delta_vs_adapt_only": -0.06666666666666654,
+        "unit_delta_vs_adapt_only": 4.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.79375,
+            "avg_accuracy": 0.79375,
+            "prior_avg_accuracy": 0.79375,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 2,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.65625,
+            "avg_accuracy": 0.678125,
+            "prior_avg_accuracy": 0.7,
+            "mean_forgetting": 0.09375,
+            "mean_backward_transfer": -0.09375,
+            "unit_count": 3,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.4125,
+            "avg_accuracy": 0.5479166666666666,
+            "prior_avg_accuracy": 0.615625,
+            "mean_forgetting": 0.109375,
+            "mean_backward_transfer": -0.109375,
+            "unit_count": 4,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.40625,
+            "avg_accuracy": 0.5171875,
+            "prior_avg_accuracy": 0.5541666666666667,
+            "mean_forgetting": 0.06666666666666665,
+            "mean_backward_transfer": -0.06666666666666665,
+            "unit_count": 5,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    }
+  }
+}

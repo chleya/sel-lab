@@ -1,24 +1,28 @@
 # -*- coding: utf-8 -*-
 """
 SEL-Lab Phase 1 Implementation
-Structural Evolution Learning - Phase 1
-
-特点：
-- 稳定的前向学习（DFA）
-- 完整的评估指标
-- 可重复的结果
+Forward-only learning verification with a fixed DFA baseline.
 """
 
-import numpy as np
-from typing import List, Dict
+from __future__ import annotations
+
 from dataclasses import dataclass
-import json
-import os
+from pathlib import Path
+import sys
+from typing import Dict
+
+import numpy as np
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from core.runtime import resolve_canonical_results_path, resolve_results_path, save_json, split_train_test
+from core.sel_core import create_task
 
 
 @dataclass
 class Phase1Config:
-    """Phase 1 配置"""
     input_size: int = 4
     hidden_size: int = 8
     output_size: int = 2
@@ -28,65 +32,55 @@ class Phase1Config:
 
 
 class Phase1Network:
-    """Phase 1 网络 - 稳定的 DFA 学习"""
-    
-    def __init__(self, config: Phase1Config, seed: int = None):
-        if seed is not None:
-            np.random.seed(seed)
-        
+    """Stable DFA baseline used for Phase 1 verification."""
+
+    def __init__(self, config: Phase1Config, seed: int | None = None):
+        self.rng = np.random.default_rng(seed)
         self.config = config
-        
-        # 权重初始化（He初始化）
-        self.W1 = np.random.randn(config.input_size, config.hidden_size) * np.sqrt(2.0 / config.input_size)
-        self.W2 = np.random.randn(config.hidden_size, config.output_size) * np.sqrt(2.0 / config.hidden_size)
-        
-        # 固定随机反馈矩阵
-        self.feedback = np.random.randn(config.output_size, config.hidden_size) * 0.1
-    
+        self.W1 = self.rng.normal(
+            0.0, np.sqrt(2.0 / config.input_size), size=(config.input_size, config.hidden_size)
+        )
+        self.W2 = self.rng.normal(
+            0.0, np.sqrt(2.0 / config.hidden_size), size=(config.hidden_size, config.output_size)
+        )
+        self.feedback = self.rng.normal(0.0, 0.1, size=(config.output_size, config.hidden_size))
+
     def forward(self, x: np.ndarray) -> np.ndarray:
         h = np.tanh(x @ self.W1)
         return h @ self.W2
-    
+
     def forward_learning(self, x: np.ndarray, target: np.ndarray) -> float:
-        """DFA 学习"""
         h = np.tanh(x @ self.W1)
         out = h @ self.W2
         error = target - out
-        
-        # DFA：使用随机反馈矩阵传递误差
-        # 误差信号 = 输出误差 @ 反馈矩阵
-        fb_signal = error @ self.feedback
-        
-        # 更新权重（无反向传播）
+        fb_signal = self.feedback.T @ error
+
         self.W2 += self.config.learning_rate * np.outer(h, error)
         self.W1 += self.config.learning_rate * np.outer(x, fb_signal)
-        
-        # 约束
-        self.W1 = np.clip(self.W1, -2, 2)
-        self.W2 = np.clip(self.W2, -2, 2)
-        
-        return np.mean(np.abs(error))
-    
+        self.W1 = np.clip(self.W1, -2.0, 2.0)
+        self.W2 = np.clip(self.W2, -2.0, 2.0)
+        return float(np.mean(np.abs(error)))
+
     def predict(self, x: np.ndarray) -> int:
         return int(np.argmax(self.forward(x)))
-    
+
     def accuracy(self, X: np.ndarray, y: np.ndarray) -> float:
-        correct = sum(1 for i in range(len(X))
-                     if self.predict(X[i]) == int(np.argmax(y[i])))
+        correct = sum(1 for i in range(len(X)) if self.predict(X[i]) == int(np.argmax(y[i])))
         return correct / len(X)
-    
+
     @property
     def param_count(self) -> int:
         return self.W1.size + self.W2.size
 
 
 class Phase1Experiment:
-    """Phase 1 实验"""
-    
-    def __init__(self, config: Phase1Config = None):
+    """Phase 1 experiment runner."""
+
+    def __init__(self, config: Phase1Config | None = None):
         self.config = config or Phase1Config()
-        self.history = {'acc': [], 'loss': []}
-    
+        self.history = {"acc": [], "loss": []}
+        self.last_result: Dict | None = None
+
     def run(self, verbose: bool = True) -> Dict:
         if verbose:
             print("\n" + "=" * 60)
@@ -94,132 +88,110 @@ class Phase1Experiment:
             print("Method: Direct Feedback Alignment (DFA)")
             print("Constraints: No Backpropagation")
             print("=" * 60)
-        
-        # 创建任务
-        np.random.seed(42)
-        X = np.random.randn(200, self.config.input_size) * 2
-        y = np.zeros((200, self.config.output_size))
-        for i in range(200):
-            if X[i, 0] + X[i, 1] > 0:
-                y[i, 0] = 1
-            else:
-                y[i, 1] = 1
-        
-        X_train, y_train = X[:100], y[:100]
-        X_test, y_test = X[100:], y[100:]
-        
+
+        X, y = create_task("simple_classification")
+        X_train, y_train, X_test, y_test = split_train_test(X, y)
+
         all_results = []
-        
         for run in range(self.config.runs):
-            network = Phase1Network(self.config, seed=run * 100 + 42)
-            
-            run_results = {
-                'run': run + 1,
-                'seed': run * 100 + 42,
-                'accuracies': [],
-                'losses': []
-            }
-            
+            seed = run * 100 + 42
+            network = Phase1Network(self.config, seed=seed)
+            run_results = {"run": run + 1, "seed": seed, "accuracies": [], "losses": []}
+
             if verbose:
-                print(f"\n--- Run {run + 1}/{self.config.runs} (seed={run * 100 + 42}) ---")
-            
+                print(f"\n--- Run {run + 1}/{self.config.runs} (seed={seed}) ---")
+
             for epoch in range(self.config.epochs):
-                # 训练
-                epoch_loss = 0
+                epoch_loss = 0.0
                 for i in range(len(X_train)):
-                    loss = network.forward_learning(X_train[i], y_train[i])
-                    epoch_loss += loss
-                
+                    epoch_loss += network.forward_learning(X_train[i], y_train[i])
                 avg_loss = epoch_loss / len(X_train)
-                
-                # 评估
                 acc = network.accuracy(X_test, y_test)
-                run_results['accuracies'].append(acc)
-                run_results['losses'].append(avg_loss)
-                
-                self.history['acc'].append(acc)
-                self.history['loss'].append(avg_loss)
-                
+
+                run_results["accuracies"].append(acc)
+                run_results["losses"].append(avg_loss)
+                self.history["acc"].append(acc)
+                self.history["loss"].append(avg_loss)
+
                 if verbose and (epoch + 1) % 25 == 0:
-                    print(f"Epoch {epoch+1}: Acc={acc:.1%}, Loss={avg_loss:.4f}")
-            
-            final_acc = run_results['accuracies'][-1]
-            print(f"Final: Acc={final_acc:.1%}")
+                    print(f"Epoch {epoch + 1}: Acc={acc:.1%}, Loss={avg_loss:.4f}")
+
+            final_acc = run_results["accuracies"][-1]
+            if verbose:
+                print(f"Final: Acc={final_acc:.1%}")
             all_results.append(run_results)
-        
-        # 评估
-        final_accs = [r['accuracies'][-1] for r in all_results]
-        
-        # 趋势分析
-        if len(self.history['acc']) >= 2:
-            x = np.arange(len(self.history['acc']))
-            slope = np.polyfit(x, self.history['acc'], 1)[0]
-        else:
-            slope = 0
-        
-        eval_result = {
-            'final_accuracy': float(np.mean(final_accs)),
-            'std_accuracy': float(np.std(final_accs)),
-            'min_accuracy': float(np.min(final_accs)),
-            'max_accuracy': float(np.max(final_accs)),
-            'trend_slope': float(slope),
-            'improving': bool(slope > 0.001),
-            'stable': bool(np.std(final_accs) < 0.2),
-            'runs_above_80': sum(1 for acc in final_accs if acc > 0.8),
-            'total_runs': len(final_accs)
+
+        final_accs = [result["accuracies"][-1] for result in all_results]
+        slope = 0.0
+        if len(self.history["acc"]) >= 2:
+            x = np.arange(len(self.history["acc"]))
+            slope = float(np.polyfit(x, self.history["acc"], 1)[0])
+
+        evaluation = {
+            "final_accuracy": float(np.mean(final_accs)),
+            "std_accuracy": float(np.std(final_accs)),
+            "min_accuracy": float(np.min(final_accs)),
+            "max_accuracy": float(np.max(final_accs)),
+            "trend_slope": slope,
+            "improving": bool(slope > 0.001),
+            "stable": bool(np.std(final_accs) < 0.2),
+            "runs_above_80": sum(1 for acc in final_accs if acc > 0.8),
+            "total_runs": len(final_accs),
         }
-        
+
+        success = (
+            evaluation["final_accuracy"] > 0.75
+            and evaluation["runs_above_80"] >= evaluation["total_runs"] // 2
+        )
         if verbose:
-            print(f"\n" + "=" * 60)
+            print("\n" + "=" * 60)
             print("Results Summary")
             print("=" * 60)
-            print(f"Final Accuracy: {eval_result['final_accuracy']:.1%} (+/- {eval_result['std_accuracy']:.1%})")
-            print(f"Range: {eval_result['min_accuracy']:.1%} - {eval_result['max_accuracy']:.1%}")
-            print(f"Trend: {eval_result['trend_slope']:.5f} ({'improving' if eval_result['improving'] else 'stable'})")
-            print(f"Runs > 80%: {eval_result['runs_above_80']}/{eval_result['total_runs']}")
-            
-            # 决策
-            success = eval_result['final_accuracy'] > 0.75 and eval_result['runs_above_80'] >= eval_result['total_runs'] // 2
-            print(f"\nDecision: {'[SUCCESS] Forward-only learning works!' if success else '[NEEDS WORK] Refine learning'}")
-        
-        return {
-            'results': all_results,
-            'evaluation': eval_result,
-            'decision': 'success' if (
-                eval_result['final_accuracy'] > 0.75 and 
-                eval_result['runs_above_80'] >= eval_result['total_runs'] // 2
-            ) else 'refine'
+            print(
+                f"Final Accuracy: {evaluation['final_accuracy']:.1%} "
+                f"(+/- {evaluation['std_accuracy']:.1%})"
+            )
+            print(f"Range: {evaluation['min_accuracy']:.1%} - {evaluation['max_accuracy']:.1%}")
+            print(
+                f"Trend: {evaluation['trend_slope']:.5f} "
+                f"({'improving' if evaluation['improving'] else 'stable'})"
+            )
+            print(f"Runs > 80%: {evaluation['runs_above_80']}/{evaluation['total_runs']}")
+            print(
+                "\nDecision: "
+                f"{'[SUCCESS] Forward-only learning works!' if success else '[NEEDS WORK] Refine learning'}"
+            )
+
+        self.last_result = {
+            "results": all_results,
+            "evaluation": evaluation,
+            "decision": "success" if success else "refine",
         }
-    
-    def save_results(self, filepath: str = "results/phase1_results.json"):
-        os.makedirs(os.path.dirname(filepath), exist_ok=True)
-        
-        result = self.run(verbose=False)
-        
-        with open(filepath, 'w', encoding='utf-8') as f:
-            json.dump(result, f, indent=2, ensure_ascii=False)
-        
-        print(f"\nResults saved: {filepath}")
+        return self.last_result
+
+    def save_results(self, filepath: str | None = None):
+        result = self.last_result if self.last_result is not None else self.run(verbose=False)
+        target = resolve_canonical_results_path("phase1_results.json") if filepath is None else filepath
+        save_json(result, target)
+        print(f"\nResults saved: {target}")
 
 
 def main():
     print("\n" + "=" * 60)
     print("SEL-Lab Phase 1 Implementation")
     print("=" * 60)
-    
+
     config = Phase1Config(
         input_size=4,
         output_size=2,
         hidden_size=8,
         learning_rate=0.05,
         runs=10,
-        epochs=100
+        epochs=100,
     )
-    
     experiment = Phase1Experiment(config)
-    results = experiment.run(verbose=True)
+    experiment.run(verbose=True)
     experiment.save_results()
-    
     print("\nPhase 1 Complete!")
 
 

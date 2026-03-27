@@ -3,6 +3,8 @@ import numpy as np
 from sklearn.datasets import load_digits
 import json
 
+from runtime import resolve_exploratory_results_path
+
 print("=" * 60)
 print("Data Augmentation Test (B.3)")
 print("=" * 60)
@@ -155,7 +157,8 @@ result = {
     'gap_reduction_passed': reduction_passed
 }
 
-with open('F:/skill/sel-lab/results/augmentation_results.json', 'w') as f:
+target = resolve_exploratory_results_path("augmentation_results.json")
+with target.open('w', encoding='utf-8') as f:
     json.dump(result, f, indent=2)
 
-print(f"\nResults saved: augmentation_results.json")
+print(f"\nResults saved: {target}")

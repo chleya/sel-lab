@@ -1,11 +1,22 @@
 # Structure Stability Test (SC-4)
+from __future__ import annotations
+
 import numpy as np
 from sklearn.datasets import load_digits
-import json
+from pathlib import Path
+import sys
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from core.runtime import resolve_results_path, save_json
 
 print("=" * 60)
 print("Structure Stability Test (SC-4)")
 print("=" * 60)
+print("This script validates SC-4 only.")
+print("It does not certify SC-1/2/3/5 or project-wide success.")
 
 # Load data
 digits = load_digits()
@@ -128,36 +139,28 @@ for crit, passed in criteria_passed.items():
 sc4_passed = all_passed
 print(f"\nSC-4 (Structural Stability): {'PASS' if sc4_passed else 'FAIL'}")
 
-# Full SC checklist
+# Report only the criterion that this script actually measures.
 print("\n" + "=" * 60)
-print("Full Success Criteria Check")
+print("Measured Criteria")
 print("=" * 60)
-
-sc_status = {
-    'SC-1 (Locality)': 'PASS',
-    'SC-2 (Reusable structures)': 'PASS',
-    'SC-3 (Reduced cost)': 'PASS',
-    'SC-4 (Stability)': 'PASS' if sc4_passed else 'FAIL',
-    'SC-5 (Forward-only)': 'PASS'
-}
-
-for sc, status in sc_status.items():
-    print(f"  {sc}: {status}")
+print(f"  SC-4 (Stability): {'PASS' if sc4_passed else 'FAIL'}")
 
 # Save results
 output = {
     'test_date': '2026-02-04',
+    'scope': 'SC-4 only',
     'baseline_accuracy': float(baseline_acc),
     'noise_results': results,
     'criteria_passed': criteria_passed,
     'sc4_passed': sc4_passed,
-    'full_sc_status': sc_status
+    'measured_status': {
+        'SC-4 (Stability)': 'PASS' if sc4_passed else 'FAIL'
+    },
 }
 
-with open('F:/skill/sel-lab/results/stability_test_results.json', 'w') as f:
-    json.dump(output, f, indent=2)
-
-print(f"\nResults saved: stability_test_results.json")
+target = resolve_results_path("stability_test_results.json")
+save_json(output, target)
+print(f"\nResults saved: {target}")
 
 # Final
 print("\n" + "=" * 60)
@@ -165,8 +168,6 @@ print("CONCLUSION")
 print("=" * 60)
 
 if sc4_passed:
-    print("ALL SUCCESS CRITERIA MET!")
-    print("SC-1, SC-2, SC-3, SC-4, SC-5: All PASS")
+    print("SC-4 validated under this perturbation test.")
 else:
-    print("SC-4 partially validated")
-    print("Other criteria: All PASS")
+    print("SC-4 not validated under this perturbation test.")

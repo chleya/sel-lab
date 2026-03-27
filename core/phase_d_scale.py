@@ -5,6 +5,8 @@ import numpy as np
 from sklearn.datasets import fetch_openml
 import json
 import warnings
+
+from runtime import resolve_exploratory_results_path
 warnings.filterwarnings('ignore')
 
 print("=" * 60)
@@ -136,7 +138,8 @@ output = {
     'scale_improvement': float(improvement)
 }
 
-with open('F:/skill/sel-lab/results/scale_testing_results.json', 'w') as f:
+target = resolve_exploratory_results_path("scale_testing_results.json")
+with target.open('w', encoding='utf-8') as f:
     json.dump(output, f, indent=2)
 
-print(f"\nResults saved!")
+print(f"\nResults saved: {target}")

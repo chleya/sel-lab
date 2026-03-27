@@ -1,43 +1,64 @@
 {
+  "task_type": "simple_classification",
   "runs": 5,
-  "mean_test_accuracy": 0.82,
-  "std_test_accuracy": 0.0,
-  "max_test_accuracy": 0.82,
+  "config": {
+    "input_size": 4,
+    "output_size": 2,
+    "initial_modules": 3,
+    "learning_rate": 0.1,
+    "epochs": 100,
+    "tension_threshold": 0.7,
+    "random_seed": 42
+  },
+  "mean_test_accuracy": 0.732,
+  "std_test_accuracy": 0.24069898213328614,
+  "max_test_accuracy": 0.97,
+  "mean_modules": 5.8,
   "results": [
     {
       "run": 1,
-      "train_accuracy": 0.9,
-      "test_accuracy": 0.82,
-      "modules": 5,
-      "changes": 8
+      "seed": 42,
+      "train_accuracy": 0.8,
+      "test_accuracy": 0.79,
+      "modules": 6,
+      "changes": 31,
+      "evolution_events": 30
     },
     {
       "run": 2,
-      "train_accuracy": 0.9,
-      "test_accuracy": 0.82,
-      "modules": 5,
-      "changes": 8
+      "seed": 43,
+      "train_accuracy": 0.79,
+      "test_accuracy": 0.85,
+      "modules": 7,
+      "changes": 34,
+      "evolution_events": 33
     },
     {
       "run": 3,
-      "train_accuracy": 0.9,
-      "test_accuracy": 0.82,
-      "modules": 5,
-      "changes": 8
+      "seed": 44,
+      "train_accuracy": 0.96,
+      "test_accuracy": 0.97,
+      "modules": 3,
+      "changes": 34,
+      "evolution_events": 34
     },
     {
       "run": 4,
-      "train_accuracy": 0.9,
-      "test_accuracy": 0.82,
-      "modules": 5,
-      "changes": 8
+      "seed": 45,
+      "train_accuracy": 0.17,
+      "test_accuracy": 0.27,
+      "modules": 9,
+      "changes": 39,
+      "evolution_events": 36
     },
     {
       "run": 5,
-      "train_accuracy": 0.9,
-      "test_accuracy": 0.82,
-      "modules": 5,
-      "changes": 8
+      "seed": 46,
+      "train_accuracy": 0.91,
+      "test_accuracy": 0.78,
+      "modules": 4,
+      "changes": 29,
+      "evolution_events": 29
     }
   ]
 }

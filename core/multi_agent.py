@@ -4,9 +4,18 @@ SEL-L
 Multiple agents collaboratingab Multi-Agent Evolution and sharing knowledge
 """
 
+from __future__ import annotations
+
 import numpy as np
 from dataclasses import dataclass
-import json
+from pathlib import Path
+import sys
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from core.runtime import resolve_results_path, save_json
 
 
 @dataclass
@@ -323,23 +332,22 @@ def run_multi_agent():
     success = advantage_ind > 0 or advantage_col > 0
     print(f"\n{'[SUCCESS] Multi-agent collaboration helps!' if success else '[NEUTRAL] No clear advantage'}")
     
-    # Save results
-    with open("F:/skill/sel-lab/results/multi_agent_results.json", 'w', encoding='utf-8') as f:
-        json.dump({
-            'config': {
-                'num_agents': config.num_agents,
-                'sharing_interval': config.sharing_interval
-            },
-            'single_final': float(final_sng),
-            'individual_final': float(final_ind),
-            'collective_final': float(final_col),
-            'advantage_individual': float(advantage_ind),
-            'advantage_collective': float(advantage_col),
-            'knowledge_shared': stats['knowledge_shared'],
-            'decision': 'success' if success else 'neutral'
-        }, f, indent=2)
-    
-    print(f"\nResults saved: results/multi_agent_results.json")
+    payload = {
+        'config': {
+            'num_agents': config.num_agents,
+            'sharing_interval': config.sharing_interval
+        },
+        'single_final': float(final_sng),
+        'individual_final': float(final_ind),
+        'collective_final': float(final_col),
+        'advantage_individual': float(advantage_ind),
+        'advantage_collective': float(advantage_col),
+        'knowledge_shared': stats['knowledge_shared'],
+        'decision': 'success' if success else 'neutral'
+    }
+    target = resolve_results_path("multi_agent_results.json")
+    save_json(payload, target)
+    print(f"\nResults saved: {target}")
 
 
 if __name__ == "__main__":

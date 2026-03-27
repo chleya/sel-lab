@@ -1,159 +1,149 @@
 # SEL-Lab
-Structural Evolution Learning Laboratory
 
-## 项目目标
-开发一个智能从结构演化中涌现的系统，基于局部前向动力学，而非全局反向优化。
+Structural Evolution Learning laboratory.
 
-**核心原则**：
-- 无反向传播的学习
-- 动力学导向的学习过程
-- 结构作为核心实体
-- 以适应性为评估标准
+## What This Project Is
 
----
+SEL-Lab studies a narrower question than the older project documents suggest:
 
-## 快速开始
+Can a forward-only, locally updated, structurally adaptive learner gain its main advantage from reusable structure under sequential tasks, rather than from universal superiority on single-task benchmarks?
 
-### 1. 运行核心框架
+The current evidence supports that narrower framing:
+
+- `Phase 1`: forward-only learning is viable
+- `Phase 2`: structural evolution is mixed on single-task benchmarks
+- `Phase 3`: continual learning and reduced forgetting are the strongest positive results
+- `Phase 4`: digits-scale perception tasks can benefit once learning dynamics are tuned
+
+This repository is therefore best understood as a research codebase for continual learning and structure reuse, not as a general replacement for backpropagation.
+
+The current architecture separates:
+
+- `core/`: algorithm kernel, task generation, training state, shared runtime helpers
+- `orchestrator/`: repeated experiment execution and result aggregation
+- `analysis/`: post-hoc metrics
+- `visualization/`: dashboards, topology animation, comparison views
+- `results/`: generated artifacts
+
+See [ARCHITECTURE.md](/F:/sel-lab/ARCHITECTURE.md) for the architectural rules.
+
+See [RESEARCH_ROADMAP.md](/F:/sel-lab/RESEARCH_ROADMAP.md) for the current project direction.
+
+See [AUTONOMY_PROTOCOL.md](/F:/sel-lab/AUTONOMY_PROTOCOL.md) for the default autonomous work loop and stop conditions.
+See [FULL_AUTO_PROMPT.md](/F:/sel-lab/FULL_AUTO_PROMPT.md) for a repository-specific `codex --full-auto` prompt template.
+
+See [REPORT_STATUS.md](/F:/sel-lab/REPORT_STATUS.md) for which reports are current versus archived.
+
+## Main Entry Points
+
+Run the core demo:
+
 ```powershell
-python F:\\skill\\sel-lab\\core\\sel_core.py
+python core/sel_core.py
 ```
 
-### 2. 运行实验
+Run repeated experiments:
+
 ```powershell
-python F:\\skill\\sel-lab\\orchestrator\\experiment_runner.py
+python orchestrator/experiment_runner.py
 ```
 
-### 3. 运行可视化
+Run visualization demos:
+
 ```powershell
-python F:\\skill\\sel-lab\\gui_visualize.py
+python visualization/main.py --mode full
 ```
 
----
+Run smoke tests:
 
-## 项目结构
-
-```
-F:\skill\sel-lab\
-├── core/
-│   ├── __init__.py              # 包初始化
-│   ├── sel_core.py               # SEL 核心框架
-│   └── environment.py            # 环境接口
-├── orchestrator/
-│   └── experiment_runner.py      # 实验运行器
-├── protocols/
-│   └── phase1_forward_feedback.yaml  # Phase 1 协议
-├── analysis/
-│   └── metrics.py               # 指标计算
-├── results/                      # 实验结果
-├── *_visualize.py               # 可视化工具
-└── README.md                    # 本文档
+```powershell
+python tests/smoke_test.py
 ```
 
----
+Run Phase 4 mechanism analysis:
 
-## 核心组件
-
-### SELConfig - 配置
-```python
-from core.sel_core import SELConfig, SELTrainer
-
-config = SELConfig(
-    input_size=4,
-    output_size=2,
-    initial_modules=3,
-    learning_rate=0.1,
-    epochs=100
-)
+```powershell
+python core/phase4_failure_analysis.py
 ```
 
-### SELNetwork - 网络
-```python
-from core.sel_core import SELNetwork, SELConfig
+Run Phase 3 structure-reuse ablations:
 
-config = SELConfig(input_size=4, output_size=2)
-network = SELNetwork(config)
+```powershell
+python core/phase3_ablation.py
 ```
 
-### SELTrainer - 训练器
-```python
-trainer = SELTrainer(config)
-result = trainer.train(X_train, y_train, X_test, y_test)
+Run Phase 2 mechanism bench:
+
+```powershell
+python core/phase2_ablation.py
 ```
 
----
+Run Phase 4 repair and expansion sweeps:
 
-## 研究阶段
-
-| 阶段 | 状态 | 描述 |
-|------|------|------|
-| Phase 0 | ✅ 完成 | 概念分析 |
-| Phase 1 | 🔄 进行中 | 前向学习验证 |
-| Phase 2 | ⏳ 等待 | 结构演化优势 |
-| Phase 3 | ⏳ 等待 | 长期累积 |
-
----
-
-## 核心结果
-
-### 前向学习
-- 测试准确率：82%
-- 无反向传播
-- 模块化架构
-
-### 结构演化
-- 模块数量：3 → 5
-- 张力驱动适应
-- 局部更新
-
----
-
-## 协议约束
-
-### phase1_forward_feedback.yaml
-```yaml
-constraints:
-  no_backpropagation: true
-  no_global_loss_scalar: true
-  no_backward_pass: true
-  local_updates_only: true
+```powershell
+python core/phase4_repair_experiment.py
+python core/phase4_expansion_sweep.py
 ```
 
----
+Generate the current unified report:
 
-## 可视化
+```powershell
+python analysis/generate_unified_report.py
+```
 
-### GUI 窗口
-包含：
-- 准确率曲线
-- 权重分布
-- 张力演化
-- 网络状态
+Analyze why true reuse still trails `adapt_only`:
 
-### 文本模式
-包含：
-- 训练进度条
-- 准确率指标
-- 模块数量
+```powershell
+python analysis/phase3_gap_analysis.py
+```
 
----
+Sweep the specialist merge scale:
 
-## 成功标准
+```powershell
+python analysis/phase3_specialist_merge_sweep.py
+```
 
-1. ✅ 前向学习达到 >80% 准确率
-2. ✅ 局部更新无需反向传播
-3. 🔄 结构演化（进行中）
-4. ⏳ 增量学习（未来工作）
+```powershell
+python analysis/phase3_suite_transfer.py
+```
 
----
+```powershell
+python analysis/phase3_digits_transfer.py
+```
 
-## 下一步
+## Current Research Position
 
-1. 完成 Phase 1 协议实现
-2. 测试更复杂任务
-3. 实现零遗忘的增量学习
-4. 添加完整文档
+Primary line:
 
----
+- `Phase 3` is the main result path. This is where SEL currently has the clearest claim: structure reuse helps sequential learning and reduces forgetting.
+- `Phase 4` is the main external validation path. It tests whether tuned forward-only evolution can help on non-trivial perception tasks.
 
-*SEL-Lab：结构演化，智能涌现。*
+Secondary line:
+
+- `Phase 2` is now best treated as a mechanism-screening bench. Its role is to answer which reuse strategy is stable, not to prove that evolution always helps.
+
+Exploratory side tracks:
+
+- `core/multi_agent.py`
+- `core/edge_optimization.py`
+- `core/stability_test.py`
+
+These are still useful, but they should not drive the main narrative until they are migrated onto the shared runtime/reporting path.
+
+## Current Design Rules
+
+- No hard-coded absolute result paths in new code
+- Use `core.runtime` for result paths, JSON saving, train/test split, and history normalization
+- Use `SELTrainer.metrics` as the typed in-memory record
+- Convert histories at boundaries with `history_to_records()`
+- Keep algorithm logic in `core`, not in visualization or orchestration scripts
+
+## Near-Term Refactor Target
+
+The immediate goal is not to add more branches of experimentation. It is to make the current main line trustworthy:
+
+- keep `sel_core.py` as the canonical kernel
+- migrate old standalone scripts onto the shared runtime layer
+- remove hard-coded output paths and stale summary logic
+- make report generation reflect current results rather than historical claims
+- strengthen `Phase 3` and `Phase 4` as the core evidence chain

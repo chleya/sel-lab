@@ -3,6 +3,8 @@ import numpy as np
 from sklearn.datasets import fetch_openml
 import json
 import warnings
+
+from runtime import resolve_exploratory_results_path
 warnings.filterwarnings('ignore')
 
 print("=" * 60)
@@ -102,7 +104,8 @@ result = {
     'clip': (-1, 1)
 }
 
-with open('F:/skill/sel-lab/results/phase4_mnist_full_results.json', 'w') as f:
+target = resolve_exploratory_results_path("phase4_mnist_full_results.json")
+with target.open('w', encoding='utf-8') as f:
     json.dump(result, f, indent=2)
 
-print(f"\nResults saved!")
+print(f"\nResults saved: {target}")

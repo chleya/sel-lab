@@ -1,0 +1,340 @@
+{
+  "config": {
+    "input_size": 64,
+    "hidden_size": 32,
+    "output_size": 2,
+    "runs": 1,
+    "epochs_per_task": 3,
+    "num_tasks": 4,
+    "learning_rate": 0.02,
+    "capped_clone_max_units": 4,
+    "tension_threshold": 0.15,
+    "evolve_interval": 3,
+    "low_tension_ratio": 0.75,
+    "clone_margin_ratio": 0.2,
+    "trend_window": 3,
+    "trend_max_increase": 0.01,
+    "benefit_score_threshold": 0.45,
+    "benefit_reopen_margin": 0.05,
+    "limited_adapt_scale": 0.35,
+    "specialist_merge_scale": 0.02,
+    "retention_merge_bonus": 0.15,
+    "specialist_confidence_threshold": 0.35,
+    "specialist_min_gate_scale": 0.15,
+    "specialist_route_min_scale": 0.05,
+    "specialist_softmax_temperature": 0.75,
+    "specialist_budget_scale": 0.6,
+    "specialist_source_agreement_bonus": 0.75,
+    "specialist_source_conflict_floor": 0.25,
+    "specialist_anchor_strength": 0.08,
+    "specialist_distance_anchor_bonus": 0.08,
+    "specialist_distill_strength": 0.5,
+    "specialist_retention_strength": 0.12,
+    "current_path_lr_boost": 2.5,
+    "archived_specialist_quantization_bits": 0,
+    "archived_specialist_max_count": 0,
+    "archived_specialist_selection_mode": "recency",
+    "delayed_adapt_tasks": 1,
+    "freeze_windows": [
+      1,
+      2,
+      3
+    ],
+    "task_suite": "digits_pairs_noisy",
+    "diagnostic_family": "broader_digits"
+  },
+  "policy_metadata": {
+    "adapt_only": {
+      "family": "baseline",
+      "forward_change": "none",
+      "update_rule_change": "single active path only",
+      "memory_change": "none",
+      "benchmark_intent": "reference policy"
+    },
+    "task_specialist_clone_limited_merge": {
+      "family": "specialist_reuse",
+      "forward_change": "low merge from archived specialists",
+      "update_rule_change": "limited specialist adaptation",
+      "memory_change": "specialist residual path",
+      "benchmark_intent": "robustness baseline"
+    },
+    "task_specialist_clone_current_path_boost_merge": {
+      "family": "plasticity_boost",
+      "forward_change": "low specialist merge",
+      "update_rule_change": "boost active current path",
+      "memory_change": "specialist residual path",
+      "benchmark_intent": "current-task plasticity leader"
+    }
+  },
+  "diagnostic_suites": {
+    "transfer_basics": [
+      "default",
+      "rotated",
+      "feature_shift",
+      "noisy"
+    ],
+    "broader_digits": [
+      "digits_pairs",
+      "digits_pairs_noisy",
+      "digits_pairs_permuted"
+    ],
+    "plasticity_stress": [
+      "digits_pairs",
+      "digits_pairs_noisy",
+      "digits_pairs_permuted"
+    ],
+    "interference_stress": [
+      "feature_shift",
+      "feature_shift_noisy"
+    ]
+  },
+  "fixed": {
+    "summary": {
+      "final_avg_accuracy": 0.746875,
+      "final_current_accuracy": 1.0,
+      "final_prior_avg_accuracy": 0.6625,
+      "mean_forgetting": 0.3020833333333333,
+      "mean_backward_transfer": -0.3020833333333333,
+      "final_units": 1.0,
+      "final_frozen_units": 0.0
+    },
+    "runs": [
+      [
+        {
+          "task_id": 0,
+          "current_accuracy": 0.94375,
+          "avg_accuracy": 0.94375,
+          "prior_avg_accuracy": 0.94375,
+          "mean_forgetting": 0.0,
+          "mean_backward_transfer": 0.0,
+          "unit_count": 1,
+          "frozen_units": 0
+        },
+        {
+          "task_id": 1,
+          "current_accuracy": 0.96875,
+          "avg_accuracy": 0.665625,
+          "prior_avg_accuracy": 0.3625,
+          "mean_forgetting": 0.58125,
+          "mean_backward_transfer": -0.58125,
+          "unit_count": 1,
+          "frozen_units": 0
+        },
+        {
+          "task_id": 2,
+          "current_accuracy": 0.98125,
+          "avg_accuracy": 0.6895833333333332,
+          "prior_avg_accuracy": 0.54375,
+          "mean_forgetting": 0.4125,
+          "mean_backward_transfer": -0.4125,
+          "unit_count": 1,
+          "frozen_units": 0
+        },
+        {
+          "task_id": 3,
+          "current_accuracy": 1.0,
+          "avg_accuracy": 0.746875,
+          "prior_avg_accuracy": 0.6625,
+          "mean_forgetting": 0.3020833333333333,
+          "mean_backward_transfer": -0.3020833333333333,
+          "unit_count": 1,
+          "frozen_units": 0
+        }
+      ]
+    ]
+  },
+  "policies": {
+    "adapt_only": {
+      "summary": {
+        "final_avg_accuracy": 0.5390625,
+        "final_current_accuracy": 0.6625,
+        "final_prior_avg_accuracy": 0.4979166666666666,
+        "mean_forgetting": 0.03958333333333336,
+        "mean_backward_transfer": -0.03958333333333336,
+        "final_units": 1.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": -0.20781249999999996,
+        "forgetting_delta_vs_fixed": 0.26249999999999996,
+        "backward_transfer_gain_vs_fixed": 0.26249999999999996,
+        "avg_accuracy_delta_vs_adapt_only": 0.0,
+        "forgetting_delta_vs_adapt_only": 0.0,
+        "backward_transfer_delta_vs_adapt_only": 0.0,
+        "current_accuracy_delta_vs_adapt_only": 0.0,
+        "prior_accuracy_delta_vs_adapt_only": 0.0,
+        "unit_delta_vs_adapt_only": 0.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.8,
+            "avg_accuracy": 0.8,
+            "prior_avg_accuracy": 0.8,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 1,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.38125,
+            "avg_accuracy": 0.5625,
+            "prior_avg_accuracy": 0.74375,
+            "mean_forgetting": 0.05625000000000002,
+            "mean_backward_transfer": -0.05625000000000002,
+            "unit_count": 1,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.43125,
+            "avg_accuracy": 0.5187499999999999,
+            "prior_avg_accuracy": 0.5625,
+            "mean_forgetting": 0.02812500000000001,
+            "mean_backward_transfer": -0.02812500000000001,
+            "unit_count": 1,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.6625,
+            "avg_accuracy": 0.5390625,
+            "prior_avg_accuracy": 0.4979166666666666,
+            "mean_forgetting": 0.03958333333333336,
+            "mean_backward_transfer": -0.03958333333333336,
+            "unit_count": 1,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    },
+    "task_specialist_clone_limited_merge": {
+      "summary": {
+        "final_avg_accuracy": 0.5359375,
+        "final_current_accuracy": 0.6875,
+        "final_prior_avg_accuracy": 0.4854166666666666,
+        "mean_forgetting": 0.04374999999999999,
+        "mean_backward_transfer": -0.04374999999999999,
+        "final_units": 5.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": -0.2109375,
+        "forgetting_delta_vs_fixed": 0.2583333333333333,
+        "backward_transfer_gain_vs_fixed": 0.2583333333333333,
+        "avg_accuracy_delta_vs_adapt_only": -0.0031250000000000444,
+        "forgetting_delta_vs_adapt_only": -0.004166666666666631,
+        "backward_transfer_delta_vs_adapt_only": -0.004166666666666631,
+        "current_accuracy_delta_vs_adapt_only": 0.025000000000000022,
+        "prior_accuracy_delta_vs_adapt_only": -0.012500000000000011,
+        "unit_delta_vs_adapt_only": 4.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.7625,
+            "avg_accuracy": 0.7625,
+            "prior_avg_accuracy": 0.7625,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 2,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.375,
+            "avg_accuracy": 0.553125,
+            "prior_avg_accuracy": 0.73125,
+            "mean_forgetting": 0.03125,
+            "mean_backward_transfer": -0.03125,
+            "unit_count": 3,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.45,
+            "avg_accuracy": 0.5,
+            "prior_avg_accuracy": 0.525,
+            "mean_forgetting": 0.043749999999999956,
+            "mean_backward_transfer": -0.043749999999999956,
+            "unit_count": 4,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.6875,
+            "avg_accuracy": 0.5359375,
+            "prior_avg_accuracy": 0.4854166666666666,
+            "mean_forgetting": 0.04374999999999999,
+            "mean_backward_transfer": -0.04374999999999999,
+            "unit_count": 5,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    },
+    "task_specialist_clone_current_path_boost_merge": {
+      "summary": {
+        "final_avg_accuracy": 0.61875,
+        "final_current_accuracy": 0.775,
+        "final_prior_avg_accuracy": 0.5666666666666667,
+        "mean_forgetting": 0.04791666666666664,
+        "mean_backward_transfer": -0.04791666666666664,
+        "final_units": 5.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": -0.12812499999999993,
+        "forgetting_delta_vs_fixed": 0.25416666666666665,
+        "backward_transfer_gain_vs_fixed": 0.25416666666666665,
+        "avg_accuracy_delta_vs_adapt_only": 0.07968750000000002,
+        "forgetting_delta_vs_adapt_only": -0.008333333333333283,
+        "backward_transfer_delta_vs_adapt_only": -0.008333333333333283,
+        "current_accuracy_delta_vs_adapt_only": 0.11250000000000004,
+        "prior_accuracy_delta_vs_adapt_only": 0.06875000000000003,
+        "unit_delta_vs_adapt_only": 4.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.7625,
+            "avg_accuracy": 0.7625,
+            "prior_avg_accuracy": 0.7625,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 2,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.4875,
+            "avg_accuracy": 0.5875,
+            "prior_avg_accuracy": 0.6875,
+            "mean_forgetting": 0.07499999999999996,
+            "mean_backward_transfer": -0.07499999999999996,
+            "unit_count": 3,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.59375,
+            "avg_accuracy": 0.5479166666666667,
+            "prior_avg_accuracy": 0.525,
+            "mean_forgetting": 0.09999999999999995,
+            "mean_backward_transfer": -0.09999999999999995,
+            "unit_count": 4,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.775,
+            "avg_accuracy": 0.61875,
+            "prior_avg_accuracy": 0.5666666666666667,
+            "mean_forgetting": 0.04791666666666664,
+            "mean_backward_transfer": -0.04791666666666664,
+            "unit_count": 5,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    }
+  }
+}

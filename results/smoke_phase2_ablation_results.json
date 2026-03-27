@@ -1,0 +1,217 @@
+{
+  "config": {
+    "simple": {
+      "runs": 1,
+      "epochs": 10,
+      "learning_rate": 0.05
+    },
+    "hard": {
+      "runs": 1,
+      "epochs": 10,
+      "learning_rate": 0.03
+    },
+    "add_threshold": 0.15,
+    "remove_threshold": 0.02,
+    "max_units": 10,
+    "low_tension_ratio": 0.75,
+    "limited_adapt_scale": 0.35
+  },
+  "tasks": {
+    "simple": {
+      "fixed": {
+        "summary": {
+          "final_accuracy": 0.84,
+          "auc_accuracy": 0.874,
+          "max_units": 1.0
+        },
+        "runs": [
+          {
+            "final_accuracy": 0.84,
+            "auc_accuracy": 0.874,
+            "max_units": 1
+          }
+        ]
+      },
+      "policies": {
+        "adapt_only": {
+          "summary": {
+            "final_accuracy": 0.92,
+            "auc_accuracy": 0.906,
+            "max_units": 2.0,
+            "final_gain_vs_fixed": 0.08000000000000007,
+            "auc_gain_vs_fixed": 0.03200000000000003
+          },
+          "runs": [
+            {
+              "final_accuracy": 0.92,
+              "auc_accuracy": 0.906,
+              "max_units": 2
+            }
+          ]
+        },
+        "random_growth": {
+          "summary": {
+            "final_accuracy": 0.8,
+            "auc_accuracy": 0.8720000000000001,
+            "max_units": 3.0,
+            "final_gain_vs_fixed": -0.039999999999999925,
+            "auc_gain_vs_fixed": -0.0019999999999998908
+          },
+          "runs": [
+            {
+              "final_accuracy": 0.8,
+              "auc_accuracy": 0.8720000000000001,
+              "max_units": 3
+            }
+          ]
+        },
+        "best_clone": {
+          "summary": {
+            "final_accuracy": 0.92,
+            "auc_accuracy": 0.906,
+            "max_units": 3.0,
+            "final_gain_vs_fixed": 0.08000000000000007,
+            "auc_gain_vs_fixed": 0.03200000000000003
+          },
+          "runs": [
+            {
+              "final_accuracy": 0.92,
+              "auc_accuracy": 0.906,
+              "max_units": 3
+            }
+          ]
+        },
+        "low_tension_clone": {
+          "summary": {
+            "final_accuracy": 0.92,
+            "auc_accuracy": 0.906,
+            "max_units": 2.0,
+            "final_gain_vs_fixed": 0.08000000000000007,
+            "auc_gain_vs_fixed": 0.03200000000000003
+          },
+          "runs": [
+            {
+              "final_accuracy": 0.92,
+              "auc_accuracy": 0.906,
+              "max_units": 2
+            }
+          ]
+        },
+        "best_clone_limited_adapt": {
+          "summary": {
+            "final_accuracy": 0.92,
+            "auc_accuracy": 0.906,
+            "max_units": 3.0,
+            "final_gain_vs_fixed": 0.08000000000000007,
+            "auc_gain_vs_fixed": 0.03200000000000003
+          },
+          "runs": [
+            {
+              "final_accuracy": 0.92,
+              "auc_accuracy": 0.906,
+              "max_units": 3
+            }
+          ]
+        }
+      }
+    },
+    "hard": {
+      "fixed": {
+        "summary": {
+          "final_accuracy": 0.44,
+          "auc_accuracy": 0.4210000000000001,
+          "max_units": 1.0
+        },
+        "runs": [
+          {
+            "final_accuracy": 0.44,
+            "auc_accuracy": 0.4210000000000001,
+            "max_units": 1
+          }
+        ]
+      },
+      "policies": {
+        "adapt_only": {
+          "summary": {
+            "final_accuracy": 0.36,
+            "auc_accuracy": 0.36500000000000005,
+            "max_units": 1.0,
+            "final_gain_vs_fixed": -0.08000000000000002,
+            "auc_gain_vs_fixed": -0.05600000000000005
+          },
+          "runs": [
+            {
+              "final_accuracy": 0.36,
+              "auc_accuracy": 0.36500000000000005,
+              "max_units": 1
+            }
+          ]
+        },
+        "random_growth": {
+          "summary": {
+            "final_accuracy": 0.24,
+            "auc_accuracy": 0.4010000000000001,
+            "max_units": 2.0,
+            "final_gain_vs_fixed": -0.2,
+            "auc_gain_vs_fixed": -0.020000000000000018
+          },
+          "runs": [
+            {
+              "final_accuracy": 0.24,
+              "auc_accuracy": 0.4010000000000001,
+              "max_units": 2
+            }
+          ]
+        },
+        "best_clone": {
+          "summary": {
+            "final_accuracy": 0.41,
+            "auc_accuracy": 0.37000000000000005,
+            "max_units": 2.0,
+            "final_gain_vs_fixed": -0.030000000000000027,
+            "auc_gain_vs_fixed": -0.051000000000000045
+          },
+          "runs": [
+            {
+              "final_accuracy": 0.41,
+              "auc_accuracy": 0.37000000000000005,
+              "max_units": 2
+            }
+          ]
+        },
+        "low_tension_clone": {
+          "summary": {
+            "final_accuracy": 0.36,
+            "auc_accuracy": 0.36500000000000005,
+            "max_units": 1.0,
+            "final_gain_vs_fixed": -0.08000000000000002,
+            "auc_gain_vs_fixed": -0.05600000000000005
+          },
+          "runs": [
+            {
+              "final_accuracy": 0.36,
+              "auc_accuracy": 0.36500000000000005,
+              "max_units": 1
+            }
+          ]
+        },
+        "best_clone_limited_adapt": {
+          "summary": {
+            "final_accuracy": 0.41,
+            "auc_accuracy": 0.37000000000000005,
+            "max_units": 2.0,
+            "final_gain_vs_fixed": -0.030000000000000027,
+            "auc_gain_vs_fixed": -0.051000000000000045
+          },
+          "runs": [
+            {
+              "final_accuracy": 0.41,
+              "auc_accuracy": 0.37000000000000005,
+              "max_units": 2
+            }
+          ]
+        }
+      }
+    }
+  }
+}
