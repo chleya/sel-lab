@@ -1,0 +1,230 @@
+{
+  "dataset": "digits",
+  "optimization_results": [
+    {
+      "age_decay": 0.001,
+      "evolution_threshold": 0.2,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.9157407407407407,
+      "advantage": -0.010185185185185186,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.001,
+      "evolution_threshold": 0.25,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.9157407407407407,
+      "advantage": -0.010185185185185186,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.001,
+      "evolution_threshold": 0.3,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.9157407407407407,
+      "advantage": -0.010185185185185186,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.001,
+      "evolution_threshold": 0.35,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.9157407407407407,
+      "advantage": -0.010185185185185186,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.001,
+      "evolution_threshold": 0.4,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.9157407407407407,
+      "advantage": -0.010185185185185186,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.002,
+      "evolution_threshold": 0.2,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.9083333333333333,
+      "advantage": -0.017592592592592604,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.002,
+      "evolution_threshold": 0.25,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.9083333333333333,
+      "advantage": -0.017592592592592604,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.002,
+      "evolution_threshold": 0.3,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.9083333333333333,
+      "advantage": -0.017592592592592604,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.002,
+      "evolution_threshold": 0.35,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.9083333333333333,
+      "advantage": -0.017592592592592604,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.002,
+      "evolution_threshold": 0.4,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.9083333333333333,
+      "advantage": -0.017592592592592604,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.003,
+      "evolution_threshold": 0.2,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.8972222222222221,
+      "advantage": -0.028703703703703787,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.003,
+      "evolution_threshold": 0.25,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.8972222222222221,
+      "advantage": -0.028703703703703787,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.003,
+      "evolution_threshold": 0.3,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.8972222222222221,
+      "advantage": -0.028703703703703787,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.003,
+      "evolution_threshold": 0.35,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.8972222222222221,
+      "advantage": -0.028703703703703787,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.003,
+      "evolution_threshold": 0.4,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.8972222222222221,
+      "advantage": -0.028703703703703787,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.004,
+      "evolution_threshold": 0.2,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.8916666666666666,
+      "advantage": -0.03425925925925932,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.004,
+      "evolution_threshold": 0.25,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.8916666666666666,
+      "advantage": -0.03425925925925932,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.004,
+      "evolution_threshold": 0.3,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.8916666666666666,
+      "advantage": -0.03425925925925932,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.004,
+      "evolution_threshold": 0.35,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.8916666666666666,
+      "advantage": -0.03425925925925932,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.004,
+      "evolution_threshold": 0.4,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.8916666666666666,
+      "advantage": -0.03425925925925932,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.005,
+      "evolution_threshold": 0.2,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.8777777777777778,
+      "advantage": -0.04814814814814816,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.005,
+      "evolution_threshold": 0.25,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.8777777777777778,
+      "advantage": -0.04814814814814816,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.005,
+      "evolution_threshold": 0.3,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.8777777777777778,
+      "advantage": -0.04814814814814816,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.005,
+      "evolution_threshold": 0.35,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.8777777777777778,
+      "advantage": -0.04814814814814816,
+      "decision": "neutral",
+      "max_units": 2
+    },
+    {
+      "age_decay": 0.005,
+      "evolution_threshold": 0.4,
+      "fixed_final": 0.9259259259259259,
+      "evolving_final": 0.8777777777777778,
+      "advantage": -0.04814814814814816,
+      "decision": "neutral",
+      "max_units": 2
+    }
+  ]
+}

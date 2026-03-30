@@ -194,6 +194,21 @@ def test_phase3_ablation_matrix():
     assert "task_specialist_clone_signature_selector_merge" in policy_keys
     assert "task_specialist_clone_fitted_selector_merge" in policy_keys
     assert "task_specialist_clone_prototype_selector_merge" in policy_keys
+    assert "task_specialist_clone_dynamics_selector_merge" in policy_keys
+    assert "task_specialist_clone_outcome_selector_merge" in policy_keys
+    assert "task_specialist_clone_ranking_selector_merge" in policy_keys
+    assert "task_specialist_clone_task_ranking_selector_merge" in policy_keys
+    assert "task_specialist_clone_constrained_task_ranking_selector_merge" in policy_keys
+    assert "task_specialist_clone_two_stage_selector_merge" in policy_keys
+    assert "task_specialist_clone_learned_router_selector_merge" in policy_keys
+    assert "task_specialist_clone_hierarchical_selector_merge" in policy_keys
+    assert "task_specialist_clone_hierarchical_quadratic_selector_merge" in policy_keys
+    assert "task_specialist_clone_hierarchical_sparse_gate_selector_merge" in policy_keys
+    assert "task_specialist_clone_guarded_router_selector_merge" in policy_keys
+    assert "task_specialist_clone_guarded_expert_selector_merge" in policy_keys
+    assert "task_specialist_clone_guarded_expert_boost_default_merge" in policy_keys
+    assert "task_specialist_clone_guarded_expert_merge_default_merge" in policy_keys
+    assert "task_specialist_clone_guarded_expert_linear_default_merge" in policy_keys
     assert "task_specialist_clone_confidence_boost_merge" in policy_keys
     assert "task_specialist_clone_mode_switch_boost_merge" in policy_keys
     assert "task_specialist_clone_dual_mode_update_merge" in policy_keys
@@ -341,6 +356,8 @@ def test_phase3_registry_policy_consistency():
     )
     assert "task_specialist_clone_signature_selector_merge" in grouped_policy_names["regime_switch"]
     assert "task_specialist_clone_fitted_selector_merge" in grouped_policy_names["regime_switch"]
+    assert "task_specialist_clone_dynamics_selector_merge" in grouped_policy_names["regime_switch"]
+    assert "task_specialist_clone_outcome_selector_merge" in grouped_policy_names["regime_switch"]
 
     flattened = {}
     for family_name, family_handlers in CLONE_POLICY_FAMILY_HANDLERS.items():

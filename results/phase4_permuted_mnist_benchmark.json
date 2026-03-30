@@ -1,0 +1,46 @@
+{
+  "dataset": "Permuted-MNIST",
+  "fixed_results": [
+    {
+      "task": 0,
+      "current_accuracy": 0.47,
+      "backward_accuracy": 0.47,
+      "forgetting": 0.0
+    },
+    {
+      "task": 1,
+      "current_accuracy": 0.6055,
+      "backward_accuracy": 0.35250000000000004,
+      "forgetting": 0.253
+    },
+    {
+      "task": 2,
+      "current_accuracy": 0.556,
+      "backward_accuracy": 0.2436666666666667,
+      "forgetting": 0.31233333333333335
+    }
+  ],
+  "evolving_results": [
+    {
+      "task": 0,
+      "current_accuracy": 0.1225,
+      "backward_accuracy": 0.1225,
+      "forgetting": 0.0,
+      "final_modules": 5
+    },
+    {
+      "task": 1,
+      "current_accuracy": 0.0885,
+      "backward_accuracy": 0.088,
+      "forgetting": 0.0005000000000000004,
+      "final_modules": 4
+    },
+    {
+      "task": 2,
+      "current_accuracy": 0.096,
+      "backward_accuracy": 0.09616666666666666,
+      "forgetting": -0.0001666666666666622,
+      "final_modules": 5
+    }
+  ]
+}

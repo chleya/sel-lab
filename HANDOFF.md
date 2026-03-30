@@ -25,6 +25,194 @@ Use files in this order:
 
 `HANDOFF.md` is intentionally not a historical log. Old narratives belong in `memory/` or archived reports.
 
+## Fast Start
+
+If you are the next agent, do this first:
+
+1. Read `UNIFIED_REPORT.md` once for the stable project narrative.
+2. Read this file only through:
+   - `Current Leading Mechanism`
+   - `Selector State`
+   - `Immediate Next Step`
+   - `Do Not Repeat`
+3. Read `memory/2026-03-27.md` for the latest selector-line work.
+4. Run `python tests\smoke_test.py` before doing new edits.
+
+If you only need the current main read:
+
+- broader-digits leader: `task_specialist_clone_current_path_boost_merge`
+- formal stress-map leader: `task_specialist_clone_regime_switch_merge`
+- best less-hardcoded selector on the formal family: `task_specialist_clone_fingerprint_selector_merge`
+- best non-hardcoded selector on the embedded adversarial gate: `task_specialist_clone_signature_selector_merge`
+- current best learned aggregate selector on `selector_full_map`: `task_specialist_clone_two_stage_selector_merge`
+- current selector bottleneck: no longer just objective structure or local threshold choice; the remaining bottleneck is routing target / segmented selector form, because neither a single global score surface nor a flat learned multiclass router can jointly satisfy `feature_shift_embedded` and `feature_shift_sparse_embedded`
+
+## Selector State
+
+The selector line has already ruled out several easy stories.
+
+- `task_specialist_clone_diagnostic_selector_merge`
+  - too weak; collapses to boost-side behavior
+- `task_specialist_clone_fingerprint_selector_merge`
+  - recovers the formal family
+  - still fails the embedded adversarial gate
+- `task_specialist_clone_signature_selector_merge`
+  - best current non-hardcoded selector on `feature_shift_embedded`
+  - still not the best aggregate selector
+- `task_specialist_clone_fitted_selector_merge`
+  - linear fit over static signature features is not enough
+- `task_specialist_clone_prototype_selector_merge`
+  - exemplar retrieval is not enough
+- `task_specialist_clone_dynamics_selector_merge`
+  - richer online dynamics features still mostly reproduce the fingerprint frontier
+- `task_specialist_clone_outcome_selector_merge`
+  - outcome-driven supervision helps on the main embedded gate
+  - but degrades the broader full-map aggregate and fails the sparse adversarial gate
+- `task_specialist_clone_ranking_selector_merge`
+  - suite-level pairwise/ranking supervision is better aligned than plain outcome regression
+  - but still does not solve the embedded gate
+- `task_specialist_clone_task_ranking_selector_merge`
+  - task-level structured ranking becomes the strongest single-head learned aggregate selector
+  - but it degrades `feature_shift_sparse_embedded`
+- `task_specialist_clone_constrained_task_ranking_selector_merge`
+  - adding sparse-gate-aware weighting or constraints does not rescue the single-head ranking frontier
+- `task_specialist_clone_two_stage_selector_merge`
+  - current best learned selector on `selector_full_map`
+  - matches `signature_selector` on `feature_shift_embedded`
+  - improves `feature_shift_sparse_embedded` to `-0.8%` vs fixed
+  - improves aggregate to `+5.3%` vs fixed, above `task_ranking_selector` / `fingerprint_selector` / `signature_selector`
+- `task_specialist_clone_learned_router_selector_merge`
+  - flat learned three-way router over the same regime features does not beat the current two-stage split
+  - aggregate falls back to `+4.8%` vs fixed
+  - gate performance regresses to `-0.8%` on `feature_shift_embedded` and `-1.5%` on `feature_shift_sparse_embedded`
+- `task_specialist_clone_hierarchical_selector_merge`
+  - keeps segmented routing but replaces the shared fallback with region-specific ranking heads
+  - aggregate reaches about `+5.1%` vs fixed in the dedicated benchmark, but remains below `task_specialist_clone_two_stage_selector_merge`
+  - gate performance still regresses relative to `two_stage_selector`:
+    - `feature_shift_embedded`: `-0.2%` vs fixed
+    - `feature_shift_sparse_embedded`: `-1.6%` vs fixed
+- `task_specialist_clone_hierarchical_quadratic_selector_merge`
+  - keeps the same segmentation but upgrades each region head to a quadratic ranking surface
+  - aggregate reaches about `+5.0%` vs fixed on `selector_full_map`
+  - this improves over the weaker linear hierarchical variant but still stays below `task_specialist_clone_two_stage_selector_merge`
+  - gate performance still regresses relative to `two_stage_selector`:
+    - `feature_shift_embedded`: `-0.5%` vs fixed
+    - `feature_shift_sparse_embedded`: `-2.0%` vs fixed
+- `task_specialist_clone_hierarchical_sparse_gate_selector_merge`
+  - keeps the same segmented quadratic form but adds explicit sparse-gate-aware supervision weighting
+  - aggregate still lands around `+5.0%` vs fixed on `selector_full_map`
+  - this does not recover the `two_stage_selector` frontier
+  - gate performance still regresses relative to `two_stage_selector`:
+    - `feature_shift_embedded`: `-0.5%` vs fixed
+    - `feature_shift_sparse_embedded`: `-2.0%` vs fixed
+- `task_specialist_clone_guarded_router_selector_merge`
+  - preserves the hard sparse branch from `two_stage_selector` and learns only the remaining segmented heads
+  - aggregate still lands around `+5.0%` vs fixed on `selector_full_map`
+  - this narrows the gap relative to the sparse-weighted segmented fit, but still does not recover the `two_stage_selector` frontier
+  - gate performance still regresses relative to `two_stage_selector`:
+    - `feature_shift_embedded`: `-0.2%` vs fixed
+    - `feature_shift_sparse_embedded`: `-1.2%` vs fixed
+- focused two-stage threshold sweep
+  - local calibration around `selector_sparse_zero_ratio_floor=0.385` and `selector_sparse_conflict_delta_floor=-0.005` did not find a better nearby point
+  - current default remains the best local threshold pair among the tested neighbors
+
+Current selector conclusion:
+
+- formal-family recovery is solved
+- structured ranking objectives were necessary but not sufficient
+- adversarial-gate robustness is now partially solved only by segmented routing
+- the current learned-selector frontier is a two-stage router, not a single learned score surface
+- local threshold tuning around the current two-stage sparse route does not reveal an easy free win
+- a region-specific linear-head variant has now been tested and does not beat the current two-stage frontier
+- a region-specific quadratic-head variant has also now been tested and still does not beat the current two-stage frontier
+- an explicit sparse-gate-aware segmented objective has also now been tested and still does not beat the current two-stage frontier
+- even preserving the hard sparse branch while learning the rest still does not beat the current two-stage frontier
+- the next credible upgrade is no longer just "add segmented heads", "make the same segmented heads more nonlinear", "reweight the same segmented objective", or "preserve only the sparse branch"; it is better routing targets or a closer recovery of the exact hand-designed embedded branch logic inside a more expressive router
+
+## Immediate Next Step
+
+The next agent should not go back to another single-head selector over the same regime features.
+
+Best next experiment:
+
+- keep the task-level ranking signal
+- keep `selector_full_map` as the screening family
+- upgrade the selector form beyond one global boundary
+
+Concretely:
+
+1. Start from `task_specialist_clone_two_stage_selector_merge`, not from `outcome_selector` or the older fitted selectors.
+2. Treat the current result as evidence for segmented routing:
+   - non-sparse embedded-like tasks need the `signature_selector`-style interference-control branch
+   - sparse embedded-like tasks need the boost-side branch
+   - the remaining tasks benefit from the task-ranking fallback
+3. Preferred next direction:
+   - improve the routing target itself, not just the threshold pair
+   - preferred concrete form:
+     routing targets that explicitly preserve both the sparse branch and the embedded branch logic as separate decision objects
+   - or replace the hard threshold split with a more expressive segmented router than flat, per-region linear, or per-region quadratic fits
+   - or fit a mixture-of-experts / Pareto-style selector that preserves the sparse-gate branch while keeping the task-ranking aggregate
+4. Treat a candidate as interesting only if it beats the current two-stage frontier on at least one axis without breaking the others:
+   - `feature_shift_embedded` must stay at least at `+0.0%` vs fixed
+   - `feature_shift_sparse_embedded` should improve beyond `-0.8%` vs fixed
+   - aggregate on `selector_full_map` should stay near or above `+5.3%` vs fixed
+
+## Do Not Repeat
+
+Do not spend another loop on:
+
+- local hybrid policy tweaks like more `mode_switch` / `dual_mode` variants
+- another boolean handcrafted selector
+- another plain linear fit over nearly the same feature vector
+- another single-head ranking or constrained-ranking fit over the same regime vector
+- another flat learned multiclass router over the same regime vector without changing the routing target or selector form
+- another region-specific linear-head selector behind the same current segmentation
+- another region-specific quadratic-head selector behind the same current segmentation
+- another sparse-weighted variant of the same current segmented quadratic objective
+- another guarded-router variant that only preserves the sparse branch while relearning the rest from the same targets
+- another local threshold retune of the current two-stage sparse-route pair unless a new benchmark family or new router target changes the evidence
+- another prototype / nearest-neighbor selector over the same feature bank
+- weak generalization suites that only perturb nonnegativity without preserving regime ambiguity
+
+Those directions are already information-saturated in this repo.
+
+## Files To Open
+
+For selector work, open these first:
+
+- `core/phase3_model.py`
+- `core/phase3_policies.py`
+- `core/phase3_registry.py`
+- `analysis/phase3_benchmark_family.py`
+- `analysis/phase3_dynamics_selector_benchmark.py`
+- `analysis/phase3_outcome_selector_benchmark.py`
+- `analysis/phase3_task_ranking_selector_benchmark.py`
+- `analysis/phase3_two_stage_selector_benchmark.py`
+- `analysis/phase3_learned_router_selector_benchmark.py`
+- `analysis/phase3_two_stage_selector_sweep.py`
+- `results/canonical/phase3_dynamics_selector_benchmark.json`
+- `results/canonical/phase3_outcome_selector_benchmark.json`
+- `results/canonical/phase3_task_ranking_selector_benchmark.json`
+- `results/canonical/phase3_two_stage_selector_benchmark.json`
+- `results/canonical/phase3_learned_router_selector_benchmark.json`
+- `results/canonical/phase3_two_stage_selector_sweep.json`
+
+## Cheap Verification
+
+Use these before any heavy rerun:
+
+- `python tests\smoke_test.py`
+- `python -c "from core.phase3_registry import resolve_phase3_diagnostic_family; print(resolve_phase3_diagnostic_family('selector_full_map'))"`
+
+Heavy selector reruns that are worth it:
+
+- `python analysis\phase3_dynamics_selector_benchmark.py`
+- `python analysis\phase3_outcome_selector_benchmark.py`
+- `python analysis\phase3_task_ranking_selector_benchmark.py`
+- `python analysis\phase3_two_stage_selector_benchmark.py`
+- `python analysis\phase3_learned_router_selector_benchmark.py`
+- `python analysis\phase3_two_stage_selector_sweep.py`
+
 ## Current Leading Mechanism
 
 - Leading single-policy broader-digits mechanism:
@@ -205,6 +393,46 @@ Positive:
     - simply replacing boolean rules with a linear fit over the current task-signature features is not enough
     - the current feature set is sufficient to recover the formal family, but still not sufficient to survive adversarial regime ambiguity
     - the next selector step should target better regime features or outcome-grounded / learned supervision, not just a cleaner linear decision surface
+- Richer dynamics-aware selector is now tested and also negative as a replacement:
+  - new policy: `task_specialist_clone_dynamics_selector_merge`
+  - canonical result: `results/canonical/phase3_dynamics_selector_benchmark.json`
+  - canonical report: `PHASE3_DYNAMICS_SELECTOR_BENCHMARK.md`
+  - mechanism:
+    - extends the selector feature set with online task dynamics:
+      - `loss_mean`
+      - `loss_delta`
+      - `conflict_delta`
+      - `confidence_delta`
+  - result:
+    - on `selector_full_map`, it effectively ties the current `fingerprint_selector` aggregate:
+      - `dynamics_selector`: mean `+4.0%` vs `adapt_only`, mean `+5.0%` vs fixed
+      - `fingerprint_selector`: mean `+4.0%` vs `adapt_only`, mean `+5.0%` vs fixed
+    - but it still fails the main adversarial gate:
+      - `selector_adversarial_gate` (`feature_shift_embedded`): `-1.7%` vs fixed
+      - `selector_sparse_adversarial_gate` (`feature_shift_sparse_embedded`): `-1.0%` vs fixed
+      - `signature_selector` still remains better on the embedded adversarial gate at `+0.0%` vs fixed
+  - interpretation:
+    - adding learning-dynamics features alone is not enough
+    - the main selector bottleneck now looks more like supervision / objective mismatch than a missing simple online feature
+- Outcome-supervised selector is now tested and also negative as a replacement:
+  - new policy: `task_specialist_clone_outcome_selector_merge`
+  - canonical result: `results/canonical/phase3_outcome_selector_benchmark.json`
+  - canonical report: `PHASE3_OUTCOME_SELECTOR_BENCHMARK.md`
+  - mechanism:
+    - fits a selector directly to the real outcome margin between `task_specialist_clone_limited_merge` and `task_specialist_clone_current_path_boost_merge`
+    - supervision is result-driven, not task-family-labeled
+  - result:
+    - aggregate on `selector_full_map`:
+      - `outcome_selector`: mean `+2.8%` vs `adapt_only`, mean `+3.8%` vs fixed
+      - this is weaker than `fingerprint_selector` and `signature_selector`
+    - selector gates:
+      - `selector_adversarial_gate` (`feature_shift_embedded`): `-0.6%` vs fixed
+      - `selector_sparse_adversarial_gate` (`feature_shift_sparse_embedded`): `-2.4%` vs fixed
+      - `signature_selector` still remains better on the embedded adversarial gate at `+0.0%` vs fixed
+  - interpretation:
+    - stronger supervision helps recover the embedded gate relative to the boost-side selectors
+    - but a simple linear outcome fit still overcommits to the interference-control side and degrades the broader full-map aggregate
+    - the next selector move should target a more structured target or objective, not just swap in another linear supervision surface
 - Selector generalization benchmark using `feature_shift_nonnegative` is now available but not strong enough to upgrade into the main stress-map family:
   - canonical result: `results/canonical/phase3_selector_generalization_benchmark.json`
   - canonical report: `PHASE3_SELECTOR_GENERALIZATION_BENCHMARK.md`
@@ -241,6 +469,8 @@ Current interpretation of that negative set:
 - simple scalar diagnostics are too weak, but explicit task fingerprints are already strong enough to recover regime switching
 - richer handcrafted task signatures partially improve adversarial ambiguity, but still do not replace the stronger hardcoded/fingerprint frontier
 - linear fits over the current task-signature features still collapse on the adversarial gate, so the bottleneck is now feature sufficiency as much as classifier form
+- even richer online dynamics features still collapse on the adversarial gate, so the next selector move should shift toward stronger supervision or a more structured selector objective
+- even stronger outcome supervision does not solve the problem by itself; the selector target likely needs structure beyond a single linear margin fit
 
 Current interpretation of the new quantization result:
 
@@ -398,6 +628,78 @@ Repository cleanup still has higher priority than more local mechanism variants.
       that suite uses embedded 64-D inputs and previously would fail under the generic family helper
     - verification:
       full prototype-selector benchmark now completes, and `python tests\smoke_test.py` still passes cleanly
+27. New learned selector candidate `task_specialist_clone_dynamics_selector_merge` has now been tested.
+    - benchmark:
+      - `analysis/phase3_dynamics_selector_benchmark.py`
+      - `results/canonical/phase3_dynamics_selector_benchmark.json`
+      - `PHASE3_DYNAMICS_SELECTOR_BENCHMARK.md`
+    - training family: `expanded_stress_map`
+    - evaluation family: `selector_full_map`
+    - result:
+      richer task-dynamics features let a linear selector recover the same aggregate frontier as `fingerprint_selector`
+    - key adversarial read:
+      - `dynamics_selector`: `-1.7%` vs fixed on `feature_shift_embedded`
+      - `dynamics_selector`: `-1.0%` vs fixed on `feature_shift_sparse_embedded`
+      - `signature_selector`: `+0.0%` vs fixed on `feature_shift_embedded`
+    - interpretation:
+      better online features alone are not enough; next selector work should target supervision or objective structure, not just another feature family
+28. New learned selector candidate `task_specialist_clone_outcome_selector_merge` has now been tested.
+    - benchmark:
+      - `analysis/phase3_outcome_selector_benchmark.py`
+      - `results/canonical/phase3_outcome_selector_benchmark.json`
+      - `PHASE3_OUTCOME_SELECTOR_BENCHMARK.md`
+    - training family: `expanded_stress_map`
+    - evaluation family: `selector_full_map`
+    - result:
+      outcome-supervised fitting does not become the new main selector frontier
+    - key adversarial read:
+      - `outcome_selector`: `-0.6%` vs fixed on `feature_shift_embedded`
+      - `outcome_selector`: `-2.4%` vs fixed on `feature_shift_sparse_embedded`
+      - `signature_selector`: `+0.0%` vs fixed on `feature_shift_embedded`
+    - interpretation:
+      stronger supervision helps on the main embedded gate but still does not produce a robust selector; next work should focus on structured selector objectives or richer target formation
+29. New preservation-style selector candidate `task_specialist_clone_guarded_expert_selector_merge` has now been tested.
+    - benchmark:
+      - `analysis/phase3_guarded_expert_selector_benchmark.py`
+      - `results/canonical/phase3_guarded_expert_selector_benchmark.json`
+      - `PHASE3_GUARDED_EXPERT_SELECTOR_BENCHMARK.md`
+    - training family: `selector_full_map`
+    - evaluation family: `selector_full_map`
+    - mechanism:
+      preserve the `two_stage_selector` hard sparse branch and embedded signature branch; learn only a quadratic default-region head
+    - result:
+      it nearly matches `two_stage_selector` end-to-end and matches it exactly on the two key adversarial gates
+    - key adversarial read:
+      - `guarded_expert_selector`: `+0.0%` vs fixed on `feature_shift_embedded`
+      - `guarded_expert_selector`: `-0.8%` vs fixed on `feature_shift_sparse_embedded`
+      - `two_stage_selector`: `+0.0%` / `-0.8%` on the same gates
+    - aggregate read:
+      - `guarded_expert_selector`: mean `+4.3%` vs `adapt_only`, mean `+5.3%` vs fixed
+      - `two_stage_selector`: mean `+4.4%` vs `adapt_only`, mean `+5.3%` vs fixed
+    - interpretation:
+      the meaningful selector frontier is now much clearer: the nontrivial advantage comes from preserving both hand-designed branches, not from relearning them with another segmented objective
+      the remaining difference versus `two_stage_selector` is a tiny tail effect on non-gate suites, not a collapse on the important adversarial checks
+30. Direct simplification of `guarded_expert` has now been tested.
+    - benchmark:
+      - `analysis/phase3_guarded_expert_simplification_benchmark.py`
+      - `results/canonical/phase3_guarded_expert_simplification_benchmark.json`
+      - `PHASE3_GUARDED_EXPERT_SIMPLIFICATION_BENCHMARK.md`
+    - tested simplifications:
+      - `task_specialist_clone_guarded_expert_boost_default_merge`
+      - `task_specialist_clone_guarded_expert_merge_default_merge`
+    - mechanism:
+      preserve the hard sparse branch and embedded signature branch, but remove the learned default-region head and replace it with a hardcoded default fallback
+    - result:
+      the adversarial gates stay intact, but aggregate quality drops unless the default region still has a learned fallback
+    - key read:
+      - `guarded_expert_selector`: mean `+4.3%` vs `adapt_only`, mean `+5.3%` vs fixed
+      - `guarded_expert_boost_default`: mean `+3.9%` vs `adapt_only`, mean `+4.8%` vs fixed
+      - `guarded_expert_merge_default`: mean `+2.0%` vs `adapt_only`, mean `+2.9%` vs fixed
+      - all three variants still match `two_stage_selector` on `feature_shift_embedded` and `feature_shift_sparse_embedded`
+    - interpretation:
+      simplifying away the default-region learner is not free
+      the minimal effective selector story is now sharper: preserve the hard sparse branch, preserve the embedded signature branch, and keep a learned default fallback
+      hardcoding the default region to boost regresses to roughly the `signature_selector` frontier, while hardcoding it to interference control gives away too much plasticity
 
 ## Working Rule
 

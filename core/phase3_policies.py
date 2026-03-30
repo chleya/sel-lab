@@ -369,6 +369,249 @@ def _task_specialist_clone_prototype_selector_merge(
     return changes
 
 
+def _task_specialist_clone_dynamics_selector_merge(
+    network: "ReusePolicyNetwork",
+    source_idx: int,
+    new_idx: int,
+    max_units: int,
+) -> List[str]:
+    if network._task_dynamics_selector_prefers_interference_control():
+        changes = network._activate_merged_specialist(new_idx)
+        changes.append("dynamics_selector:interference_control")
+        return changes
+    changes = network._activate_boosted_specialist(new_idx)
+    changes.append("dynamics_selector:plasticity_boost")
+    return changes
+
+
+def _task_specialist_clone_outcome_selector_merge(
+    network: "ReusePolicyNetwork",
+    source_idx: int,
+    new_idx: int,
+    max_units: int,
+) -> List[str]:
+    if network._task_outcome_selector_prefers_interference_control():
+        changes = network._activate_merged_specialist(new_idx)
+        changes.append("outcome_selector:interference_control")
+        return changes
+    changes = network._activate_boosted_specialist(new_idx)
+    changes.append("outcome_selector:plasticity_boost")
+    return changes
+
+
+def _task_specialist_clone_ranking_selector_merge(
+    network: "ReusePolicyNetwork",
+    source_idx: int,
+    new_idx: int,
+    max_units: int,
+) -> List[str]:
+    if network._task_ranking_selector_prefers_interference_control():
+        changes = network._activate_merged_specialist(new_idx)
+        changes.append("ranking_selector:interference_control")
+        return changes
+    changes = network._activate_boosted_specialist(new_idx)
+    changes.append("ranking_selector:plasticity_boost")
+    return changes
+
+
+def _task_specialist_clone_task_ranking_selector_merge(
+    network: "ReusePolicyNetwork",
+    source_idx: int,
+    new_idx: int,
+    max_units: int,
+) -> List[str]:
+    if network._task_task_ranking_selector_prefers_interference_control():
+        changes = network._activate_merged_specialist(new_idx)
+        changes.append("task_ranking_selector:interference_control")
+        return changes
+    changes = network._activate_boosted_specialist(new_idx)
+    changes.append("task_ranking_selector:plasticity_boost")
+    return changes
+
+
+def _task_specialist_clone_constrained_task_ranking_selector_merge(
+    network: "ReusePolicyNetwork",
+    source_idx: int,
+    new_idx: int,
+    max_units: int,
+) -> List[str]:
+    if network._task_constrained_task_ranking_selector_prefers_interference_control():
+        changes = network._activate_merged_specialist(new_idx)
+        changes.append("constrained_task_ranking_selector:interference_control")
+        return changes
+    changes = network._activate_boosted_specialist(new_idx)
+    changes.append("constrained_task_ranking_selector:plasticity_boost")
+    return changes
+
+
+def _task_specialist_clone_two_stage_selector_merge(
+    network: "ReusePolicyNetwork",
+    source_idx: int,
+    new_idx: int,
+    max_units: int,
+) -> List[str]:
+    mode = network._task_two_stage_selector_mode()
+    if mode == "interference_control":
+        changes = network._activate_merged_specialist(new_idx)
+        changes.append("two_stage_selector:interference_control")
+        return changes
+    changes = network._activate_boosted_specialist(new_idx)
+    changes.append("two_stage_selector:plasticity_boost")
+    return changes
+
+
+def _task_specialist_clone_learned_router_selector_merge(
+    network: "ReusePolicyNetwork",
+    source_idx: int,
+    new_idx: int,
+    max_units: int,
+) -> List[str]:
+    mode = network._task_learned_router_selector_mode()
+    if mode == "interference_control":
+        changes = network._activate_merged_specialist(new_idx)
+        changes.append("learned_router_selector:interference_control")
+        return changes
+    changes = network._activate_boosted_specialist(new_idx)
+    changes.append(f"learned_router_selector:{mode}")
+    return changes
+
+
+def _task_specialist_clone_hierarchical_selector_merge(
+    network: "ReusePolicyNetwork",
+    source_idx: int,
+    new_idx: int,
+    max_units: int,
+) -> List[str]:
+    mode = network._task_hierarchical_selector_mode()
+    region = network._task_selector_region()
+    if mode == "interference_control":
+        changes = network._activate_merged_specialist(new_idx)
+        changes.append(f"hierarchical_selector:{region}:interference_control")
+        return changes
+    changes = network._activate_boosted_specialist(new_idx)
+    changes.append(f"hierarchical_selector:{region}:plasticity_boost")
+    return changes
+
+
+def _task_specialist_clone_hierarchical_quadratic_selector_merge(
+    network: "ReusePolicyNetwork",
+    source_idx: int,
+    new_idx: int,
+    max_units: int,
+) -> List[str]:
+    mode = network._task_hierarchical_quadratic_selector_mode()
+    region = network._task_selector_region()
+    if mode == "interference_control":
+        changes = network._activate_merged_specialist(new_idx)
+        changes.append(f"hierarchical_quadratic_selector:{region}:interference_control")
+        return changes
+    changes = network._activate_boosted_specialist(new_idx)
+    changes.append(f"hierarchical_quadratic_selector:{region}:plasticity_boost")
+    return changes
+
+
+def _task_specialist_clone_hierarchical_sparse_gate_selector_merge(
+    network: "ReusePolicyNetwork",
+    source_idx: int,
+    new_idx: int,
+    max_units: int,
+) -> List[str]:
+    mode = network._task_hierarchical_sparse_gate_selector_mode()
+    region = network._task_selector_region()
+    if mode == "interference_control":
+        changes = network._activate_merged_specialist(new_idx)
+        changes.append(f"hierarchical_sparse_gate_selector:{region}:interference_control")
+        return changes
+    changes = network._activate_boosted_specialist(new_idx)
+    changes.append(f"hierarchical_sparse_gate_selector:{region}:plasticity_boost")
+    return changes
+
+
+def _task_specialist_clone_guarded_router_selector_merge(
+    network: "ReusePolicyNetwork",
+    source_idx: int,
+    new_idx: int,
+    max_units: int,
+) -> List[str]:
+    mode = network._task_guarded_router_selector_mode()
+    region = network._task_selector_region()
+    if mode == "interference_control":
+        changes = network._activate_merged_specialist(new_idx)
+        changes.append(f"guarded_router_selector:{region}:interference_control")
+        return changes
+    changes = network._activate_boosted_specialist(new_idx)
+    changes.append(f"guarded_router_selector:{region}:plasticity_boost")
+    return changes
+
+
+def _task_specialist_clone_guarded_expert_selector_merge(
+    network: "ReusePolicyNetwork",
+    source_idx: int,
+    new_idx: int,
+    max_units: int,
+) -> List[str]:
+    mode = network._task_guarded_expert_selector_mode()
+    region = network._task_selector_region()
+    if mode == "interference_control":
+        changes = network._activate_merged_specialist(new_idx)
+        changes.append(f"guarded_expert_selector:{region}:interference_control")
+        return changes
+    changes = network._activate_boosted_specialist(new_idx)
+    changes.append(f"guarded_expert_selector:{region}:plasticity_boost")
+    return changes
+
+
+def _task_specialist_clone_guarded_expert_boost_default_merge(
+    network: "ReusePolicyNetwork",
+    source_idx: int,
+    new_idx: int,
+    max_units: int,
+) -> List[str]:
+    mode = network._task_guarded_expert_boost_default_selector_mode()
+    region = network._task_selector_region()
+    if mode == "interference_control":
+        changes = network._activate_merged_specialist(new_idx)
+        changes.append(f"guarded_expert_boost_default:{region}:interference_control")
+        return changes
+    changes = network._activate_boosted_specialist(new_idx)
+    changes.append(f"guarded_expert_boost_default:{region}:plasticity_boost")
+    return changes
+
+
+def _task_specialist_clone_guarded_expert_merge_default_merge(
+    network: "ReusePolicyNetwork",
+    source_idx: int,
+    new_idx: int,
+    max_units: int,
+) -> List[str]:
+    mode = network._task_guarded_expert_merge_default_selector_mode()
+    region = network._task_selector_region()
+    if mode == "interference_control":
+        changes = network._activate_merged_specialist(new_idx)
+        changes.append(f"guarded_expert_merge_default:{region}:interference_control")
+        return changes
+    changes = network._activate_boosted_specialist(new_idx)
+    changes.append(f"guarded_expert_merge_default:{region}:plasticity_boost")
+    return changes
+
+
+def _task_specialist_clone_guarded_expert_linear_default_merge(
+    network: "ReusePolicyNetwork",
+    source_idx: int,
+    new_idx: int,
+    max_units: int,
+) -> List[str]:
+    mode = network._task_guarded_expert_linear_default_selector_mode()
+    region = network._task_selector_region()
+    if mode == "interference_control":
+        changes = network._activate_merged_specialist(new_idx)
+        changes.append(f"guarded_expert_linear_default:{region}:interference_control")
+        return changes
+    changes = network._activate_boosted_specialist(new_idx)
+    changes.append(f"guarded_expert_linear_default:{region}:plasticity_boost")
+    return changes
+
+
 def _task_specialist_clone_confidence_boost_merge(
     network: "ReusePolicyNetwork",
     source_idx: int,
@@ -591,6 +834,21 @@ BASE_CLONE_POLICY_HANDLERS: dict[str, PolicyHandler] = {
     "task_specialist_clone_signature_selector_merge": _task_specialist_clone_signature_selector_merge,
     "task_specialist_clone_fitted_selector_merge": _task_specialist_clone_fitted_selector_merge,
     "task_specialist_clone_prototype_selector_merge": _task_specialist_clone_prototype_selector_merge,
+    "task_specialist_clone_dynamics_selector_merge": _task_specialist_clone_dynamics_selector_merge,
+    "task_specialist_clone_outcome_selector_merge": _task_specialist_clone_outcome_selector_merge,
+    "task_specialist_clone_ranking_selector_merge": _task_specialist_clone_ranking_selector_merge,
+    "task_specialist_clone_task_ranking_selector_merge": _task_specialist_clone_task_ranking_selector_merge,
+    "task_specialist_clone_constrained_task_ranking_selector_merge": _task_specialist_clone_constrained_task_ranking_selector_merge,
+    "task_specialist_clone_two_stage_selector_merge": _task_specialist_clone_two_stage_selector_merge,
+    "task_specialist_clone_learned_router_selector_merge": _task_specialist_clone_learned_router_selector_merge,
+    "task_specialist_clone_hierarchical_selector_merge": _task_specialist_clone_hierarchical_selector_merge,
+    "task_specialist_clone_hierarchical_quadratic_selector_merge": _task_specialist_clone_hierarchical_quadratic_selector_merge,
+    "task_specialist_clone_hierarchical_sparse_gate_selector_merge": _task_specialist_clone_hierarchical_sparse_gate_selector_merge,
+    "task_specialist_clone_guarded_router_selector_merge": _task_specialist_clone_guarded_router_selector_merge,
+    "task_specialist_clone_guarded_expert_selector_merge": _task_specialist_clone_guarded_expert_selector_merge,
+    "task_specialist_clone_guarded_expert_boost_default_merge": _task_specialist_clone_guarded_expert_boost_default_merge,
+    "task_specialist_clone_guarded_expert_merge_default_merge": _task_specialist_clone_guarded_expert_merge_default_merge,
+    "task_specialist_clone_guarded_expert_linear_default_merge": _task_specialist_clone_guarded_expert_linear_default_merge,
     "task_specialist_clone_confidence_boost_merge": _task_specialist_clone_confidence_boost_merge,
     "task_specialist_clone_mode_switch_boost_merge": _task_specialist_clone_mode_switch_boost_merge,
     "task_specialist_clone_dual_mode_update_merge": _task_specialist_clone_dual_mode_update_merge,

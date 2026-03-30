@@ -1,0 +1,34 @@
+{
+  "dataset": "digits",
+  "train_samples": 1437,
+  "test_samples": 360,
+  "fixed_final": 0.12777777777777777,
+  "evolving_final": 0.7666666666666666,
+  "fixed_auc": 0.11040123456790124,
+  "evolving_auc": 0.7430555555555555,
+  "advantage": 0.6388888888888888,
+  "decision": "success",
+  "results": [
+    {
+      "fixed_final": 0.18055555555555555,
+      "evolving_final": 0.7527777777777778,
+      "fixed_auc": 0.10842592592592593,
+      "evolving_auc": 0.7355555555555553,
+      "max_units": 1
+    },
+    {
+      "fixed_final": 0.08611111111111111,
+      "evolving_final": 0.7555555555555555,
+      "fixed_auc": 0.12120370370370373,
+      "evolving_auc": 0.7296296296296295,
+      "max_units": 1
+    },
+    {
+      "fixed_final": 0.11666666666666667,
+      "evolving_final": 0.7916666666666666,
+      "fixed_auc": 0.10157407407407408,
+      "evolving_auc": 0.7639814814814815,
+      "max_units": 1
+    }
+  ]
+}

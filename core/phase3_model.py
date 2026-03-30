@@ -17,6 +17,25 @@ from core.phase3_policies import (
     resolve_max_units,
 )
 
+TASK_SIGNATURE_FEATURE_NAMES = (
+    "conflict_score",
+    "conflict_peak",
+    "confidence",
+    "input_abs_mean",
+    "input_nonnegative_ratio",
+    "input_zero_ratio",
+)
+
+TASK_REGIME_FEATURE_NAMES = TASK_SIGNATURE_FEATURE_NAMES + (
+    "loss_mean",
+    "loss_delta",
+    "conflict_delta",
+    "confidence_delta",
+)
+TASK_REGIME_QUADRATIC_FEATURE_COUNT = len(TASK_REGIME_FEATURE_NAMES) + (
+    len(TASK_REGIME_FEATURE_NAMES) * (len(TASK_REGIME_FEATURE_NAMES) + 1)
+) // 2
+
 
 @dataclass
 class AblationConfig(Phase3Config):
@@ -60,12 +79,52 @@ class AblationConfig(Phase3Config):
     selector_fit_nonnegative_weight: float = 0.0
     selector_fit_zero_ratio_weight: float = 0.0
     selector_fit_bias: float = 0.0
-    selector_feature_mean: tuple[float, ...] = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
-    selector_feature_std: tuple[float, ...] = (1.0, 1.0, 1.0, 1.0, 1.0, 1.0)
+    selector_feature_mean: tuple[float, ...] = (0.0,) * len(TASK_SIGNATURE_FEATURE_NAMES)
+    selector_feature_std: tuple[float, ...] = (1.0,) * len(TASK_SIGNATURE_FEATURE_NAMES)
     selector_prototype_vectors: tuple[tuple[float, ...], ...] = ()
     selector_prototype_labels: tuple[float, ...] = ()
     selector_prototype_top_k: int = 3
     selector_prototype_bandwidth: float = 1.0
+    selector_regime_fit_weights: tuple[float, ...] = (0.0,) * len(TASK_REGIME_FEATURE_NAMES)
+    selector_regime_fit_bias: float = 0.0
+    selector_outcome_fit_weights: tuple[float, ...] = (0.0,) * len(TASK_REGIME_FEATURE_NAMES)
+    selector_outcome_fit_bias: float = 0.0
+    selector_ranking_fit_weights: tuple[float, ...] = (0.0,) * len(TASK_REGIME_FEATURE_NAMES)
+    selector_ranking_fit_bias: float = 0.0
+    selector_task_ranking_fit_weights: tuple[float, ...] = (0.0,) * len(TASK_REGIME_FEATURE_NAMES)
+    selector_task_ranking_fit_bias: float = 0.0
+    selector_constrained_task_ranking_fit_weights: tuple[float, ...] = (0.0,) * len(TASK_REGIME_FEATURE_NAMES)
+    selector_constrained_task_ranking_fit_bias: float = 0.0
+    selector_router_fit_weights: tuple[float, ...] = (0.0,) * (3 * len(TASK_REGIME_FEATURE_NAMES))
+    selector_router_fit_bias: tuple[float, ...] = (0.0, 0.0, 0.0)
+    selector_hierarchical_default_fit_weights: tuple[float, ...] = (0.0,) * len(TASK_REGIME_FEATURE_NAMES)
+    selector_hierarchical_default_fit_bias: float = 0.0
+    selector_hierarchical_embedded_fit_weights: tuple[float, ...] = (0.0,) * len(TASK_REGIME_FEATURE_NAMES)
+    selector_hierarchical_embedded_fit_bias: float = 0.0
+    selector_hierarchical_sparse_fit_weights: tuple[float, ...] = (0.0,) * len(TASK_REGIME_FEATURE_NAMES)
+    selector_hierarchical_sparse_fit_bias: float = 0.0
+    selector_hierarchical_quadratic_default_fit_weights: tuple[float, ...] = (0.0,) * TASK_REGIME_QUADRATIC_FEATURE_COUNT
+    selector_hierarchical_quadratic_default_fit_bias: float = 0.0
+    selector_hierarchical_quadratic_embedded_fit_weights: tuple[float, ...] = (0.0,) * TASK_REGIME_QUADRATIC_FEATURE_COUNT
+    selector_hierarchical_quadratic_embedded_fit_bias: float = 0.0
+    selector_hierarchical_quadratic_sparse_fit_weights: tuple[float, ...] = (0.0,) * TASK_REGIME_QUADRATIC_FEATURE_COUNT
+    selector_hierarchical_quadratic_sparse_fit_bias: float = 0.0
+    selector_hierarchical_sparse_gate_default_fit_weights: tuple[float, ...] = (0.0,) * TASK_REGIME_QUADRATIC_FEATURE_COUNT
+    selector_hierarchical_sparse_gate_default_fit_bias: float = 0.0
+    selector_hierarchical_sparse_gate_embedded_fit_weights: tuple[float, ...] = (0.0,) * TASK_REGIME_QUADRATIC_FEATURE_COUNT
+    selector_hierarchical_sparse_gate_embedded_fit_bias: float = 0.0
+    selector_hierarchical_sparse_gate_sparse_fit_weights: tuple[float, ...] = (0.0,) * TASK_REGIME_QUADRATIC_FEATURE_COUNT
+    selector_hierarchical_sparse_gate_sparse_fit_bias: float = 0.0
+    selector_guarded_router_default_fit_weights: tuple[float, ...] = (0.0,) * TASK_REGIME_QUADRATIC_FEATURE_COUNT
+    selector_guarded_router_default_fit_bias: float = 0.0
+    selector_guarded_router_embedded_fit_weights: tuple[float, ...] = (0.0,) * TASK_REGIME_QUADRATIC_FEATURE_COUNT
+    selector_guarded_router_embedded_fit_bias: float = 0.0
+    selector_guarded_expert_default_fit_weights: tuple[float, ...] = (0.0,) * TASK_REGIME_QUADRATIC_FEATURE_COUNT
+    selector_guarded_expert_default_fit_bias: float = 0.0
+    selector_guarded_expert_linear_default_fit_weights: tuple[float, ...] = (0.0,) * len(TASK_REGIME_FEATURE_NAMES)
+    selector_guarded_expert_linear_default_fit_bias: float = 0.0
+    selector_sparse_zero_ratio_floor: float = 0.385
+    selector_sparse_conflict_delta_floor: float = -0.005
     old_path_lr_scale: float = 0.5
     archived_specialist_quantization_bits: int = 0
     archived_specialist_max_count: int = 0
@@ -128,6 +187,11 @@ class ReusePolicyNetwork:
             "input_nonnegative_ratio": 0.0,
             "input_zero_ratio": 0.0,
             "steps": 0,
+        }
+        self.task_stat_trace = {
+            "loss": [],
+            "confidence": [],
+            "conflict_score": [],
         }
         self.add_unit()
 
@@ -414,6 +478,48 @@ class ReusePolicyNetwork:
             dtype=float,
         )
 
+    def _task_regime_feature_dict(self) -> Dict[str, float]:
+        features = dict(self._task_signature_feature_dict())
+        loss_trace = self.task_stat_trace.get("loss", [])
+        conflict_trace = self.task_stat_trace.get("conflict_score", [])
+        confidence_trace = self.task_stat_trace.get("confidence", [])
+        features.update(
+            {
+                "loss_mean": self._trace_mean(loss_trace),
+                "loss_delta": self._trace_delta(loss_trace, invert=False),
+                "conflict_delta": self._trace_delta(conflict_trace, invert=True),
+                "confidence_delta": self._trace_delta(confidence_trace, invert=False),
+            }
+        )
+        return features
+
+    def _task_regime_feature_vector(self) -> np.ndarray:
+        features = self._task_regime_feature_dict()
+        return np.array([features[name] for name in TASK_REGIME_FEATURE_NAMES], dtype=float)
+
+    def _task_regime_quadratic_feature_vector(self) -> np.ndarray:
+        linear = self._task_regime_feature_vector()
+        pairwise_terms = []
+        for idx in range(len(linear)):
+            for jdx in range(idx, len(linear)):
+                pairwise_terms.append(linear[idx] * linear[jdx])
+        return np.concatenate([linear, np.array(pairwise_terms, dtype=float)])
+
+    def _trace_mean(self, values: List[float]) -> float:
+        if not values:
+            return 0.0
+        return float(np.mean(values))
+
+    def _trace_delta(self, values: List[float], *, invert: bool) -> float:
+        if not values:
+            return 0.0
+        split = max(1, len(values) // 2)
+        early_mean = float(np.mean(values[:split]))
+        late_mean = float(np.mean(values[split:])) if split < len(values) else early_mean
+        if invert:
+            return early_mean - late_mean
+        return late_mean - early_mean
+
     def _task_fingerprint_prefers_interference_control(self) -> bool:
         steps = max(1, int(self.task_stat_sums.get("steps", 0)))
         mean_abs = self.task_stat_sums.get("input_abs_mean", 0.0) / steps
@@ -492,6 +598,258 @@ class ReusePolicyNetwork:
         weights = np.exp(-(distances[top_indices] ** 2) / (2.0 * bandwidth * bandwidth))
         score = float(np.sum(weights * prototype_labels[top_indices]))
         return score > 0.0
+
+    def _task_dynamics_selector_prefers_interference_control(self) -> bool:
+        feature_vector = self._task_regime_feature_vector()
+        weight_vector = np.array(self.config.selector_regime_fit_weights, dtype=float)
+        if len(weight_vector) < len(feature_vector):
+            weight_vector = np.pad(weight_vector, (0, len(feature_vector) - len(weight_vector)))
+        elif len(weight_vector) > len(feature_vector):
+            weight_vector = weight_vector[: len(feature_vector)]
+        score = float(np.dot(weight_vector, feature_vector) + self.config.selector_regime_fit_bias)
+        return score >= 0.0
+
+    def _task_outcome_selector_prefers_interference_control(self) -> bool:
+        feature_vector = self._task_regime_feature_vector()
+        weight_vector = np.array(self.config.selector_outcome_fit_weights, dtype=float)
+        if len(weight_vector) < len(feature_vector):
+            weight_vector = np.pad(weight_vector, (0, len(feature_vector) - len(weight_vector)))
+        elif len(weight_vector) > len(feature_vector):
+            weight_vector = weight_vector[: len(feature_vector)]
+        score = float(np.dot(weight_vector, feature_vector) + self.config.selector_outcome_fit_bias)
+        return score >= 0.0
+
+    def _task_ranking_selector_prefers_interference_control(self) -> bool:
+        feature_vector = self._task_regime_feature_vector()
+        weight_vector = np.array(self.config.selector_ranking_fit_weights, dtype=float)
+        if len(weight_vector) < len(feature_vector):
+            weight_vector = np.pad(weight_vector, (0, len(feature_vector) - len(weight_vector)))
+        elif len(weight_vector) > len(feature_vector):
+            weight_vector = weight_vector[: len(feature_vector)]
+        score = float(np.dot(weight_vector, feature_vector) + self.config.selector_ranking_fit_bias)
+        return score >= 0.0
+
+    def _task_task_ranking_selector_prefers_interference_control(self) -> bool:
+        feature_vector = self._task_regime_feature_vector()
+        weight_vector = np.array(self.config.selector_task_ranking_fit_weights, dtype=float)
+        if len(weight_vector) < len(feature_vector):
+            weight_vector = np.pad(weight_vector, (0, len(feature_vector) - len(weight_vector)))
+        elif len(weight_vector) > len(feature_vector):
+            weight_vector = weight_vector[: len(feature_vector)]
+        score = float(np.dot(weight_vector, feature_vector) + self.config.selector_task_ranking_fit_bias)
+        return score >= 0.0
+
+    def _task_constrained_task_ranking_selector_prefers_interference_control(self) -> bool:
+        feature_vector = self._task_regime_feature_vector()
+        weight_vector = np.array(self.config.selector_constrained_task_ranking_fit_weights, dtype=float)
+        if len(weight_vector) < len(feature_vector):
+            weight_vector = np.pad(weight_vector, (0, len(feature_vector) - len(weight_vector)))
+        elif len(weight_vector) > len(feature_vector):
+            weight_vector = weight_vector[: len(feature_vector)]
+        score = float(
+            np.dot(weight_vector, feature_vector) + self.config.selector_constrained_task_ranking_fit_bias
+        )
+        return score >= 0.0
+
+    def _task_selector_region(self) -> str:
+        signature = self._task_signature_feature_dict()
+        regime = self._task_regime_feature_dict()
+        embedded_like = (
+            signature["input_nonnegative_ratio"] >= self.config.selector_input_nonnegative_threshold
+            and signature["input_abs_mean"] >= self.config.selector_input_abs_mean_threshold
+        )
+        sparse_embedded_like = (
+            embedded_like
+            and signature["input_zero_ratio"] >= self.config.selector_sparse_zero_ratio_floor
+            and regime["conflict_delta"] >= self.config.selector_sparse_conflict_delta_floor
+        )
+        if sparse_embedded_like:
+            return "sparse_embedded"
+        if embedded_like:
+            return "embedded"
+        return "default"
+
+    def _task_two_stage_selector_mode(self) -> str:
+        region = self._task_selector_region()
+        if region == "sparse_embedded":
+            return "plasticity_boost"
+        if region == "embedded":
+            if self._task_signature_prefers_interference_control():
+                return "interference_control"
+            return "plasticity_boost"
+        if self._task_task_ranking_selector_prefers_interference_control():
+            return "interference_control"
+        return "plasticity_boost"
+
+    def _task_hierarchical_selector_mode(self) -> str:
+        region = self._task_selector_region()
+        feature_vector = self._task_regime_feature_vector()
+        if region == "embedded":
+            raw_weights = self.config.selector_hierarchical_embedded_fit_weights
+            raw_bias = self.config.selector_hierarchical_embedded_fit_bias
+        elif region == "sparse_embedded":
+            raw_weights = self.config.selector_hierarchical_sparse_fit_weights
+            raw_bias = self.config.selector_hierarchical_sparse_fit_bias
+        else:
+            raw_weights = self.config.selector_hierarchical_default_fit_weights
+            raw_bias = self.config.selector_hierarchical_default_fit_bias
+        weight_vector = np.array(raw_weights, dtype=float)
+        if len(weight_vector) < len(feature_vector):
+            weight_vector = np.pad(weight_vector, (0, len(feature_vector) - len(weight_vector)))
+        elif len(weight_vector) > len(feature_vector):
+            weight_vector = weight_vector[: len(feature_vector)]
+        score = float(np.dot(weight_vector, feature_vector) + raw_bias)
+        if score >= 0.0:
+            return "interference_control"
+        return "plasticity_boost"
+
+    def _task_hierarchical_quadratic_selector_mode(self) -> str:
+        region = self._task_selector_region()
+        feature_vector = self._task_regime_quadratic_feature_vector()
+        if region == "embedded":
+            raw_weights = self.config.selector_hierarchical_quadratic_embedded_fit_weights
+            raw_bias = self.config.selector_hierarchical_quadratic_embedded_fit_bias
+        elif region == "sparse_embedded":
+            raw_weights = self.config.selector_hierarchical_quadratic_sparse_fit_weights
+            raw_bias = self.config.selector_hierarchical_quadratic_sparse_fit_bias
+        else:
+            raw_weights = self.config.selector_hierarchical_quadratic_default_fit_weights
+            raw_bias = self.config.selector_hierarchical_quadratic_default_fit_bias
+        weight_vector = np.array(raw_weights, dtype=float)
+        if len(weight_vector) < len(feature_vector):
+            weight_vector = np.pad(weight_vector, (0, len(feature_vector) - len(weight_vector)))
+        elif len(weight_vector) > len(feature_vector):
+            weight_vector = weight_vector[: len(feature_vector)]
+        score = float(np.dot(weight_vector, feature_vector) + raw_bias)
+        if score >= 0.0:
+            return "interference_control"
+        return "plasticity_boost"
+
+    def _task_hierarchical_sparse_gate_selector_mode(self) -> str:
+        region = self._task_selector_region()
+        feature_vector = self._task_regime_quadratic_feature_vector()
+        if region == "embedded":
+            raw_weights = self.config.selector_hierarchical_sparse_gate_embedded_fit_weights
+            raw_bias = self.config.selector_hierarchical_sparse_gate_embedded_fit_bias
+        elif region == "sparse_embedded":
+            raw_weights = self.config.selector_hierarchical_sparse_gate_sparse_fit_weights
+            raw_bias = self.config.selector_hierarchical_sparse_gate_sparse_fit_bias
+        else:
+            raw_weights = self.config.selector_hierarchical_sparse_gate_default_fit_weights
+            raw_bias = self.config.selector_hierarchical_sparse_gate_default_fit_bias
+        weight_vector = np.array(raw_weights, dtype=float)
+        if len(weight_vector) < len(feature_vector):
+            weight_vector = np.pad(weight_vector, (0, len(feature_vector) - len(weight_vector)))
+        elif len(weight_vector) > len(feature_vector):
+            weight_vector = weight_vector[: len(feature_vector)]
+        score = float(np.dot(weight_vector, feature_vector) + raw_bias)
+        if score >= 0.0:
+            return "interference_control"
+        return "plasticity_boost"
+
+    def _task_guarded_router_selector_mode(self) -> str:
+        region = self._task_selector_region()
+        if region == "sparse_embedded":
+            return "plasticity_boost"
+        feature_vector = self._task_regime_quadratic_feature_vector()
+        if region == "embedded":
+            raw_weights = self.config.selector_guarded_router_embedded_fit_weights
+            raw_bias = self.config.selector_guarded_router_embedded_fit_bias
+        else:
+            raw_weights = self.config.selector_guarded_router_default_fit_weights
+            raw_bias = self.config.selector_guarded_router_default_fit_bias
+        weight_vector = np.array(raw_weights, dtype=float)
+        if len(weight_vector) < len(feature_vector):
+            weight_vector = np.pad(weight_vector, (0, len(feature_vector) - len(weight_vector)))
+        elif len(weight_vector) > len(feature_vector):
+            weight_vector = weight_vector[: len(feature_vector)]
+        score = float(np.dot(weight_vector, feature_vector) + raw_bias)
+        if score >= 0.0:
+            return "interference_control"
+        return "plasticity_boost"
+
+    def _task_guarded_expert_selector_mode(self) -> str:
+        region = self._task_selector_region()
+        if region == "sparse_embedded":
+            return "plasticity_boost"
+        if region == "embedded":
+            if self._task_signature_prefers_interference_control():
+                return "interference_control"
+            return "plasticity_boost"
+        feature_vector = self._task_regime_quadratic_feature_vector()
+        weight_vector = np.array(self.config.selector_guarded_expert_default_fit_weights, dtype=float)
+        if len(weight_vector) < len(feature_vector):
+            weight_vector = np.pad(weight_vector, (0, len(feature_vector) - len(weight_vector)))
+        elif len(weight_vector) > len(feature_vector):
+            weight_vector = weight_vector[: len(feature_vector)]
+        score = float(np.dot(weight_vector, feature_vector) + self.config.selector_guarded_expert_default_fit_bias)
+        if score >= 0.0:
+            return "interference_control"
+        return "plasticity_boost"
+
+    def _task_guarded_expert_boost_default_selector_mode(self) -> str:
+        region = self._task_selector_region()
+        if region == "sparse_embedded":
+            return "plasticity_boost"
+        if region == "embedded":
+            if self._task_signature_prefers_interference_control():
+                return "interference_control"
+            return "plasticity_boost"
+        return "plasticity_boost"
+
+    def _task_guarded_expert_merge_default_selector_mode(self) -> str:
+        region = self._task_selector_region()
+        if region == "sparse_embedded":
+            return "plasticity_boost"
+        if region == "embedded":
+            if self._task_signature_prefers_interference_control():
+                return "interference_control"
+            return "plasticity_boost"
+        return "interference_control"
+
+    def _task_guarded_expert_linear_default_selector_mode(self) -> str:
+        region = self._task_selector_region()
+        if region == "sparse_embedded":
+            return "plasticity_boost"
+        if region == "embedded":
+            if self._task_signature_prefers_interference_control():
+                return "interference_control"
+            return "plasticity_boost"
+        feature_vector = self._task_regime_feature_vector()
+        weight_vector = np.array(self.config.selector_guarded_expert_linear_default_fit_weights, dtype=float)
+        if len(weight_vector) < len(feature_vector):
+            weight_vector = np.pad(weight_vector, (0, len(feature_vector) - len(weight_vector)))
+        elif len(weight_vector) > len(feature_vector):
+            weight_vector = weight_vector[: len(feature_vector)]
+        score = float(
+            np.dot(weight_vector, feature_vector) + self.config.selector_guarded_expert_linear_default_fit_bias
+        )
+        if score >= 0.0:
+            return "interference_control"
+        return "plasticity_boost"
+
+    def _task_learned_router_selector_mode(self) -> str:
+        feature_vector = self._task_regime_feature_vector()
+        class_count = 3
+        raw_weights = np.array(self.config.selector_router_fit_weights, dtype=float)
+        expected_size = class_count * len(feature_vector)
+        if len(raw_weights) < expected_size:
+            raw_weights = np.pad(raw_weights, (0, expected_size - len(raw_weights)))
+        elif len(raw_weights) > expected_size:
+            raw_weights = raw_weights[:expected_size]
+        weight_matrix = raw_weights.reshape(class_count, len(feature_vector))
+        bias_vector = np.array(self.config.selector_router_fit_bias, dtype=float)
+        if len(bias_vector) < class_count:
+            bias_vector = np.pad(bias_vector, (0, class_count - len(bias_vector)))
+        elif len(bias_vector) > class_count:
+            bias_vector = bias_vector[:class_count]
+        scores = weight_matrix @ feature_vector + bias_vector
+        mode_idx = int(np.argmax(scores))
+        if mode_idx == 1:
+            return "interference_control"
+        if mode_idx == 2:
+            return "sparse_plasticity_boost"
+        return "plasticity_boost"
 
     def _enable_current_path_boost_for_nonarchived(self) -> None:
         for unit in self.units:
@@ -898,10 +1256,14 @@ class ReusePolicyNetwork:
         if any(unit.get("decoupled_current_loss", False) for unit in self.units):
             train_out = self.forward(x, inference_mode=False)
         error = target - train_out
+        loss_value = float(np.mean(error ** 2))
+        self.task_stat_trace["loss"].append(loss_value)
+        self.task_stat_trace["confidence"].append(self.last_forward_stats.get("confidence", 0.0))
+        self.task_stat_trace["conflict_score"].append(self.last_forward_stats.get("conflict_score", 0.0))
         for unit in self.units:
             if not unit["active"]:
                 continue
-            unit["tension"] = 0.9 * unit["tension"] + 0.1 * float(np.mean(error ** 2))
+            unit["tension"] = 0.9 * unit["tension"] + 0.1 * loss_value
             unit["tension_history"].append(unit["tension"])
             if len(unit["tension_history"]) > max(self.config.trend_window, 2):
                 unit["tension_history"] = unit["tension_history"][-max(self.config.trend_window, 2) :]
@@ -1046,6 +1408,11 @@ class ReusePolicyNetwork:
             "input_nonnegative_ratio": 0.0,
             "input_zero_ratio": 0.0,
             "steps": 0,
+        }
+        self.task_stat_trace = {
+            "loss": [],
+            "confidence": [],
+            "conflict_score": [],
         }
         for unit in self.units:
             unit["tension"] = 0.3

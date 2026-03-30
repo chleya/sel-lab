@@ -17,6 +17,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from core.phase3_common import Phase3Config, create_task, save_phase3_results, summarize_phase3_runs
+from exploration.structure_insights import get_structure_recommendation
 
 
 class FixedNetwork:
@@ -156,7 +157,7 @@ def run_phase3():
 
         for task_id in range(config.num_tasks):
             X, y = create_task(task_id, task_suite=config.task_suite)
-            print(f"\n  Task {task_id}: ", end="")
+            print(f"  Task {task_id}: ", end="")
 
             for epoch in range(config.epochs_per_task):
                 for i in range(len(X)):
@@ -179,8 +180,11 @@ def run_phase3():
             )
             current_fixed = all_accuracies[f"task_{task_id}"]["fixed"]
             current_evolving = all_accuracies[f"task_{task_id}"]["evolving"]
+            unit_count = evolving.active_units
+            structure_recommendation = get_structure_recommendation(unit_count)
 
-            print(f"Fixed={current_fixed:.0%}, Evolving={current_evolving:.0%}, Avg={avg_evolving:.0%}")
+            print(f"Fixed={current_fixed:.0%}, Evolving={current_evolving:.0%}, Avg={avg_evolving:.0%}, Units={unit_count}")
+            print(f"  Structure: {structure_recommendation}")
             task_results.append(
                 {
                     "task_id": task_id,
@@ -188,7 +192,7 @@ def run_phase3():
                     "current_evolving": current_evolving,
                     "avg_fixed": avg_fixed,
                     "avg_evolving": avg_evolving,
-                    "unit_count": evolving.active_units,
+                    "unit_count": unit_count,
                 }
             )
             evolving.reset_tension()

@@ -1,0 +1,1022 @@
+{
+  "history": [
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.1469141902987999,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.07419776358913131,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.10480603884704917,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.07688623556474788,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.07827518862838423,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.08454139382656803,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.11110668858168565,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.07606256891682614,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.16278780627867606,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.05526963488902481,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.09065641779193205,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.07801344708629127,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.17234889421768665,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.10982773882557874,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.15159222697343175,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.0257219813481514,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.11335251329346295,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.14448153978117187,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.10411419946377122,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.15327401875326757,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.0741355774949814,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.170467372009279,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.21494490618096251,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.08185807197801705,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.07772487392996141,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.17266922385588507,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.17897860728653564,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.0738569986423366,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.07899065914520714,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.08591076955697464,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.032777474448286145,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.05406740267579009,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.049792961662396606,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.06161012174479358,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.09826575563066095,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.11171073662682604,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.17752502464070385,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.050082297963060456,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.1492161199238292,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.08930055778872456,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.09752681451737835,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.1337409746083302,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.043863898921885074,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.11912048730920254,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.1083226104106528,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.12462256320040746,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.11445843219539091,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.22276500699554472,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.06811300078743421,
+      "energy": 0.9696231708183333
+    },
+    {
+      "info_metrics": {
+        "weight_entropy": 3.3852130190938996,
+        "mutual_information": 0.01853811064205038,
+        "structure_complexity": 1.7271211096301684
+      },
+      "complex_metrics": {
+        "synchronization": 1.0,
+        "emergence": null,
+        "topology": {
+          "module_count": 3,
+          "age_entropy": -1.2984256441608645e-10,
+          "activity_ratio": 1.0,
+          "avg_age": 0.0
+        }
+      },
+      "suggested_lr": 0.07345015224990913,
+      "energy": 0.9696231708183333
+    }
+  ],
+  "summary": {
+    "final_info_metrics": {
+      "weight_entropy": 3.3852130190938996,
+      "mutual_information": 0.01853811064205038,
+      "structure_complexity": 1.7271211096301684
+    },
+    "final_complex_metrics": {
+      "synchronization": 1.0,
+      "emergence": null,
+      "topology": {
+        "module_count": 3,
+        "age_entropy": -1.2984256441608645e-10,
+        "activity_ratio": 1.0,
+        "avg_age": 0.0
+      }
+    },
+    "avg_synchronization": 1.0,
+    "emergence_events": [],
+    "module_count": 3
+  },
+  "config": {
+    "epochs": 50,
+    "base_config": {
+      "input_size": 8,
+      "output_size": 2,
+      "initial_modules": 3,
+      "learning_rate": 0.1,
+      "momentum": 0.9,
+      "tension_threshold": 0.7,
+      "max_modules": 10,
+      "mutation_rate": 0.2,
+      "epochs": 50,
+      "random_seed": 42,
+      "tension_window": 8,
+      "min_improvement": 0.0001,
+      "clone_perturbation": 0.05,
+      "adapt_noise_scale": 0.03,
+      "clone_cooldown": 5,
+      "adapt_cooldown": 2,
+      "min_clone_source_age": 10,
+      "clone_patience": 4
+    },
+    "info_config": {
+      "input_size": 8,
+      "output_size": 2,
+      "initial_modules": 3,
+      "learning_rate": 0.1,
+      "momentum": 0.9,
+      "tension_threshold": 0.7,
+      "max_modules": 10,
+      "mutation_rate": 0.2,
+      "epochs": 100,
+      "random_seed": 42,
+      "tension_window": 8,
+      "min_improvement": 0.0001,
+      "clone_perturbation": 0.05,
+      "adapt_noise_scale": 0.03,
+      "clone_cooldown": 5,
+      "adapt_cooldown": 2,
+      "min_clone_source_age": 10,
+      "clone_patience": 4,
+      "info_entropy_weight": 0.1,
+      "mutual_info_threshold": 0.5,
+      "info_bottleneck_beta": 0.01,
+      "max_complexity": 10.0,
+      "complexity_penalty": 0.01
+    }
+  }
+}

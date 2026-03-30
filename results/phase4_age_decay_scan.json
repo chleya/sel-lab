@@ -1,0 +1,109 @@
+{
+  "dataset": "digits",
+  "scan_results": [
+    {
+      "age_decay": 0.001,
+      "fixed_final": 0.12777777777777777,
+      "evolving_final": 0.9388888888888888,
+      "advantage": 0.811111111111111,
+      "decision": "success",
+      "max_units": 1
+    },
+    {
+      "age_decay": 0.002,
+      "fixed_final": 0.12777777777777777,
+      "evolving_final": 0.9277777777777777,
+      "advantage": 0.7999999999999999,
+      "decision": "success",
+      "max_units": 1
+    },
+    {
+      "age_decay": 0.005,
+      "fixed_final": 0.12777777777777777,
+      "evolving_final": 0.9175925925925926,
+      "advantage": 0.7898148148148149,
+      "decision": "success",
+      "max_units": 1
+    },
+    {
+      "age_decay": 0.01,
+      "fixed_final": 0.12777777777777777,
+      "evolving_final": 0.9074074074074074,
+      "advantage": 0.7796296296296297,
+      "decision": "success",
+      "max_units": 1
+    },
+    {
+      "age_decay": 0.02,
+      "fixed_final": 0.12777777777777777,
+      "evolving_final": 0.8935185185185185,
+      "advantage": 0.7657407407407407,
+      "decision": "success",
+      "max_units": 1
+    },
+    {
+      "age_decay": 0.03,
+      "fixed_final": 0.12777777777777777,
+      "evolving_final": 0.8731481481481481,
+      "advantage": 0.7453703703703703,
+      "decision": "success",
+      "max_units": 1
+    },
+    {
+      "age_decay": 0.04,
+      "fixed_final": 0.12777777777777777,
+      "evolving_final": 0.8574074074074073,
+      "advantage": 0.7296296296296295,
+      "decision": "success",
+      "max_units": 1
+    },
+    {
+      "age_decay": 0.05,
+      "fixed_final": 0.12777777777777777,
+      "evolving_final": 0.8333333333333334,
+      "advantage": 0.7055555555555556,
+      "decision": "success",
+      "max_units": 1
+    },
+    {
+      "age_decay": 0.06,
+      "fixed_final": 0.12777777777777777,
+      "evolving_final": 0.8111111111111112,
+      "advantage": 0.6833333333333335,
+      "decision": "success",
+      "max_units": 1
+    },
+    {
+      "age_decay": 0.07,
+      "fixed_final": 0.12777777777777777,
+      "evolving_final": 0.7925925925925926,
+      "advantage": 0.6648148148148149,
+      "decision": "success",
+      "max_units": 1
+    },
+    {
+      "age_decay": 0.08,
+      "fixed_final": 0.12777777777777777,
+      "evolving_final": 0.7759259259259258,
+      "advantage": 0.648148148148148,
+      "decision": "success",
+      "max_units": 1
+    },
+    {
+      "age_decay": 0.09,
+      "fixed_final": 0.12777777777777777,
+      "evolving_final": 0.7666666666666666,
+      "advantage": 0.6388888888888888,
+      "decision": "success",
+      "max_units": 1
+    },
+    {
+      "age_decay": 0.1,
+      "fixed_final": 0.12777777777777777,
+      "evolving_final": 0.7527777777777778,
+      "advantage": 0.625,
+      "decision": "success",
+      "max_units": 1
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "hypothesis_supported": true,
+  "performance_diff": 0.0,
+  "module_diff": 0,
+  "time_diff": -0.02124476432800293,
+  "default_results": {
+    "task_performances": [
+      0.82,
+      0.94,
+      0.98
+    ],
+    "module_counts": [
+      3,
+      3,
+      3
+    ],
+    "final_modules": 3,
+    "avg_performance": 0.9133333333333332,
+    "training_time": 0.5385732650756836,
+    "final_performance": 0.98
+  },
+  "optimal_results": {
+    "task_performances": [
+      0.82,
+      0.94,
+      0.98
+    ],
+    "module_counts": [
+      3,
+      3,
+      3
+    ],
+    "final_modules": 3,
+    "avg_performance": 0.9133333333333332,
+    "training_time": 0.5173285007476807,
+    "final_performance": 0.98
+  }
+}

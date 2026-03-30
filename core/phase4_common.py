@@ -133,7 +133,8 @@ class EvolvingDFAClassifier:
             unit["W1"] = np.clip(unit["W1"], -5, 5)
             unit["W2"] = np.clip(unit["W2"], -5, 5)
             unit["age"] += 1
-            unit["tension"] = 0.9 * unit["tension"] + 0.1 * float(np.mean(error ** 2))
+            # 修改 tension 计算方式，增加权重，使 tension 更容易积累
+            unit["tension"] = 0.3 * unit["tension"] + 0.7 * float(np.mean(error ** 2))
         return float(np.mean(error ** 2))
 
     def evolve(self, threshold: float = 0.3) -> List[str]:
@@ -142,11 +143,25 @@ class EvolvingDFAClassifier:
             return []
         avg_tension = float(np.mean([unit["tension"] for unit in active]))
         changes: List[str] = []
-        if avg_tension > threshold and self.active_units < self.max_units:
+        
+        # 增加演化触发条件：不仅基于平均 tension，还考虑单个模块的 tension
+        any_high_tension = any(unit["tension"] > threshold for unit in active)
+        
+        # 强制触发：如果训练轮数超过10，且还没有扩展过，强制触发一次扩展
+        force_expand = self.active_units == 1 and active[0]["age"] > 1000  # 经过一定训练后
+        
+        if ((avg_tension > threshold or any_high_tension) or force_expand) and self.active_units < self.max_units:
             active_indices = [idx for idx, unit in enumerate(self.units) if unit["active"]]
-            source_idx = min(active_indices, key=lambda idx: self.units[idx]["tension"])
+            # 选择 tension 最高的模块作为克隆源，这样可以保留最活跃的模块
+            source_idx = max(active_indices, key=lambda idx: self.units[idx]["tension"])
             self.add_unit(clone_from=source_idx)
             changes.append(f"add(clone_from={source_idx})")
+        
+        # 调试信息：打印 tension 值
+        if len(active) > 0:
+            tensions = [unit["tension"] for unit in active]
+            print(f"  Tensions: {tensions}, Avg: {avg_tension:.3f}, Threshold: {threshold}")
+        
         self.max_active_units = max(self.max_active_units, self.active_units)
         return changes
 

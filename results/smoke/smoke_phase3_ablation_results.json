@@ -239,6 +239,111 @@
       "memory_change": "selector prototype bank",
       "benchmark_intent": "prototype task-signature regime-selection check"
     },
+    "task_specialist_clone_dynamics_selector_merge": {
+      "family": "regime_switch",
+      "forward_change": "switch between low-merge specialist reuse and current-path boost by task learning dynamics",
+      "update_rule_change": "fitted regime selection over richer online task dynamics and task-signature features",
+      "memory_change": "selector fit over regime features",
+      "benchmark_intent": "dynamic regime-feature selector check"
+    },
+    "task_specialist_clone_outcome_selector_merge": {
+      "family": "regime_switch",
+      "forward_change": "switch between low-merge specialist reuse and current-path boost by outcome-supervised regime score",
+      "update_rule_change": "fit regime score directly to benchmark outcome margins over richer online regime features",
+      "memory_change": "selector fit over outcome supervision",
+      "benchmark_intent": "outcome-supervised regime-selection check"
+    },
+    "task_specialist_clone_ranking_selector_merge": {
+      "family": "regime_switch",
+      "forward_change": "switch between low-merge specialist reuse and current-path boost by ranked regime preference score",
+      "update_rule_change": "pairwise preference fitting over structured selector-map regime targets",
+      "memory_change": "selector fit over ranking supervision",
+      "benchmark_intent": "structured ranking regime-selection check"
+    },
+    "task_specialist_clone_task_ranking_selector_merge": {
+      "family": "regime_switch",
+      "forward_change": "switch between low-merge specialist reuse and current-path boost by task-level ranked regime preference score",
+      "update_rule_change": "pairwise preference fitting over task-level structured selector targets",
+      "memory_change": "selector fit over task-level ranking supervision",
+      "benchmark_intent": "task-level structured ranking regime-selection check"
+    },
+    "task_specialist_clone_constrained_task_ranking_selector_merge": {
+      "family": "regime_switch",
+      "forward_change": "switch between low-merge specialist reuse and current-path boost by constrained task-level ranked regime preference score",
+      "update_rule_change": "task-level ranking with explicit sparse-gate protection",
+      "memory_change": "selector fit over constrained task-level ranking supervision",
+      "benchmark_intent": "constrained task-level structured ranking regime-selection check"
+    },
+    "task_specialist_clone_two_stage_selector_merge": {
+      "family": "regime_switch",
+      "forward_change": "switch between low-merge specialist reuse and current-path boost by a two-stage selector",
+      "update_rule_change": "embedded-gate routing followed by task-level ranking fallback",
+      "memory_change": "mixture-style selector over signature and task-ranking routes",
+      "benchmark_intent": "two-stage regime-selection check"
+    },
+    "task_specialist_clone_learned_router_selector_merge": {
+      "family": "regime_switch",
+      "forward_change": "switch between low-merge specialist reuse and current-path boost by a learned multi-route selector",
+      "update_rule_change": "fit a three-way router over regime features for boost, interference control, and sparse-boost routing",
+      "memory_change": "learned router over structured selector routes",
+      "benchmark_intent": "learned multi-route regime-selection check"
+    },
+    "task_specialist_clone_hierarchical_selector_merge": {
+      "family": "regime_switch",
+      "forward_change": "switch between low-merge specialist reuse and current-path boost by hierarchical segmented selector heads",
+      "update_rule_change": "route tasks into sparse, embedded, and default regions, then fit a separate ranking head per region",
+      "memory_change": "hierarchical region-specific selector heads",
+      "benchmark_intent": "hierarchical segmented regime-selection check"
+    },
+    "task_specialist_clone_hierarchical_quadratic_selector_merge": {
+      "family": "regime_switch",
+      "forward_change": "switch between low-merge specialist reuse and current-path boost by hierarchical segmented quadratic selector heads",
+      "update_rule_change": "route tasks into sparse, embedded, and default regions, then fit a separate quadratic ranking head per region",
+      "memory_change": "hierarchical non-linear region-specific selector heads",
+      "benchmark_intent": "hierarchical segmented non-linear regime-selection check"
+    },
+    "task_specialist_clone_hierarchical_sparse_gate_selector_merge": {
+      "family": "regime_switch",
+      "forward_change": "switch between low-merge specialist reuse and current-path boost by sparse-gate-aware hierarchical segmented heads",
+      "update_rule_change": "route tasks into sparse, embedded, and default regions, then fit quadratic region heads with explicit sparse-gate protection",
+      "memory_change": "hierarchical sparse-gate-aware selector heads",
+      "benchmark_intent": "hierarchical sparse-gate-aware regime-selection check"
+    },
+    "task_specialist_clone_guarded_router_selector_merge": {
+      "family": "regime_switch",
+      "forward_change": "preserve a hard sparse boost branch while learning the remaining segmented routes",
+      "update_rule_change": "hard-route sparse embedded tasks to boost and fit quadratic heads only for default and embedded regions",
+      "memory_change": "guarded segmented router with preserved sparse branch",
+      "benchmark_intent": "guarded sparse-branch regime-selection check"
+    },
+    "task_specialist_clone_guarded_expert_selector_merge": {
+      "family": "regime_switch",
+      "forward_change": "preserve hard sparse and embedded expert branches while learning only the default segmented route",
+      "update_rule_change": "hard-route sparse tasks to boost, embedded tasks to signature logic, and fit a quadratic head only for the default region",
+      "memory_change": "guarded expert router with preserved sparse and embedded branches",
+      "benchmark_intent": "guarded expert regime-selection check"
+    },
+    "task_specialist_clone_guarded_expert_boost_default_merge": {
+      "family": "regime_switch",
+      "forward_change": "preserve hard sparse and embedded expert branches and hard-route the default region to boost",
+      "update_rule_change": "hard-route sparse tasks to boost, embedded tasks to signature logic, and default tasks to boost",
+      "memory_change": "guarded expert router with no learned default branch",
+      "benchmark_intent": "guarded expert boost-default simplification check"
+    },
+    "task_specialist_clone_guarded_expert_merge_default_merge": {
+      "family": "regime_switch",
+      "forward_change": "preserve hard sparse and embedded expert branches and hard-route the default region to interference control",
+      "update_rule_change": "hard-route sparse tasks to boost, embedded tasks to signature logic, and default tasks to low-merge interference control",
+      "memory_change": "guarded expert router with no learned default branch",
+      "benchmark_intent": "guarded expert merge-default simplification check"
+    },
+    "task_specialist_clone_guarded_expert_linear_default_merge": {
+      "family": "regime_switch",
+      "forward_change": "preserve hard sparse and embedded expert branches while learning a linear default-region fallback",
+      "update_rule_change": "hard-route sparse tasks to boost, embedded tasks to signature logic, and fit a linear head only for the default region",
+      "memory_change": "guarded expert router with linear default fallback",
+      "benchmark_intent": "guarded expert linear-default regime-selection check"
+    },
     "task_specialist_clone_confidence_boost_merge": {
       "family": "plasticity_boost",
       "forward_change": "confidence-gated low specialist merge",
@@ -2159,6 +2264,966 @@
       ]
     },
     "task_specialist_clone_prototype_selector_merge": {
+      "summary": {
+        "final_avg_accuracy": 0.605,
+        "final_current_accuracy": 0.43,
+        "final_prior_avg_accuracy": 0.6633333333333332,
+        "mean_forgetting": 0.02333333333333339,
+        "mean_backward_transfer": -0.02333333333333339,
+        "final_units": 5.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.15499999999999997,
+        "forgetting_delta_vs_fixed": 0.3033333333333333,
+        "backward_transfer_gain_vs_fixed": 0.3033333333333333,
+        "avg_accuracy_delta_vs_adapt_only": 0.007499999999999951,
+        "forgetting_delta_vs_adapt_only": 0.01666666666666661,
+        "backward_transfer_delta_vs_adapt_only": 0.01666666666666661,
+        "current_accuracy_delta_vs_adapt_only": 0.020000000000000018,
+        "prior_accuracy_delta_vs_adapt_only": 0.0033333333333331883,
+        "unit_delta_vs_adapt_only": 4.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.88,
+            "avg_accuracy": 0.88,
+            "prior_avg_accuracy": 0.88,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 2,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.62,
+            "avg_accuracy": 0.78,
+            "prior_avg_accuracy": 0.94,
+            "mean_forgetting": -0.05999999999999994,
+            "mean_backward_transfer": 0.05999999999999994,
+            "unit_count": 3,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.56,
+            "avg_accuracy": 0.71,
+            "prior_avg_accuracy": 0.7849999999999999,
+            "mean_forgetting": -0.034999999999999976,
+            "mean_backward_transfer": 0.034999999999999976,
+            "unit_count": 4,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.43,
+            "avg_accuracy": 0.605,
+            "prior_avg_accuracy": 0.6633333333333332,
+            "mean_forgetting": 0.02333333333333339,
+            "mean_backward_transfer": -0.02333333333333339,
+            "unit_count": 5,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    },
+    "task_specialist_clone_dynamics_selector_merge": {
+      "summary": {
+        "final_avg_accuracy": 0.605,
+        "final_current_accuracy": 0.43,
+        "final_prior_avg_accuracy": 0.6633333333333332,
+        "mean_forgetting": 0.02333333333333339,
+        "mean_backward_transfer": -0.02333333333333339,
+        "final_units": 5.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.15499999999999997,
+        "forgetting_delta_vs_fixed": 0.3033333333333333,
+        "backward_transfer_gain_vs_fixed": 0.3033333333333333,
+        "avg_accuracy_delta_vs_adapt_only": 0.007499999999999951,
+        "forgetting_delta_vs_adapt_only": 0.01666666666666661,
+        "backward_transfer_delta_vs_adapt_only": 0.01666666666666661,
+        "current_accuracy_delta_vs_adapt_only": 0.020000000000000018,
+        "prior_accuracy_delta_vs_adapt_only": 0.0033333333333331883,
+        "unit_delta_vs_adapt_only": 4.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.88,
+            "avg_accuracy": 0.88,
+            "prior_avg_accuracy": 0.88,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 2,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.62,
+            "avg_accuracy": 0.78,
+            "prior_avg_accuracy": 0.94,
+            "mean_forgetting": -0.05999999999999994,
+            "mean_backward_transfer": 0.05999999999999994,
+            "unit_count": 3,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.56,
+            "avg_accuracy": 0.71,
+            "prior_avg_accuracy": 0.7849999999999999,
+            "mean_forgetting": -0.034999999999999976,
+            "mean_backward_transfer": 0.034999999999999976,
+            "unit_count": 4,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.43,
+            "avg_accuracy": 0.605,
+            "prior_avg_accuracy": 0.6633333333333332,
+            "mean_forgetting": 0.02333333333333339,
+            "mean_backward_transfer": -0.02333333333333339,
+            "unit_count": 5,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    },
+    "task_specialist_clone_outcome_selector_merge": {
+      "summary": {
+        "final_avg_accuracy": 0.605,
+        "final_current_accuracy": 0.43,
+        "final_prior_avg_accuracy": 0.6633333333333332,
+        "mean_forgetting": 0.02333333333333339,
+        "mean_backward_transfer": -0.02333333333333339,
+        "final_units": 5.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.15499999999999997,
+        "forgetting_delta_vs_fixed": 0.3033333333333333,
+        "backward_transfer_gain_vs_fixed": 0.3033333333333333,
+        "avg_accuracy_delta_vs_adapt_only": 0.007499999999999951,
+        "forgetting_delta_vs_adapt_only": 0.01666666666666661,
+        "backward_transfer_delta_vs_adapt_only": 0.01666666666666661,
+        "current_accuracy_delta_vs_adapt_only": 0.020000000000000018,
+        "prior_accuracy_delta_vs_adapt_only": 0.0033333333333331883,
+        "unit_delta_vs_adapt_only": 4.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.88,
+            "avg_accuracy": 0.88,
+            "prior_avg_accuracy": 0.88,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 2,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.62,
+            "avg_accuracy": 0.78,
+            "prior_avg_accuracy": 0.94,
+            "mean_forgetting": -0.05999999999999994,
+            "mean_backward_transfer": 0.05999999999999994,
+            "unit_count": 3,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.56,
+            "avg_accuracy": 0.71,
+            "prior_avg_accuracy": 0.7849999999999999,
+            "mean_forgetting": -0.034999999999999976,
+            "mean_backward_transfer": 0.034999999999999976,
+            "unit_count": 4,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.43,
+            "avg_accuracy": 0.605,
+            "prior_avg_accuracy": 0.6633333333333332,
+            "mean_forgetting": 0.02333333333333339,
+            "mean_backward_transfer": -0.02333333333333339,
+            "unit_count": 5,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    },
+    "task_specialist_clone_ranking_selector_merge": {
+      "summary": {
+        "final_avg_accuracy": 0.605,
+        "final_current_accuracy": 0.43,
+        "final_prior_avg_accuracy": 0.6633333333333332,
+        "mean_forgetting": 0.02333333333333339,
+        "mean_backward_transfer": -0.02333333333333339,
+        "final_units": 5.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.15499999999999997,
+        "forgetting_delta_vs_fixed": 0.3033333333333333,
+        "backward_transfer_gain_vs_fixed": 0.3033333333333333,
+        "avg_accuracy_delta_vs_adapt_only": 0.007499999999999951,
+        "forgetting_delta_vs_adapt_only": 0.01666666666666661,
+        "backward_transfer_delta_vs_adapt_only": 0.01666666666666661,
+        "current_accuracy_delta_vs_adapt_only": 0.020000000000000018,
+        "prior_accuracy_delta_vs_adapt_only": 0.0033333333333331883,
+        "unit_delta_vs_adapt_only": 4.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.88,
+            "avg_accuracy": 0.88,
+            "prior_avg_accuracy": 0.88,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 2,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.62,
+            "avg_accuracy": 0.78,
+            "prior_avg_accuracy": 0.94,
+            "mean_forgetting": -0.05999999999999994,
+            "mean_backward_transfer": 0.05999999999999994,
+            "unit_count": 3,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.56,
+            "avg_accuracy": 0.71,
+            "prior_avg_accuracy": 0.7849999999999999,
+            "mean_forgetting": -0.034999999999999976,
+            "mean_backward_transfer": 0.034999999999999976,
+            "unit_count": 4,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.43,
+            "avg_accuracy": 0.605,
+            "prior_avg_accuracy": 0.6633333333333332,
+            "mean_forgetting": 0.02333333333333339,
+            "mean_backward_transfer": -0.02333333333333339,
+            "unit_count": 5,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    },
+    "task_specialist_clone_task_ranking_selector_merge": {
+      "summary": {
+        "final_avg_accuracy": 0.605,
+        "final_current_accuracy": 0.43,
+        "final_prior_avg_accuracy": 0.6633333333333332,
+        "mean_forgetting": 0.02333333333333339,
+        "mean_backward_transfer": -0.02333333333333339,
+        "final_units": 5.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.15499999999999997,
+        "forgetting_delta_vs_fixed": 0.3033333333333333,
+        "backward_transfer_gain_vs_fixed": 0.3033333333333333,
+        "avg_accuracy_delta_vs_adapt_only": 0.007499999999999951,
+        "forgetting_delta_vs_adapt_only": 0.01666666666666661,
+        "backward_transfer_delta_vs_adapt_only": 0.01666666666666661,
+        "current_accuracy_delta_vs_adapt_only": 0.020000000000000018,
+        "prior_accuracy_delta_vs_adapt_only": 0.0033333333333331883,
+        "unit_delta_vs_adapt_only": 4.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.88,
+            "avg_accuracy": 0.88,
+            "prior_avg_accuracy": 0.88,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 2,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.62,
+            "avg_accuracy": 0.78,
+            "prior_avg_accuracy": 0.94,
+            "mean_forgetting": -0.05999999999999994,
+            "mean_backward_transfer": 0.05999999999999994,
+            "unit_count": 3,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.56,
+            "avg_accuracy": 0.71,
+            "prior_avg_accuracy": 0.7849999999999999,
+            "mean_forgetting": -0.034999999999999976,
+            "mean_backward_transfer": 0.034999999999999976,
+            "unit_count": 4,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.43,
+            "avg_accuracy": 0.605,
+            "prior_avg_accuracy": 0.6633333333333332,
+            "mean_forgetting": 0.02333333333333339,
+            "mean_backward_transfer": -0.02333333333333339,
+            "unit_count": 5,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    },
+    "task_specialist_clone_constrained_task_ranking_selector_merge": {
+      "summary": {
+        "final_avg_accuracy": 0.605,
+        "final_current_accuracy": 0.43,
+        "final_prior_avg_accuracy": 0.6633333333333332,
+        "mean_forgetting": 0.02333333333333339,
+        "mean_backward_transfer": -0.02333333333333339,
+        "final_units": 5.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.15499999999999997,
+        "forgetting_delta_vs_fixed": 0.3033333333333333,
+        "backward_transfer_gain_vs_fixed": 0.3033333333333333,
+        "avg_accuracy_delta_vs_adapt_only": 0.007499999999999951,
+        "forgetting_delta_vs_adapt_only": 0.01666666666666661,
+        "backward_transfer_delta_vs_adapt_only": 0.01666666666666661,
+        "current_accuracy_delta_vs_adapt_only": 0.020000000000000018,
+        "prior_accuracy_delta_vs_adapt_only": 0.0033333333333331883,
+        "unit_delta_vs_adapt_only": 4.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.88,
+            "avg_accuracy": 0.88,
+            "prior_avg_accuracy": 0.88,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 2,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.62,
+            "avg_accuracy": 0.78,
+            "prior_avg_accuracy": 0.94,
+            "mean_forgetting": -0.05999999999999994,
+            "mean_backward_transfer": 0.05999999999999994,
+            "unit_count": 3,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.56,
+            "avg_accuracy": 0.71,
+            "prior_avg_accuracy": 0.7849999999999999,
+            "mean_forgetting": -0.034999999999999976,
+            "mean_backward_transfer": 0.034999999999999976,
+            "unit_count": 4,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.43,
+            "avg_accuracy": 0.605,
+            "prior_avg_accuracy": 0.6633333333333332,
+            "mean_forgetting": 0.02333333333333339,
+            "mean_backward_transfer": -0.02333333333333339,
+            "unit_count": 5,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    },
+    "task_specialist_clone_two_stage_selector_merge": {
+      "summary": {
+        "final_avg_accuracy": 0.605,
+        "final_current_accuracy": 0.43,
+        "final_prior_avg_accuracy": 0.6633333333333332,
+        "mean_forgetting": 0.02333333333333339,
+        "mean_backward_transfer": -0.02333333333333339,
+        "final_units": 5.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.15499999999999997,
+        "forgetting_delta_vs_fixed": 0.3033333333333333,
+        "backward_transfer_gain_vs_fixed": 0.3033333333333333,
+        "avg_accuracy_delta_vs_adapt_only": 0.007499999999999951,
+        "forgetting_delta_vs_adapt_only": 0.01666666666666661,
+        "backward_transfer_delta_vs_adapt_only": 0.01666666666666661,
+        "current_accuracy_delta_vs_adapt_only": 0.020000000000000018,
+        "prior_accuracy_delta_vs_adapt_only": 0.0033333333333331883,
+        "unit_delta_vs_adapt_only": 4.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.88,
+            "avg_accuracy": 0.88,
+            "prior_avg_accuracy": 0.88,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 2,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.62,
+            "avg_accuracy": 0.78,
+            "prior_avg_accuracy": 0.94,
+            "mean_forgetting": -0.05999999999999994,
+            "mean_backward_transfer": 0.05999999999999994,
+            "unit_count": 3,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.56,
+            "avg_accuracy": 0.71,
+            "prior_avg_accuracy": 0.7849999999999999,
+            "mean_forgetting": -0.034999999999999976,
+            "mean_backward_transfer": 0.034999999999999976,
+            "unit_count": 4,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.43,
+            "avg_accuracy": 0.605,
+            "prior_avg_accuracy": 0.6633333333333332,
+            "mean_forgetting": 0.02333333333333339,
+            "mean_backward_transfer": -0.02333333333333339,
+            "unit_count": 5,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    },
+    "task_specialist_clone_learned_router_selector_merge": {
+      "summary": {
+        "final_avg_accuracy": 0.6025,
+        "final_current_accuracy": 0.44,
+        "final_prior_avg_accuracy": 0.6566666666666667,
+        "mean_forgetting": 0.03333333333333329,
+        "mean_backward_transfer": -0.03333333333333329,
+        "final_units": 5.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.15250000000000002,
+        "forgetting_delta_vs_fixed": 0.2933333333333334,
+        "backward_transfer_gain_vs_fixed": 0.2933333333333334,
+        "avg_accuracy_delta_vs_adapt_only": 0.0050000000000000044,
+        "forgetting_delta_vs_adapt_only": 0.00666666666666671,
+        "backward_transfer_delta_vs_adapt_only": 0.00666666666666671,
+        "current_accuracy_delta_vs_adapt_only": 0.030000000000000027,
+        "prior_accuracy_delta_vs_adapt_only": -0.0033333333333332993,
+        "unit_delta_vs_adapt_only": 4.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.88,
+            "avg_accuracy": 0.88,
+            "prior_avg_accuracy": 0.88,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 2,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.62,
+            "avg_accuracy": 0.775,
+            "prior_avg_accuracy": 0.93,
+            "mean_forgetting": -0.050000000000000044,
+            "mean_backward_transfer": 0.050000000000000044,
+            "unit_count": 3,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.57,
+            "avg_accuracy": 0.6933333333333334,
+            "prior_avg_accuracy": 0.755,
+            "mean_forgetting": -0.0050000000000000044,
+            "mean_backward_transfer": 0.0050000000000000044,
+            "unit_count": 4,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.44,
+            "avg_accuracy": 0.6025,
+            "prior_avg_accuracy": 0.6566666666666667,
+            "mean_forgetting": 0.03333333333333329,
+            "mean_backward_transfer": -0.03333333333333329,
+            "unit_count": 5,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    },
+    "task_specialist_clone_hierarchical_selector_merge": {
+      "summary": {
+        "final_avg_accuracy": 0.605,
+        "final_current_accuracy": 0.43,
+        "final_prior_avg_accuracy": 0.6633333333333332,
+        "mean_forgetting": 0.02333333333333339,
+        "mean_backward_transfer": -0.02333333333333339,
+        "final_units": 5.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.15499999999999997,
+        "forgetting_delta_vs_fixed": 0.3033333333333333,
+        "backward_transfer_gain_vs_fixed": 0.3033333333333333,
+        "avg_accuracy_delta_vs_adapt_only": 0.007499999999999951,
+        "forgetting_delta_vs_adapt_only": 0.01666666666666661,
+        "backward_transfer_delta_vs_adapt_only": 0.01666666666666661,
+        "current_accuracy_delta_vs_adapt_only": 0.020000000000000018,
+        "prior_accuracy_delta_vs_adapt_only": 0.0033333333333331883,
+        "unit_delta_vs_adapt_only": 4.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.88,
+            "avg_accuracy": 0.88,
+            "prior_avg_accuracy": 0.88,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 2,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.62,
+            "avg_accuracy": 0.78,
+            "prior_avg_accuracy": 0.94,
+            "mean_forgetting": -0.05999999999999994,
+            "mean_backward_transfer": 0.05999999999999994,
+            "unit_count": 3,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.56,
+            "avg_accuracy": 0.71,
+            "prior_avg_accuracy": 0.7849999999999999,
+            "mean_forgetting": -0.034999999999999976,
+            "mean_backward_transfer": 0.034999999999999976,
+            "unit_count": 4,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.43,
+            "avg_accuracy": 0.605,
+            "prior_avg_accuracy": 0.6633333333333332,
+            "mean_forgetting": 0.02333333333333339,
+            "mean_backward_transfer": -0.02333333333333339,
+            "unit_count": 5,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    },
+    "task_specialist_clone_hierarchical_quadratic_selector_merge": {
+      "summary": {
+        "final_avg_accuracy": 0.605,
+        "final_current_accuracy": 0.43,
+        "final_prior_avg_accuracy": 0.6633333333333332,
+        "mean_forgetting": 0.02333333333333339,
+        "mean_backward_transfer": -0.02333333333333339,
+        "final_units": 5.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.15499999999999997,
+        "forgetting_delta_vs_fixed": 0.3033333333333333,
+        "backward_transfer_gain_vs_fixed": 0.3033333333333333,
+        "avg_accuracy_delta_vs_adapt_only": 0.007499999999999951,
+        "forgetting_delta_vs_adapt_only": 0.01666666666666661,
+        "backward_transfer_delta_vs_adapt_only": 0.01666666666666661,
+        "current_accuracy_delta_vs_adapt_only": 0.020000000000000018,
+        "prior_accuracy_delta_vs_adapt_only": 0.0033333333333331883,
+        "unit_delta_vs_adapt_only": 4.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.88,
+            "avg_accuracy": 0.88,
+            "prior_avg_accuracy": 0.88,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 2,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.62,
+            "avg_accuracy": 0.78,
+            "prior_avg_accuracy": 0.94,
+            "mean_forgetting": -0.05999999999999994,
+            "mean_backward_transfer": 0.05999999999999994,
+            "unit_count": 3,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.56,
+            "avg_accuracy": 0.71,
+            "prior_avg_accuracy": 0.7849999999999999,
+            "mean_forgetting": -0.034999999999999976,
+            "mean_backward_transfer": 0.034999999999999976,
+            "unit_count": 4,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.43,
+            "avg_accuracy": 0.605,
+            "prior_avg_accuracy": 0.6633333333333332,
+            "mean_forgetting": 0.02333333333333339,
+            "mean_backward_transfer": -0.02333333333333339,
+            "unit_count": 5,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    },
+    "task_specialist_clone_hierarchical_sparse_gate_selector_merge": {
+      "summary": {
+        "final_avg_accuracy": 0.605,
+        "final_current_accuracy": 0.43,
+        "final_prior_avg_accuracy": 0.6633333333333332,
+        "mean_forgetting": 0.02333333333333339,
+        "mean_backward_transfer": -0.02333333333333339,
+        "final_units": 5.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.15499999999999997,
+        "forgetting_delta_vs_fixed": 0.3033333333333333,
+        "backward_transfer_gain_vs_fixed": 0.3033333333333333,
+        "avg_accuracy_delta_vs_adapt_only": 0.007499999999999951,
+        "forgetting_delta_vs_adapt_only": 0.01666666666666661,
+        "backward_transfer_delta_vs_adapt_only": 0.01666666666666661,
+        "current_accuracy_delta_vs_adapt_only": 0.020000000000000018,
+        "prior_accuracy_delta_vs_adapt_only": 0.0033333333333331883,
+        "unit_delta_vs_adapt_only": 4.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.88,
+            "avg_accuracy": 0.88,
+            "prior_avg_accuracy": 0.88,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 2,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.62,
+            "avg_accuracy": 0.78,
+            "prior_avg_accuracy": 0.94,
+            "mean_forgetting": -0.05999999999999994,
+            "mean_backward_transfer": 0.05999999999999994,
+            "unit_count": 3,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.56,
+            "avg_accuracy": 0.71,
+            "prior_avg_accuracy": 0.7849999999999999,
+            "mean_forgetting": -0.034999999999999976,
+            "mean_backward_transfer": 0.034999999999999976,
+            "unit_count": 4,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.43,
+            "avg_accuracy": 0.605,
+            "prior_avg_accuracy": 0.6633333333333332,
+            "mean_forgetting": 0.02333333333333339,
+            "mean_backward_transfer": -0.02333333333333339,
+            "unit_count": 5,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    },
+    "task_specialist_clone_guarded_router_selector_merge": {
+      "summary": {
+        "final_avg_accuracy": 0.605,
+        "final_current_accuracy": 0.43,
+        "final_prior_avg_accuracy": 0.6633333333333332,
+        "mean_forgetting": 0.02333333333333339,
+        "mean_backward_transfer": -0.02333333333333339,
+        "final_units": 5.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.15499999999999997,
+        "forgetting_delta_vs_fixed": 0.3033333333333333,
+        "backward_transfer_gain_vs_fixed": 0.3033333333333333,
+        "avg_accuracy_delta_vs_adapt_only": 0.007499999999999951,
+        "forgetting_delta_vs_adapt_only": 0.01666666666666661,
+        "backward_transfer_delta_vs_adapt_only": 0.01666666666666661,
+        "current_accuracy_delta_vs_adapt_only": 0.020000000000000018,
+        "prior_accuracy_delta_vs_adapt_only": 0.0033333333333331883,
+        "unit_delta_vs_adapt_only": 4.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.88,
+            "avg_accuracy": 0.88,
+            "prior_avg_accuracy": 0.88,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 2,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.62,
+            "avg_accuracy": 0.78,
+            "prior_avg_accuracy": 0.94,
+            "mean_forgetting": -0.05999999999999994,
+            "mean_backward_transfer": 0.05999999999999994,
+            "unit_count": 3,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.56,
+            "avg_accuracy": 0.71,
+            "prior_avg_accuracy": 0.7849999999999999,
+            "mean_forgetting": -0.034999999999999976,
+            "mean_backward_transfer": 0.034999999999999976,
+            "unit_count": 4,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.43,
+            "avg_accuracy": 0.605,
+            "prior_avg_accuracy": 0.6633333333333332,
+            "mean_forgetting": 0.02333333333333339,
+            "mean_backward_transfer": -0.02333333333333339,
+            "unit_count": 5,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    },
+    "task_specialist_clone_guarded_expert_selector_merge": {
+      "summary": {
+        "final_avg_accuracy": 0.605,
+        "final_current_accuracy": 0.43,
+        "final_prior_avg_accuracy": 0.6633333333333332,
+        "mean_forgetting": 0.02333333333333339,
+        "mean_backward_transfer": -0.02333333333333339,
+        "final_units": 5.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.15499999999999997,
+        "forgetting_delta_vs_fixed": 0.3033333333333333,
+        "backward_transfer_gain_vs_fixed": 0.3033333333333333,
+        "avg_accuracy_delta_vs_adapt_only": 0.007499999999999951,
+        "forgetting_delta_vs_adapt_only": 0.01666666666666661,
+        "backward_transfer_delta_vs_adapt_only": 0.01666666666666661,
+        "current_accuracy_delta_vs_adapt_only": 0.020000000000000018,
+        "prior_accuracy_delta_vs_adapt_only": 0.0033333333333331883,
+        "unit_delta_vs_adapt_only": 4.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.88,
+            "avg_accuracy": 0.88,
+            "prior_avg_accuracy": 0.88,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 2,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.62,
+            "avg_accuracy": 0.78,
+            "prior_avg_accuracy": 0.94,
+            "mean_forgetting": -0.05999999999999994,
+            "mean_backward_transfer": 0.05999999999999994,
+            "unit_count": 3,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.56,
+            "avg_accuracy": 0.71,
+            "prior_avg_accuracy": 0.7849999999999999,
+            "mean_forgetting": -0.034999999999999976,
+            "mean_backward_transfer": 0.034999999999999976,
+            "unit_count": 4,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.43,
+            "avg_accuracy": 0.605,
+            "prior_avg_accuracy": 0.6633333333333332,
+            "mean_forgetting": 0.02333333333333339,
+            "mean_backward_transfer": -0.02333333333333339,
+            "unit_count": 5,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    },
+    "task_specialist_clone_guarded_expert_boost_default_merge": {
+      "summary": {
+        "final_avg_accuracy": 0.6025,
+        "final_current_accuracy": 0.44,
+        "final_prior_avg_accuracy": 0.6566666666666667,
+        "mean_forgetting": 0.03333333333333329,
+        "mean_backward_transfer": -0.03333333333333329,
+        "final_units": 5.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.15250000000000002,
+        "forgetting_delta_vs_fixed": 0.2933333333333334,
+        "backward_transfer_gain_vs_fixed": 0.2933333333333334,
+        "avg_accuracy_delta_vs_adapt_only": 0.0050000000000000044,
+        "forgetting_delta_vs_adapt_only": 0.00666666666666671,
+        "backward_transfer_delta_vs_adapt_only": 0.00666666666666671,
+        "current_accuracy_delta_vs_adapt_only": 0.030000000000000027,
+        "prior_accuracy_delta_vs_adapt_only": -0.0033333333333332993,
+        "unit_delta_vs_adapt_only": 4.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.88,
+            "avg_accuracy": 0.88,
+            "prior_avg_accuracy": 0.88,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 2,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.62,
+            "avg_accuracy": 0.775,
+            "prior_avg_accuracy": 0.93,
+            "mean_forgetting": -0.050000000000000044,
+            "mean_backward_transfer": 0.050000000000000044,
+            "unit_count": 3,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.57,
+            "avg_accuracy": 0.6933333333333334,
+            "prior_avg_accuracy": 0.755,
+            "mean_forgetting": -0.0050000000000000044,
+            "mean_backward_transfer": 0.0050000000000000044,
+            "unit_count": 4,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.44,
+            "avg_accuracy": 0.6025,
+            "prior_avg_accuracy": 0.6566666666666667,
+            "mean_forgetting": 0.03333333333333329,
+            "mean_backward_transfer": -0.03333333333333329,
+            "unit_count": 5,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    },
+    "task_specialist_clone_guarded_expert_merge_default_merge": {
+      "summary": {
+        "final_avg_accuracy": 0.605,
+        "final_current_accuracy": 0.43,
+        "final_prior_avg_accuracy": 0.6633333333333332,
+        "mean_forgetting": 0.02333333333333339,
+        "mean_backward_transfer": -0.02333333333333339,
+        "final_units": 5.0,
+        "final_frozen_units": 0.0,
+        "avg_accuracy_gain_vs_fixed": 0.15499999999999997,
+        "forgetting_delta_vs_fixed": 0.3033333333333333,
+        "backward_transfer_gain_vs_fixed": 0.3033333333333333,
+        "avg_accuracy_delta_vs_adapt_only": 0.007499999999999951,
+        "forgetting_delta_vs_adapt_only": 0.01666666666666661,
+        "backward_transfer_delta_vs_adapt_only": 0.01666666666666661,
+        "current_accuracy_delta_vs_adapt_only": 0.020000000000000018,
+        "prior_accuracy_delta_vs_adapt_only": 0.0033333333333331883,
+        "unit_delta_vs_adapt_only": 4.0
+      },
+      "runs": [
+        [
+          {
+            "task_id": 0,
+            "current_accuracy": 0.88,
+            "avg_accuracy": 0.88,
+            "prior_avg_accuracy": 0.88,
+            "mean_forgetting": 0.0,
+            "mean_backward_transfer": 0.0,
+            "unit_count": 2,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 1,
+            "current_accuracy": 0.62,
+            "avg_accuracy": 0.78,
+            "prior_avg_accuracy": 0.94,
+            "mean_forgetting": -0.05999999999999994,
+            "mean_backward_transfer": 0.05999999999999994,
+            "unit_count": 3,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 2,
+            "current_accuracy": 0.56,
+            "avg_accuracy": 0.71,
+            "prior_avg_accuracy": 0.7849999999999999,
+            "mean_forgetting": -0.034999999999999976,
+            "mean_backward_transfer": 0.034999999999999976,
+            "unit_count": 4,
+            "frozen_units": 0
+          },
+          {
+            "task_id": 3,
+            "current_accuracy": 0.43,
+            "avg_accuracy": 0.605,
+            "prior_avg_accuracy": 0.6633333333333332,
+            "mean_forgetting": 0.02333333333333339,
+            "mean_backward_transfer": -0.02333333333333339,
+            "unit_count": 5,
+            "frozen_units": 0
+          }
+        ]
+      ]
+    },
+    "task_specialist_clone_guarded_expert_linear_default_merge": {
       "summary": {
         "final_avg_accuracy": 0.605,
         "final_current_accuracy": 0.43,

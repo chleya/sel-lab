@@ -1,0 +1,199 @@
+{
+  "scalability": [
+    {
+      "node_count": 4,
+      "training_time": 0.19107866287231445,
+      "avg_performance": 0.8975,
+      "fusion_accuracy": 0.93,
+      "total_energy": 54.82631192337074,
+      "avg_energy_per_node": 13.706577980842685,
+      "avg_detection_time_ms": 0.027477741241455078,
+      "sensor_performance": {
+        "temperature": 0.93,
+        "humidity": 0.89,
+        "motion": 0.89,
+        "door": 0.88
+      },
+      "sensor_energy": {
+        "temperature": 14.621911421911417,
+        "humidity": 13.821911421911418,
+        "motion": 13.327011224070048,
+        "door": 13.055477855477852
+      }
+    },
+    {
+      "node_count": 8,
+      "training_time": 0.37969255447387695,
+      "avg_performance": 0.8975,
+      "fusion_accuracy": 0.93,
+      "total_energy": 114.03677303089066,
+      "avg_energy_per_node": 14.254596628861332,
+      "avg_detection_time_ms": 0.025626718997955322,
+      "sensor_performance": {
+        "temperature": 0.93,
+        "humidity": 0.89,
+        "motion": 0.89,
+        "door": 0.88
+      },
+      "sensor_energy": {
+        "temperature": 28.443822843822836,
+        "humidity": 28.013053613053604,
+        "motion": 29.32068911480676,
+        "door": 28.259207459207452
+      }
+    },
+    {
+      "node_count": 16,
+      "training_time": 0.9214262962341309,
+      "avg_performance": 0.8975,
+      "fusion_accuracy": 0.93,
+      "total_energy": 229.79375722316894,
+      "avg_energy_per_node": 14.362109826448059,
+      "avg_detection_time_ms": 0.03371402621269226,
+      "sensor_performance": {
+        "temperature": 0.93,
+        "humidity": 0.89,
+        "motion": 0.89,
+        "door": 0.88
+      },
+      "sensor_energy": {
+        "temperature": 56.45687645687644,
+        "humidity": 55.04149184149183,
+        "motion": 61.85902528843705,
+        "door": 56.43636363636362
+      }
+    },
+    {
+      "node_count": 32,
+      "training_time": 1.8141870498657227,
+      "avg_performance": 0.8975,
+      "fusion_accuracy": 0.93,
+      "total_energy": 462.9609214315094,
+      "avg_energy_per_node": 14.467528794734669,
+      "avg_detection_time_ms": 0.06701096892356873,
+      "sensor_performance": {
+        "temperature": 0.93,
+        "humidity": 0.89,
+        "motion": 0.89,
+        "door": 0.88
+      },
+      "sensor_energy": {
+        "temperature": 111.49836829836826,
+        "humidity": 113.34452214452212,
+        "motion": 123.83737830796652,
+        "door": 114.28065268065265
+      }
+    }
+  ],
+  "sensor_performance": {
+    "temperature": {
+      "accuracy": 0.93,
+      "training_time": 0.2108614444732666,
+      "energy_consumption": 25.927405927405946,
+      "performance_history": [
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.102,
+        0.898,
+        0.898,
+        0.898
+      ]
+    },
+    "humidity": {
+      "accuracy": 0.89,
+      "training_time": 0.16939163208007812,
+      "energy_consumption": 25.927405927405946,
+      "performance_history": [
+        0.889,
+        0.889,
+        0.889,
+        0.889,
+        0.889,
+        0.889,
+        0.889,
+        0.889,
+        0.889,
+        0.889,
+        0.889,
+        0.889,
+        0.889,
+        0.889,
+        0.889,
+        0.889,
+        0.111,
+        0.889,
+        0.889,
+        0.889
+      ]
+    },
+    "motion": {
+      "accuracy": 0.89,
+      "training_time": 0.16191911697387695,
+      "energy_consumption": 22.660344557403388,
+      "performance_history": [
+        0.906,
+        0.906,
+        0.906,
+        0.906,
+        0.906,
+        0.906,
+        0.906,
+        0.906,
+        0.906,
+        0.906,
+        0.906,
+        0.906,
+        0.906,
+        0.906,
+        0.906,
+        0.906,
+        0.906,
+        0.906,
+        0.906,
+        0.906
+      ]
+    },
+    "door": {
+      "accuracy": 0.88,
+      "training_time": 0.19043469429016113,
+      "energy_consumption": 25.927405927405946,
+      "performance_history": [
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.898,
+        0.163,
+        0.898,
+        0.898,
+        0.898
+      ]
+    }
+  },
+  "timestamp": "2026-03-29 14:13:47"
+}

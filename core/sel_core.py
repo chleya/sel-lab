@@ -22,7 +22,7 @@ class SELConfig:
     learning_rate: float = 0.1
     momentum: float = 0.9
     tension_threshold: float = 0.7
-    max_modules: int = 10
+    max_modules: int = 5
     mutation_rate: float = 0.2
     epochs: int = 100
     random_seed: Optional[int] = 42
@@ -125,6 +125,16 @@ class SELModule:
 
         residual = float(np.tanh(np.mean(self.loss_history)))
         self.local_tension = float(0.45 * plateau + 0.35 * volatility + 0.20 * residual)
+        
+        # 记录 tension 分量
+        if not hasattr(self, 'tension_components_history'):
+            self.tension_components_history = []
+        self.tension_components_history.append({
+            'plateau': plateau,
+            'volatility': volatility,
+            'residual': residual,
+            'local_tension': self.local_tension
+        })
 
     def finalize_epoch(self, window: int, min_improvement: float) -> None:
         """Update tension from epoch-level summaries instead of sample noise."""
@@ -266,6 +276,7 @@ class SELNetwork:
         self.current_epoch = -1
         self.last_clone_epoch = -10**9
         self.stalled_epochs = 0
+        self.task_id = 0  # 任务ID，用于跟踪当前任务
 
         for i in range(config.initial_modules):
             self.add_module(f"m{i}")
@@ -359,8 +370,22 @@ class SELNetwork:
             return None
         return min(eligible, key=lambda item: item[1].local_tension)[0]
 
-    def structural_evolution(self, epoch_loss: Optional[float] = None, epoch: Optional[int] = None) -> List[Tuple]:
+    def structural_evolution(self, epoch_loss: Optional[float] = None, epoch: Optional[int] = None, task_id: Optional[int] = None) -> List[Tuple]:
         """Trigger CLONE or ADAPT based on tension rather than random probability."""
+        if task_id is not None and task_id != self.task_id:
+            # 任务切换时的处理
+            self.task_id = task_id
+            # 重置停滞计数器
+            self.stalled_epochs = 0
+            # 为新任务准备网络：如果性能不佳，考虑添加新模块
+            if len(self.modules) < self.config.max_modules:
+                # 选择表现最好的模块作为克隆源
+                best_idx = min(range(len(self.modules)), key=lambda i: self.modules[i].local_tension)
+                source_name = self.modules[best_idx].name
+                new_name = f"{source_name}_task{task_id}_{len(self.modules)}"
+                self.add_module(new_name, clone_from=best_idx)
+                return [(new_name, "cloned for new task", source_name)]
+
         if epoch is not None:
             self.current_epoch = epoch
         else:
@@ -401,12 +426,48 @@ class SELNetwork:
         else:
             self.stalled_epochs = 0
 
+        # 自动结构优化：基于任务复杂度和性能自动调整模块数
+        # 1. 当模块数少于3时，优先考虑添加模块
+        # 2. 当模块数超过max_modules时，强制剪枝
+        if len(self.modules) < 3 and network_plateau >= 0.5:
+            # 简单任务也需要足够的模块
+            if source_ready:
+                source_name = self.modules[source_idx].name
+                new_name = f"{source_name}_clone_{len(self.modules)}"
+                self.add_module(new_name, clone_from=source_idx)
+                self.last_clone_epoch = self.current_epoch
+                changes.append((new_name, "cloned for optimal structure", source_name))
+        elif len(self.modules) > self.config.max_modules:
+            # 超过最优范围，强制剪枝到max_modules个模块
+            while len(self.modules) > self.config.max_modules:
+                # 选择张力最低的模块进行剪枝（张力低 = 模块已停滞）
+                # 张力高 = 模块正在努力学习，应保留
+                if pressured_modules:
+                    prune_idx = min(pressured_modules, key=lambda item: item[1].local_tension)[0]
+                else:
+                    # 如果没有压力模块，选择张力最低的模块
+                    prune_idx = min(range(len(self.modules)), 
+                                   key=lambda i: self.modules[i].local_tension)
+                
+                removed_module = self.remove_module(prune_idx)
+                if removed_module:
+                    changes.append((removed_module.name, "pruned for optimal structure"))
+                
+                # 更新压力模块列表
+                pressured_modules = [
+                    (idx, module)
+                    for idx, module in enumerate(self.modules)
+                    if len(module.loss_history) >= self.config.tension_window
+                    and module.local_tension >= self.config.tension_threshold
+                ]
+
+        # 降低克隆条件，鼓励更多的结构演化
         can_clone = (
             bool(pressured_modules)
-            and len(self.epoch_loss_history) >= self.config.tension_window
-            and self.stalled_epochs >= self.config.clone_patience
+            and len(self.epoch_loss_history) >= self.config.tension_window // 2  # 降低窗口要求
+            and self.stalled_epochs >= max(1, self.config.clone_patience // 2)  # 降低停滞要求
             and len(self.modules) < self.config.max_modules
-            and (self.current_epoch - self.last_clone_epoch) >= self.config.clone_cooldown
+            and (self.current_epoch - self.last_clone_epoch) >= max(1, self.config.clone_cooldown // 2)  # 降低冷却要求
             and source_ready
         )
         if can_clone:
@@ -416,8 +477,9 @@ class SELNetwork:
             self.last_clone_epoch = self.current_epoch
             changes.append((new_name, "cloned", source_name))
 
-        for idx, module in sorted(pressured_modules, key=lambda item: item[1].local_tension, reverse=True)[:1]:
-            if not module.can_act(self.current_epoch, self.config.adapt_cooldown):
+        # 增加适应模块的数量
+        for idx, module in sorted(pressured_modules, key=lambda item: item[1].local_tension, reverse=True)[:2]:  # 从1个增加到2个
+            if not module.can_act(self.current_epoch, max(1, self.config.adapt_cooldown // 2)):  # 降低冷却要求
                 continue
             changed, reason = module.adapt(
                 epoch=self.current_epoch,
@@ -443,11 +505,30 @@ class SELNetwork:
         }
 
     def snapshot(self, epoch: Optional[int] = None) -> Dict:
+        tension_components = []
+        for module in self.modules:
+            if hasattr(module, 'tension_components_history') and module.tension_components_history:
+                latest = module.tension_components_history[-1]
+                tension_components.append({
+                    'plateau': latest['plateau'],
+                    'volatility': latest['volatility'],
+                    'residual': latest['residual'],
+                    'local_tension': latest['local_tension']
+                })
+            else:
+                tension_components.append({
+                    'plateau': 0.0,
+                    'volatility': 0.0,
+                    'residual': 0.0,
+                    'local_tension': module.local_tension
+                })
+        
         return {
             "epoch": self.current_epoch if epoch is None else epoch,
             "module_count": len(self.modules),
             "module_names": [module.name for module in self.modules],
             "tensions": [module.local_tension for module in self.modules],
+            "tension_components": tension_components,
             "weight_norms": [module.weight_norm for module in self.modules],
             "weights": [module.weights.copy() for module in self.modules],
         }
@@ -492,6 +573,7 @@ class SELTrainer:
         y_train: np.ndarray,
         X_test: np.ndarray = None,
         y_test: np.ndarray = None,
+        task_id: int = 0,
     ) -> Dict:
         self.network = SELNetwork(self.config)
         self.metrics = []
@@ -506,7 +588,7 @@ class SELTrainer:
                 epoch_losses.append(self.network.forward_learning(X_train[i], y_train[i]))
 
             avg_loss = float(np.mean(epoch_losses)) if epoch_losses else 0.0
-            changes = self.network.structural_evolution(epoch_loss=avg_loss, epoch=epoch)
+            changes = self.network.structural_evolution(epoch_loss=avg_loss, epoch=epoch, task_id=task_id)
 
             train_acc = self.network.accuracy(X_train, y_train)
             test_acc = 0.0

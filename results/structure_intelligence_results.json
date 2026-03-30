@@ -1,0 +1,729 @@
+{
+  "results": [
+    {
+      "n_modules": 1,
+      "connectivity_density": 0.2,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.05000000000000001,
+        "density": 0.0,
+        "info_capacity": 2.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.3755692307211211,
+        "learning_improvement": 0.5256856807845001,
+        "generalization": 0.7161761607088093,
+        "adaptability": 0.21480059115526307,
+        "creativity": 0.04561449023591163
+      }
+    },
+    {
+      "n_modules": 1,
+      "connectivity_density": 0.2,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.05000000000000001,
+        "density": 0.0,
+        "info_capacity": 2.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.4041800163772629,
+        "learning_improvement": 0.5840953853184948,
+        "generalization": 0.6671378813168825,
+        "adaptability": 0.3210843428790334,
+        "creativity": 0.04440245599464071
+      }
+    },
+    {
+      "n_modules": 1,
+      "connectivity_density": 0.5,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.05000000000000001,
+        "density": 0.0,
+        "info_capacity": 2.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.3755692307211211,
+        "learning_improvement": 0.5256856807845001,
+        "generalization": 0.7161761607088093,
+        "adaptability": 0.21480059115526307,
+        "creativity": 0.04561449023591163
+      }
+    },
+    {
+      "n_modules": 1,
+      "connectivity_density": 0.5,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.05000000000000001,
+        "density": 0.0,
+        "info_capacity": 2.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.4041800163772629,
+        "learning_improvement": 0.5840953853184948,
+        "generalization": 0.6671378813168825,
+        "adaptability": 0.3210843428790334,
+        "creativity": 0.04440245599464071
+      }
+    },
+    {
+      "n_modules": 1,
+      "connectivity_density": 0.8,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.05000000000000001,
+        "density": 0.0,
+        "info_capacity": 2.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.3755692307211211,
+        "learning_improvement": 0.5256856807845001,
+        "generalization": 0.7161761607088093,
+        "adaptability": 0.21480059115526307,
+        "creativity": 0.04561449023591163
+      }
+    },
+    {
+      "n_modules": 1,
+      "connectivity_density": 0.8,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.05000000000000001,
+        "density": 0.0,
+        "info_capacity": 2.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.4041800163772629,
+        "learning_improvement": 0.5840953853184948,
+        "generalization": 0.6671378813168825,
+        "adaptability": 0.3210843428790334,
+        "creativity": 0.04440245599464071
+      }
+    },
+    {
+      "n_modules": 1,
+      "connectivity_density": 1.0999999999999999,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.05000000000000001,
+        "density": 0.0,
+        "info_capacity": 2.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.3755692307211211,
+        "learning_improvement": 0.5256856807845001,
+        "generalization": 0.7161761607088093,
+        "adaptability": 0.21480059115526307,
+        "creativity": 0.04561449023591163
+      }
+    },
+    {
+      "n_modules": 1,
+      "connectivity_density": 1.0999999999999999,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.05000000000000001,
+        "density": 0.0,
+        "info_capacity": 2.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.4041800163772629,
+        "learning_improvement": 0.5840953853184948,
+        "generalization": 0.6671378813168825,
+        "adaptability": 0.3210843428790334,
+        "creativity": 0.04440245599464071
+      }
+    },
+    {
+      "n_modules": 3,
+      "connectivity_density": 0.2,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.15,
+        "density": 0.0,
+        "info_capacity": 6.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.41520346567040295,
+        "learning_improvement": 0.5256856807845001,
+        "generalization": 0.7161761607088093,
+        "adaptability": 0.37107601579768174,
+        "creativity": 0.0478760053906207
+      }
+    },
+    {
+      "n_modules": 3,
+      "connectivity_density": 0.2,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.15,
+        "density": 0.0,
+        "info_capacity": 6.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.41744079803549866,
+        "learning_improvement": 0.5002591325491259,
+        "generalization": 0.6154009653989958,
+        "adaptability": 0.5140579826685308,
+        "creativity": 0.04004511152534209
+      }
+    },
+    {
+      "n_modules": 3,
+      "connectivity_density": 0.5,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.15,
+        "density": 0.0,
+        "info_capacity": 6.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.4081474295638083,
+        "learning_improvement": 0.47615509934618955,
+        "generalization": 0.686597343127679,
+        "adaptability": 0.4326171655792466,
+        "creativity": 0.037220110202117816
+      }
+    },
+    {
+      "n_modules": 3,
+      "connectivity_density": 0.5,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.15,
+        "density": 0.0,
+        "info_capacity": 6.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.41744079803549866,
+        "learning_improvement": 0.5002591325491259,
+        "generalization": 0.6154009653989958,
+        "adaptability": 0.5140579826685308,
+        "creativity": 0.04004511152534209
+      }
+    },
+    {
+      "n_modules": 3,
+      "connectivity_density": 0.8,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.15,
+        "density": 0.0,
+        "info_capacity": 6.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.4110563546033473,
+        "learning_improvement": 0.45302055118445095,
+        "generalization": 0.6871526774438812,
+        "adaptability": 0.4660537184926345,
+        "creativity": 0.0379984712924227
+      }
+    },
+    {
+      "n_modules": 3,
+      "connectivity_density": 0.8,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.15,
+        "density": 0.0,
+        "info_capacity": 6.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.35853096598840123,
+        "learning_improvement": 0.3990815271158045,
+        "generalization": 0.5815358798114342,
+        "adaptability": 0.40209287502664476,
+        "creativity": 0.051413581999721424
+      }
+    },
+    {
+      "n_modules": 3,
+      "connectivity_density": 1.0999999999999999,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.15,
+        "density": 0.0,
+        "info_capacity": 6.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.4110563546033473,
+        "learning_improvement": 0.45302055118445095,
+        "generalization": 0.6871526774438812,
+        "adaptability": 0.4660537184926345,
+        "creativity": 0.0379984712924227
+      }
+    },
+    {
+      "n_modules": 3,
+      "connectivity_density": 1.0999999999999999,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.15,
+        "density": 0.0,
+        "info_capacity": 6.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.35853096598840123,
+        "learning_improvement": 0.3990815271158045,
+        "generalization": 0.5815358798114342,
+        "adaptability": 0.40209287502664476,
+        "creativity": 0.051413581999721424
+      }
+    },
+    {
+      "n_modules": 5,
+      "connectivity_density": 0.2,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.25,
+        "density": 0.0,
+        "info_capacity": 10.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.40348139779204856,
+        "learning_improvement": 0.5256856807845001,
+        "generalization": 0.7161761607088093,
+        "adaptability": 0.32755741421997403,
+        "creativity": 0.04450633545491097
+      }
+    },
+    {
+      "n_modules": 5,
+      "connectivity_density": 0.2,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.25,
+        "density": 0.0,
+        "info_capacity": 10.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.40720155658798146,
+        "learning_improvement": 0.5002591325491259,
+        "generalization": 0.6154009653989958,
+        "adaptability": 0.4690348036545413,
+        "creativity": 0.044111324749263076
+      }
+    },
+    {
+      "n_modules": 5,
+      "connectivity_density": 0.5,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.25,
+        "density": 0.0,
+        "info_capacity": 10.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.37790561412521506,
+        "learning_improvement": 0.47615509934618955,
+        "generalization": 0.686597343127679,
+        "adaptability": 0.31256490682881855,
+        "creativity": 0.036305107198173314
+      }
+    },
+    {
+      "n_modules": 5,
+      "connectivity_density": 0.5,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.25,
+        "density": 0.0,
+        "info_capacity": 10.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.40720155658798146,
+        "learning_improvement": 0.5002591325491259,
+        "generalization": 0.6154009653989958,
+        "adaptability": 0.4690348036545413,
+        "creativity": 0.044111324749263076
+      }
+    },
+    {
+      "n_modules": 5,
+      "connectivity_density": 0.8,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.25,
+        "density": 0.0,
+        "info_capacity": 10.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.38093297531329223,
+        "learning_improvement": 0.45800450400660936,
+        "generalization": 0.7102068969922065,
+        "adaptability": 0.30882475777184254,
+        "creativity": 0.04669574248251059
+      }
+    },
+    {
+      "n_modules": 5,
+      "connectivity_density": 0.8,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.25,
+        "density": 0.0,
+        "info_capacity": 10.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.3869793322451683,
+        "learning_improvement": 0.49417101669517766,
+        "generalization": 0.6019213309716408,
+        "adaptability": 0.41247570678115086,
+        "creativity": 0.03934927453270372
+      }
+    },
+    {
+      "n_modules": 5,
+      "connectivity_density": 1.0999999999999999,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.25,
+        "density": 0.0,
+        "info_capacity": 10.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.38093297531329223,
+        "learning_improvement": 0.45800450400660936,
+        "generalization": 0.7102068969922065,
+        "adaptability": 0.30882475777184254,
+        "creativity": 0.04669574248251059
+      }
+    },
+    {
+      "n_modules": 5,
+      "connectivity_density": 1.0999999999999999,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.25,
+        "density": 0.0,
+        "info_capacity": 10.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.40541557677894663,
+        "learning_improvement": 0.49279589005822383,
+        "generalization": 0.6642085032145262,
+        "adaptability": 0.4288123741687042,
+        "creativity": 0.03584553967433192
+      }
+    },
+    {
+      "n_modules": 7,
+      "connectivity_density": 0.2,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.3499999999999999,
+        "density": 0.0,
+        "info_capacity": 14.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.39265256570073354,
+        "learning_improvement": 0.5256856807845001,
+        "generalization": 0.7161761607088093,
+        "adaptability": 0.28216646019486236,
+        "creativity": 0.04658196111476226
+      }
+    },
+    {
+      "n_modules": 7,
+      "connectivity_density": 0.2,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.3499999999999999,
+        "density": 0.0,
+        "info_capacity": 14.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.3790124525419118,
+        "learning_improvement": 0.5002591325491259,
+        "generalization": 0.6154009653989958,
+        "adaptability": 0.3566336662869422,
+        "creativity": 0.043756045932583226
+      }
+    },
+    {
+      "n_modules": 7,
+      "connectivity_density": 0.5,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.3499999999999999,
+        "density": 0.0,
+        "info_capacity": 14.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.39602580876320587,
+        "learning_improvement": 0.47615509934618955,
+        "generalization": 0.686597343127679,
+        "adaptability": 0.38220961183337704,
+        "creativity": 0.03914118074557804
+      }
+    },
+    {
+      "n_modules": 7,
+      "connectivity_density": 0.5,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.3499999999999999,
+        "density": 0.0,
+        "info_capacity": 14.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.3790124525419118,
+        "learning_improvement": 0.5002591325491259,
+        "generalization": 0.6154009653989958,
+        "adaptability": 0.3566336662869422,
+        "creativity": 0.043756045932583226
+      }
+    },
+    {
+      "n_modules": 7,
+      "connectivity_density": 0.8,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.3499999999999999,
+        "density": 0.0,
+        "info_capacity": 14.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.3653699493916321,
+        "learning_improvement": 0.4439525715774349,
+        "generalization": 0.7102111794595843,
+        "adaptability": 0.2571680514250397,
+        "creativity": 0.0501479951044696
+      }
+    },
+    {
+      "n_modules": 7,
+      "connectivity_density": 0.8,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.3499999999999999,
+        "density": 0.0,
+        "info_capacity": 14.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.4009228144989561,
+        "learning_improvement": 0.49417101669517766,
+        "generalization": 0.6019213309716408,
+        "adaptability": 0.46834652805085214,
+        "creativity": 0.03925238227815381
+      }
+    },
+    {
+      "n_modules": 7,
+      "connectivity_density": 1.0999999999999999,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.3499999999999999,
+        "density": 0.0,
+        "info_capacity": 14.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.3653699493916321,
+        "learning_improvement": 0.4439525715774349,
+        "generalization": 0.7102111794595843,
+        "adaptability": 0.2571680514250397,
+        "creativity": 0.0501479951044696
+      }
+    },
+    {
+      "n_modules": 7,
+      "connectivity_density": 1.0999999999999999,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.3499999999999999,
+        "density": 0.0,
+        "info_capacity": 14.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.39802893804319345,
+        "learning_improvement": 0.49826064562872374,
+        "generalization": 0.5520060407013886,
+        "adaptability": 0.484678384539518,
+        "creativity": 0.0571706813031434
+      }
+    },
+    {
+      "n_modules": 9,
+      "connectivity_density": 0.2,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.45,
+        "density": 0.0,
+        "info_capacity": 18.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.40343265460483807,
+        "learning_improvement": 0.5256856807845001,
+        "generalization": 0.7161761607088093,
+        "adaptability": 0.3214552993205582,
+        "creativity": 0.05041347760548461
+      }
+    },
+    {
+      "n_modules": 9,
+      "connectivity_density": 0.2,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.45,
+        "density": 0.0,
+        "info_capacity": 18.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.41444726935045767,
+        "learning_improvement": 0.5002591325491259,
+        "generalization": 0.6154009653989958,
+        "adaptability": 0.4936586793708493,
+        "creativity": 0.04847030008285968
+      }
+    },
+    {
+      "n_modules": 9,
+      "connectivity_density": 0.5,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.45,
+        "density": 0.0,
+        "info_capacity": 18.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.302814891789395,
+        "learning_improvement": 0.020192006279160096,
+        "generalization": 0.680278682346999,
+        "adaptability": 0.4795429698528255,
+        "creativity": 0.031245908678595707
+      }
+    },
+    {
+      "n_modules": 9,
+      "connectivity_density": 0.5,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.45,
+        "density": 0.0,
+        "info_capacity": 18.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.3619389503904898,
+        "learning_improvement": 0.3412624036609262,
+        "generalization": 0.6516787422311406,
+        "adaptability": 0.41719626863099046,
+        "creativity": 0.03761838703890168
+      }
+    },
+    {
+      "n_modules": 9,
+      "connectivity_density": 0.8,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.45,
+        "density": 0.0,
+        "info_capacity": 18.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.2712378921524361,
+        "learning_improvement": -0.07673547417782367,
+        "generalization": 0.7164921732906729,
+        "adaptability": 0.3933281347328528,
+        "creativity": 0.05186673476404258
+      }
+    },
+    {
+      "n_modules": 9,
+      "connectivity_density": 0.8,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.45,
+        "density": 0.0,
+        "info_capacity": 18.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.2790686874435484,
+        "learning_improvement": 0.1664245669203215,
+        "generalization": 0.5838030693044114,
+        "adaptability": 0.3194499431322295,
+        "creativity": 0.046597170417231236
+      }
+    },
+    {
+      "n_modules": 9,
+      "connectivity_density": 1.0999999999999999,
+      "task_complexity": 4,
+      "structure": {
+        "structure_score": 0.45,
+        "density": 0.0,
+        "info_capacity": 18.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.2712378921524361,
+        "learning_improvement": -0.07673547417782367,
+        "generalization": 0.7164921732906729,
+        "adaptability": 0.3933281347328528,
+        "creativity": 0.05186673476404258
+      }
+    },
+    {
+      "n_modules": 9,
+      "connectivity_density": 1.0999999999999999,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.45,
+        "density": 0.0,
+        "info_capacity": 18.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.3230719371984416,
+        "learning_improvement": 0.2328185526668655,
+        "generalization": 0.5552669061794738,
+        "adaptability": 0.4483029839781894,
+        "creativity": 0.05589930596923781
+      }
+    }
+  ],
+  "summary": {
+    "correlation": -0.5061285246132957,
+    "best_config": {
+      "n_modules": 3,
+      "connectivity_density": 0.2,
+      "task_complexity": 8,
+      "structure": {
+        "structure_score": 0.15,
+        "density": 0.0,
+        "info_capacity": 6.0
+      },
+      "intelligence": {
+        "intelligence_score": 0.41744079803549866,
+        "learning_improvement": 0.5002591325491259,
+        "generalization": 0.6154009653989958,
+        "adaptability": 0.5140579826685308,
+        "creativity": 0.04004511152534209
+      }
+    },
+    "n_experiments": 40,
+    "avg_structure_score": 0.25,
+    "avg_intelligence_score": 0.3792525052895347,
+    "structure_range": [
+      0.05000000000000001,
+      0.45
+    ],
+    "intelligence_range": [
+      0.2712378921524361,
+      0.41744079803549866
+    ]
+  },
+  "config": {
+    "min_modules": 1,
+    "max_modules": 10,
+    "module_step": 2,
+    "min_density": 0.2,
+    "max_density": 0.8,
+    "density_step": 0.3,
+    "task_complexities": [
+      4,
+      8
+    ],
+    "n_trials": 3,
+    "epochs_per_trial": 30
+  }
+}
