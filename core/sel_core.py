@@ -574,11 +574,31 @@ class SELTrainer:
         X_test: np.ndarray = None,
         y_test: np.ndarray = None,
         task_id: int = 0,
+        reset_metrics: bool = False,
     ) -> Dict:
-        self.network = SELNetwork(self.config)
-        self.metrics = []
-        self.evolution_log = []
-        self.topology_history = []
+        """
+        Train the network on a task.
+        
+        Args:
+            X_train: Training data
+            y_train: Training labels
+            X_test: Test data (optional)
+            y_test: Test labels (optional)
+            task_id: Task identifier for continual learning
+            reset_metrics: If True, reset metrics (for single-task training)
+                          If False, continue accumulating metrics (for continual learning)
+        """
+        # 只在第一次调用时创建网络，支持持续学习
+        if self.network is None:
+            self.network = SELNetwork(self.config)
+            if reset_metrics:
+                self.metrics = []
+                self.evolution_log = []
+                self.topology_history = []
+        
+        # 任务切换时通知网络
+        if task_id != self.network.task_id:
+            self.network.structural_evolution(task_id=task_id)
 
         for epoch in range(self.config.epochs):
             indices = self.network.rng.permutation(len(X_train))
@@ -599,7 +619,7 @@ class SELTrainer:
             if changes:
                 self.evolution_log.append(
                     {
-                        "epoch": epoch,
+                        "epoch": self.network.current_epoch,
                         "avg_loss": avg_loss,
                         "avg_tension": avg_tension,
                         "module_count": len(self.network.modules),
@@ -608,7 +628,7 @@ class SELTrainer:
                 )
             self.metrics.append(
                 TrainingMetrics(
-                    epoch=epoch,
+                    epoch=self.network.current_epoch,
                     train_accuracy=train_acc,
                     test_accuracy=test_acc,
                     avg_tension=avg_tension,
@@ -617,7 +637,7 @@ class SELTrainer:
                     avg_loss=avg_loss,
                 )
             )
-            self.topology_history.append(self.network.snapshot(epoch=epoch))
+            self.topology_history.append(self.network.snapshot(epoch=self.network.current_epoch))
 
         return {
             "final_train_accuracy": self.metrics[-1].train_accuracy,

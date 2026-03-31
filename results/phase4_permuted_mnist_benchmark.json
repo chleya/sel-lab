@@ -1,46 +1,128 @@
 {
   "dataset": "Permuted-MNIST",
+  "num_tasks": 5,
   "fixed_results": [
     {
       "task": 0,
-      "current_accuracy": 0.47,
-      "backward_accuracy": 0.47,
-      "forgetting": 0.0
+      "current_accuracy": 0.631,
+      "backward_accuracy": 0.631,
+      "forgetting": 0.0,
+      "per_task_forgetting": [
+        0.0
+      ]
     },
     {
       "task": 1,
-      "current_accuracy": 0.6055,
-      "backward_accuracy": 0.35250000000000004,
-      "forgetting": 0.253
+      "current_accuracy": 0.578,
+      "backward_accuracy": 0.472,
+      "forgetting": 0.1325,
+      "per_task_forgetting": [
+        0.265,
+        0.0
+      ]
     },
     {
       "task": 2,
-      "current_accuracy": 0.556,
-      "backward_accuracy": 0.2436666666666667,
-      "forgetting": 0.31233333333333335
+      "current_accuracy": 0.4315,
+      "backward_accuracy": 0.2618333333333333,
+      "forgetting": 0.285,
+      "per_task_forgetting": [
+        0.491,
+        0.364,
+        0.0
+      ]
+    },
+    {
+      "task": 3,
+      "current_accuracy": 0.7185,
+      "backward_accuracy": 0.512375,
+      "forgetting": 0.07737499999999997,
+      "per_task_forgetting": [
+        0.308,
+        0.12299999999999994,
+        -0.12150000000000005,
+        0.0
+      ]
+    },
+    {
+      "task": 4,
+      "current_accuracy": 0.588,
+      "backward_accuracy": 0.3365,
+      "forgetting": 0.2529,
+      "per_task_forgetting": [
+        0.47250000000000003,
+        0.344,
+        0.133,
+        0.315,
+        0.0
+      ]
     }
   ],
   "evolving_results": [
     {
       "task": 0,
-      "current_accuracy": 0.1225,
-      "backward_accuracy": 0.1225,
+      "current_accuracy": 0.822,
+      "backward_accuracy": 0.822,
       "forgetting": 0.0,
-      "final_modules": 5
+      "per_task_forgetting": [
+        0.0
+      ],
+      "final_units": 2,
+      "total_units": 2
     },
     {
       "task": 1,
-      "current_accuracy": 0.0885,
-      "backward_accuracy": 0.088,
-      "forgetting": 0.0005000000000000004,
-      "final_modules": 4
+      "current_accuracy": 0.774,
+      "backward_accuracy": 0.74325,
+      "forgetting": 0.054749999999999965,
+      "per_task_forgetting": [
+        0.10949999999999993,
+        0.0
+      ],
+      "final_units": 2,
+      "total_units": 2
     },
     {
       "task": 2,
-      "current_accuracy": 0.096,
-      "backward_accuracy": 0.09616666666666666,
-      "forgetting": -0.0001666666666666622,
-      "final_modules": 5
+      "current_accuracy": 0.728,
+      "backward_accuracy": 0.7101666666666665,
+      "forgetting": 0.0645,
+      "per_task_forgetting": [
+        0.13049999999999995,
+        0.06300000000000006,
+        0.0
+      ],
+      "final_units": 2,
+      "total_units": 2
+    },
+    {
+      "task": 3,
+      "current_accuracy": 0.7275,
+      "backward_accuracy": 0.68075,
+      "forgetting": 0.08212499999999998,
+      "per_task_forgetting": [
+        0.17199999999999993,
+        0.08799999999999997,
+        0.0685,
+        0.0
+      ],
+      "final_units": 2,
+      "total_units": 2
+    },
+    {
+      "task": 4,
+      "current_accuracy": 0.695,
+      "backward_accuracy": 0.6287,
+      "forgetting": 0.1206,
+      "per_task_forgetting": [
+        0.24349999999999994,
+        0.15600000000000003,
+        0.14700000000000002,
+        0.056499999999999995,
+        0.0
+      ],
+      "final_units": 2,
+      "total_units": 2
     }
   ]
 }
